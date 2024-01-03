@@ -1,0 +1,31 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "STAT 1010 Lecture Notes"
+  author: "Yi Wang"
+  date: "8/11/2023"
+  downloads: [pdf, docx]
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - python_comp_env.qmd
+    - r_comp_env.qmd
+    - git.qmd
+    - 0_markdown.ipynb
+    - assignment.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+  docx:  
+    reference-doc: custom-reference-doc.docx
+
+
+

@@ -1,0 +1,5 @@
+# Introduction
+
+This is a book for STAT 1010: Introduction to Data Science offered at Auburn University at Montgomery. 
+
+This an ongoing project and updates are perpetually added. 

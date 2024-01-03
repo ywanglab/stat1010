@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.398">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Yi Wang">
+
+<title>STAT 1010 Lecture Notes - 4&nbsp; Use Git and GitHub</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./0_markdown.html" rel="next">
+<link href="./r_comp_env.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./git.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Use Git and GitHub</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">STAT 1010 Lecture Notes</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./STAT-1010-Lecture-Notes.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./STAT-1010-Lecture-Notes.docx">
+              <i class="bi bi-bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python_comp_env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting-up Python Computing Environment</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r_comp_env.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting-up R Studio Computing Environment</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./git.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Use Git and GitHub</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0_markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">My Jupyter Notebook</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assignment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Homework Assignments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#download-git" id="toc-download-git" class="nav-link active" data-scroll-target="#download-git"><span class="header-section-number">4.1</span> Download Git</a></li>
+  <li><a href="#establish-a-connection-between-a-local-repo-and-a-remote-github-repo" id="toc-establish-a-connection-between-a-local-repo-and-a-remote-github-repo" class="nav-link" data-scroll-target="#establish-a-connection-between-a-local-repo-and-a-remote-github-repo"><span class="header-section-number">4.2</span> Establish a connection between a local repo and a remote GitHub repo</a>
+  <ul class="collapse">
+  <li><a href="#clone-an-existing-repo-on-github" id="toc-clone-an-existing-repo-on-github" class="nav-link" data-scroll-target="#clone-an-existing-repo-on-github"><span class="header-section-number">4.2.1</span> Clone an existing repo on GitHub</a></li>
+  <li><a href="#initializing-a-git-directory-locally-first" id="toc-initializing-a-git-directory-locally-first" class="nav-link" data-scroll-target="#initializing-a-git-directory-locally-first"><span class="header-section-number">4.2.2</span> Initializing a Git Directory Locally First</a></li>
+  </ul></li>
+  <li><a href="#some-other-common-commands" id="toc-some-other-common-commands" class="nav-link" data-scroll-target="#some-other-common-commands"><span class="header-section-number">4.3</span> Some other common commands</a></li>
+  <li><a href="#use-git-help" id="toc-use-git-help" class="nav-link" data-scroll-target="#use-git-help"><span class="header-section-number">4.4</span> Use Git help</a></li>
+  <li><a href="#when-the-upstream-repo-changes" id="toc-when-the-upstream-repo-changes" class="nav-link" data-scroll-target="#when-the-upstream-repo-changes"><span class="header-section-number">4.5</span> When the upstream repo changes</a></li>
+  <li><a href="#create-branch" id="toc-create-branch" class="nav-link" data-scroll-target="#create-branch"><span class="header-section-number">4.6</span> Create branch</a></li>
+  <li><a href="#merge-branch-to-main-branch" id="toc-merge-branch-to-main-branch" class="nav-link" data-scroll-target="#merge-branch-to-main-branch"><span class="header-section-number">4.7</span> Merge branch to main branch</a></li>
+  <li><a href="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" id="toc-contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="nav-link" data-scroll-target="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.8</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</a></li>
+  <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project"><span class="header-section-number">4.9</span> Project</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Use Git and GitHub</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Yi Wang </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>I assume you already have an account on <a href="https://github.com" class="uri">https://github.com</a>. If not, you need to create an account there.</p>
+<section id="download-git" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="download-git"><span class="header-section-number">4.1</span> Download Git</h2>
+<ol type="1">
+<li><p>Go to the website <a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a>, select an appropriate operating system, select “Click here to download”</p></li>
+<li><p>Run the downloaded setup file with a name such as <code>Git-2.42.0.2-64-bit.exe</code>, and accept all default options.</p></li>
+</ol>
+</section>
+<section id="establish-a-connection-between-a-local-repo-and-a-remote-github-repo" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="establish-a-connection-between-a-local-repo-and-a-remote-github-repo"><span class="header-section-number">4.2</span> Establish a connection between a local repo and a remote GitHub repo</h2>
+<section id="clone-an-existing-repo-on-github" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="clone-an-existing-repo-on-github"><span class="header-section-number">4.2.1</span> Clone an existing repo on GitHub</h3>
+<p>This is an easier way to establish a connection between a local repo and a remote repo if the remote repo is created ahead. We will make a connection between a remote repo in your GitHub account and a local directory. If the remote repo is not under your account, then skip steps 1 and 2.</p>
+<ol type="1">
+<li><p>Sign in to your GitHub account, and create a GitHub repo (such as named <code>homework</code>) on <code>GitHub</code> (<a href="https://github.com" class="uri">https://github.com</a>), you can add a README.md file or just choose not to add a README.md file.</p></li>
+<li><p>On your local computer, open a <code>Git Bash</code> terminal.</p></li>
+<li><p>Skip this step if you simply want the cloned repo to be in the current directory. Otherwise, In the terminal, type <code>mkdir myfolder</code> (create a folder named <code>myfolder</code> within the current directory) and then <code>cd myfolder</code> (change to the directory <code>myfolder</code>). The directory name <code>myfolder</code> can be any name you want.</p></li>
+<li><p><code>git clone https://github.com/Your_Git_UserName/homework.git</code> (change the remote repo path to match your actual remote repo).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To specify a specific folder to clone to, add the name of the folder after the repository&nbsp;<code>URL</code>, like this:&nbsp;<code>git clone github-repo-URL mylocalfolder</code></p>
+</div>
+</div></li>
+<li><p>Now you have established a connection between your local directory <code>homework</code> and the remote repo <code>homework</code> on GitHub.</p></li>
+<li><p>Create a new file in the current local directory <code>homewor</code> on your local computer, such as using your favorite editor to create a file named <code>myfirstlocalfile.txt</code> with any content in it. Or for the sake of demonstration, you can use the following Linux command to create this file containing the line <code>#My first local file</code>.</p>
+<p><code>echo "#My first local file" &gt;&gt; myfirstlocalfile.txt</code></p></li>
+<li><p>In the terminal, <code>git add .</code> This will add all changes to the <strong>staging area</strong>. This lets Git start to track the changes to files in your local directory.</p></li>
+<li><p>Now you are ready to <strong>commit</strong> the changes, which versions (takes a snapshot of) the current files in the directory. A commit is a checkpoint where you can go back to.</p>
+<p><code>git commit -m "my first commit from local"</code></p></li>
+<li><p>Now you are ready to sync the local repo with the remote repo.</p>
+<p><code>git push</code></p>
+<p>The GitHub might ask you to sign in for the first time. Choose <code>Sign in with your brower</code> to sign in to complete the push.</p></li>
+</ol>
+</section>
+<section id="initializing-a-git-directory-locally-first" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="initializing-a-git-directory-locally-first"><span class="header-section-number">4.2.2</span> Initializing a Git Directory Locally First</h3>
+<p>The previous approach initializes a local Git repo by cloning a remote repo. You can also initialize a local Git repo by using <code>git init</code>. Follow the following steps:</p>
+<ol start="3" type="1">
+<li><p>Sign in to your GitHub account.</p></li>
+<li><p>Create a GitHub <strong>empty</strong> repo (such as named <code>homework</code>) on <code>GitHub</code> (<a href="https://github.com" class="uri">https://github.com</a>) but make sure it is empty (do not add Readme.md file)</p></li>
+<li><p>Start a Git Bash Terminal window on your local computer (You could also use the Terminal Window in RStudio or VSC). Navigate to the project directory; if you haven’t yet created a project directory such as <code>homework</code>, do</p>
+<p><code>mkdir project_dir</code> Example: <code>mkdir homework</code></p>
+<p>Use <code>cd project_directory_name</code> to enter your local project directory;</p>
+<p>Use <code>ls</code> to list all files and directories or use <code>ls -al</code> to include all hidden files and directories. In your local Git Terminal, (note at this moment your local project directory is empty)</p>
+<pre><code>echo "# homework0" &gt;&gt; README.md  #create a file README.md
+git init
+git branch -M main #rename the branch name to main
+git add .  # may use git add --all
+git commit -m "first commit"
+git remote add origin https://github.com/ywanglab/homework.git #(change the remote repo path to your remote repo)
+git push -u origin main </code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>the general command format: <code>git push [remote-name] [branch-name]</code></p></li>
+<li><p>difference between <code>git add .</code> and <code>git add --all</code>:</p>
+<p><code>git add .</code>: stages changes in the current directory and its subdirectories but does not include file deletions</p>
+<p><code>git add --all</code>: stages changes in the entire working tree, including deletions and untracked files. It is a more aggressive option and can be useful when you want to ensure that every change, including file deletions, is included in the next commit.</p>
+<p><code>git add --all</code> is equivalent to <code>git add -A</code></p></li>
+</ol>
+</div>
+</div></li>
+<li><p>if your local project directory already 1) contains files and 2) had performed <code>init git</code> before, then</p>
+<pre><code>git remote add origin https://github.com/ywanglab/homework.git` #(change the remote repo path to your remote repo path)
+git branch -M main
+git push -u origin main</code></pre></li>
+<li><p>in the pop-out <code>GitHub Sign-in</code> window, click on <code>Sign in with your browser</code>.</p></li>
+<li><p>Note an empty folder would not be pushed to the remote repo until it has a file (even an empty file) in it. In this case, you can create an empty file such as <code>.gitignore</code></p></li>
+</ol>
+</section>
+</section>
+<section id="some-other-common-commands" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="some-other-common-commands"><span class="header-section-number">4.3</span> Some other common commands</h2>
+<ol type="1">
+<li><p>check git status: <code>git status</code> and <code>git status --short</code> for a compact way.</p></li>
+<li><p><code>git commit -a -m "message"</code> will stage and commit every changed, already tracked file without using <code>git add changed_file</code></p></li>
+<li><p><code>git add file_changed</code></p>
+<p># add <code>file_changed</code> to the staging environment, i.e., git repo to start track those changes.</p></li>
+<li><p>use <code>git log</code> to check all commits. Use <code>git log --pretty=oneline</code> or just <code>git log --oneline</code> for shorter display.</p>
+<p><code>git log origin/main</code> #check the remote repo <code>origin/main</code> commits</p></li>
+<li><p>use <code>git diff origin/main</code> to show the differences between the local <code>main</code> and <code>origin/main</code>.</p></li>
+<li><p>use <code>git checkout .</code> to revert back to the previous commit. Any changes after the previous commit will be abandoned.</p></li>
+<li><p>to get to a previous commit, use <code>git checkout seven_character_commit_hash</code>. To get back to main, use <code>git checkout main</code>.</p></li>
+<li><p>Git commit --amend</p></li>
+</ol>
+<pre><code>`commit --amend` is used to modify the most recent `commit`. It combines changes in the `staging environment` with the latest `commit`, and creates a new `commit`. This new `commit` replaces the latest `commit` entirely. Adding files with&nbsp;`--amend`&nbsp;works the same way as above. Just add them to the&nbsp;`staging environment`&nbsp;before committing.
+
+One of the simplest things you can do with&nbsp;`--amend`&nbsp;is to change a&nbsp;`commit`&nbsp;message with spelling errors.</code></pre>
+<ol start="9" type="1">
+<li><p>Git Revert HEAD:</p>
+<p>Revert the latest <code>commit</code> using git <code>revert HEAD</code> (<code>revert</code> the latest change, and then <code>commit</code>), adding the option <code>--no-edit</code> to skip the commit message editor (getting the default <code>revert</code> message):</p>
+<pre><code>git revert HEAD --no-edit</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To revert to earlier commits, use&nbsp;<code>git revert HEAD~x</code>&nbsp;(<em><code>x</code></em>&nbsp;being a number. 1 going back one more, 2 going back two more, etc.)</p>
+</div>
+</div></li>
+<li><p>Git Reset</p>
+<p><code>reset</code> is the command used when we want to move the repository back to a previous <code>commit</code>, discarding any changes made after that <code>commit</code>. <code>git reset seven-char-commit-hash</code></p></li>
+<li><p>Git Undo Reset</p>
+<p>Even though the commits are no longer showing up in the log, it is not removed from Git. If you know the commit hash you can reset to it:</p>
+<pre><code>git reset seven-char-commit-hash</code></pre></li>
+<li><p>To permanently go back to a previous commit, use</p>
+<p><code>git reset --hard seven_char_commit_hash</code></p></li>
+<li><p><code>git remote -v</code> Get the reminder of the remote repo. To rename the remote origin: <code>git remote rename origin upsteam</code> rename remote repo <code>origin</code> to <code>upstream</code></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>According to Git naming conventions, it is recommended to name your own repository&nbsp;<code>origin</code> which you have read and write access; and the one you forked for&nbsp;<code>upstream</code> (which you only have read-only access.)</p>
+</div>
+</div></li>
+<li><p>if you want to remove the file only from the remote GitHub repository and not remove it from your local filesystem, use:</p></li>
+</ol>
+<pre><code>git rm -rf --cached file1.txt #This will only remote files; If intending to remove local files too, remove --cached
+git commit -m "remove file1.txt" </code></pre>
+<p>And then push changes to remote repo</p>
+<pre><code>git push origin main </code></pre>
+<ol start="14" type="1">
+<li>For some operating system, such as Mac or Linux, you might be asked to tell GitHub who you are. When you are prompted, type the following two commands in your terminal window:</li>
+</ol>
+<pre><code>git config --global user.name "Your Name" 
+git config --global user.mail "your@email.com"</code></pre>
+<p>This will change the Git configuration in a way that anytime you use Git, it will know this information. Note that <strong>you need to use the email account that you used to open your GitHub account</strong>. <code>global</code> sets the username and e-mail for <strong>every repo</strong> on your computer. If you want to set the username/e-mail just for the current repo, remove <code>global</code>.</p>
+</section>
+<section id="use-git-help" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="use-git-help"><span class="header-section-number">4.4</span> Use Git help</h2>
+<ol type="1">
+<li><code>git command -help</code> See all the available options for the specific command. Use `<code>--help</code> instead of <code>-help</code> to open the relevant Git manual page.</li>
+<li><code>git help --all</code> See all possible commands</li>
+</ol>
+</section>
+<section id="when-the-upstream-repo-changes" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="when-the-upstream-repo-changes"><span class="header-section-number">4.5</span> When the upstream repo changes</h2>
+<p>When Git tells you the upstream repo is ahead,</p>
+<ol start="15" type="1">
+<li><p>Do <code>git pull</code> or <code>git pull origin</code></p>
+<p>This is equivalent to <code>git fetch origin</code>, and then <code>git merge origin/main.</code>Then you can commit and push a new version to the remote repo.</p></li>
+<li><p><code>git pull</code> will not pull a new branches on the remote repo to local, but it will inform you if there is a new branch on the remote repo. In this case, just <code>git checkout the_remote_new_branch_name</code> will pull the remote branch to local. Note there is <strong>no need</strong> to create locally the branch by <code>git branch the_remote_new_branch_name</code></p></li>
+</ol>
+</section>
+<section id="create-branch" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="create-branch"><span class="header-section-number">4.6</span> Create branch</h2>
+<ol start="16" type="1">
+<li><p>To add a branch to the main branch <code>git branch branchname</code></p>
+<p>Switch the branch <code>git checkout branchname</code></p>
+<p>To combine the above two actions, <code>git checkout -b branchname</code>, create a new branch named <code>branchname</code> if it does not exist and move to it.</p></li>
+</ol>
+<p>Adding a file in branch <code>echo "#content" &gt;&gt; filename.txt</code></p>
+<p>Then <code>add</code> the file and commit the file. To push the branch to the remote repo we <strong>have to use</strong></p>
+<p><code>git push --set-upstream origin branchname</code> The option <code>--set-upstream</code> can be replaced by <code>-u</code></p>
+<p>to see all branches in both local and remote: <code>git branch -a</code> Or <code>git branch -r</code> for remote only.</p>
+</section>
+<section id="merge-branch-to-main-branch" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="merge-branch-to-main-branch"><span class="header-section-number">4.7</span> Merge branch to main branch</h2>
+<ol type="1">
+<li><p>Switch from a branch (with name such as <code>branchname</code> to the <code>main</code> using<br>
+<code>git checkout main</code></p></li>
+<li><p>on the <code>main</code> branch, Merge command to merge the branches<br>
+<code>git merge branchname</code></p></li>
+</ol>
+<p>To delete a branch:</p>
+<p><code>git branch -d branchname</code></p>
+</section>
+<section id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.8</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</h2>
+<ol type="1">
+<li><p>after forking a (foreign) GitHub repo to your own GitHub account, <code>git clone</code> that repo under your account to your local repo.</p></li>
+<li><p>make changes in your local directory.</p></li>
+<li><p>Submitting your changes for review</p>
+<ol type="1">
+<li><p><strong>Commit your changes locally.</strong> Once you are ready to submit your changes, run these commands in your terminal:</p>
+<pre><code>git add -A                            # Stages all changes, short for --all 
+git commit -m '[your commit message]' # Makes a git commit</code></pre></li>
+<li><p><strong>Make a pull request.</strong> (A pull request is a proposal to change) A GitHub pull request allows the owner of the forked upstream repo to review and make comments on your changes you proposed. Once approved, the upstream owner can merge your changes. Run:</p>
+<pre><code>git push origin # Push current branch to the same branch on GitHub</code></pre></li>
+</ol></li>
+<li><p>Then go to your remote forked repo in your account on the GitHub site and click <strong>Contribute</strong>,and then <strong>Open pull request</strong>, this will take you to the upstream repo. In the form, leave a message explaining the change, and <strong>Create pull request</strong>. <strong>Do not</strong> select <code>Close pull request</code> unless you want to cancel the pull request.</p></li>
+</ol>
+</section>
+<section id="project" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="project"><span class="header-section-number">4.9</span> Project</h2>
+<ol type="1">
+<li><p>First make sure you have forked the course repo <code>https://github.com/ywanglab/stat1010.git</code></p>
+<p>to your own GitHub account.</p></li>
+<li><p>Now go to your GitHub account, git clone the forked course repo</p></li>
+</ol>
+<p><code>git clone https://github.com/your_git_user_name/stat1010.git</code></p>
+<p>to your local computer</p>
+<ol start="4" type="1">
+<li>add your resume file in the folder <code>./resume</code></li>
+</ol>
+<p><code>git add</code>, <code>commit</code> and <code>push</code> your changes to the upstream repo using</p>
+<pre><code>git add .
+
+git commit -m "added YourFirstName's resume"
+
+git push origin</code></pre>
+<ol start="5" type="1">
+<li>Then go to your remote forked repo in your account on the GitHub site and click <strong>Contribute</strong>,and then <strong>Open pull request</strong>, this will take you to the upstream repo. In the form, leave a message explaining the change, and <strong>Create pull request</strong>. <strong>Do not</strong> select <code>Close pull request</code> unless you want to cancel the pull request.</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./r_comp_env.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting-up R Studio Computing Environment</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./0_markdown.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">My Jupyter Notebook</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

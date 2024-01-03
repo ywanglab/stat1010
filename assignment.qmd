@@ -1,0 +1,43 @@
+# Homework Assignments
+
+I will use some assignments from <https://cognitiveclass.ai>.
+
+1.  Browser `Course & Projects`. Search for `Python for Data Science`. `Enroll Now` the class, and `Go to the Course`, and `Start the Course`. 
+
+2.  Complete the following   assignments from `Modules 1-4` and Part of `Module 5.` Excluding the `API` section in `Module 5`. 
+    
+    | Module   | Contents             | Suggested Deadlines |
+    |:----------|:--------------------|:-----------------------|
+    | Module 1    | Python Basics   |     10/09/2023  |
+    | Module 2    | Python Data Structures   |     10/09/2023  |
+    | Module 3    | Python Prrogramming Fundamentals   |     10/09/2023  |
+    | Module 4    | Working with Data in Python   |     10/16/2023  |
+    | Module 5    | Working with Numpy Arrays (Excluding Simple APIs)   |     10/16/2023  |
+    | Final Exam |     Optional                        |  |
+    
+    
+    Complete all `Practice Questions`, `Review Questions` and `Labs`. After your completing all the assignments, click on `Progress`, print the page (in PDF or hard copy), and send it to me. The page should show your `username` on the top right corner. 
+
+
+3. Enroll in the course `Data Anlaysis with Python`. 
+
+    Complete the following   assignments. 
+    
+    | Module   | Contents             | Suggested Deadlines |
+    |:----------|:--------------------|:-----------------------|
+    | Module 1    | Introduction   |     10/23/2023  |
+    | Module 2    | Data Wrangling   |     10/30/2023  |
+    | Module 3    | Exploratory Data Analysis   |     11/06/2023  |
+    
+4. Enroll in the course `Data Visualization with Python`. 
+
+    Complete the following   assignments. 
+    
+    | Module   | Contents             | Suggested Deadlines |
+    |:----------|:--------------------|:-----------------------|
+    | Module 1    | Introduction to Visualization   |     11/13/2023  |
+    | Module 2    | Basic Visualization Tools   |     11/20/2023  |
+    | Module 3    | Specialized Visualization Tools   |     11/27/2023  |
+    | Module 4    | Advanced Visualizaiton Tools (Optional)  |       |
+    
+    

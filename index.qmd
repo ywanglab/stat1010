@@ -1,0 +1,5 @@
+# Preface {.unnumbered}
+
+This is a book for STAT 1010: Introduction to Data Science at Auburn University at Montgomery. The book is written using Quarto.
+
+To learn more about Quarto books visit <https://quarto.org/docs/books>.
