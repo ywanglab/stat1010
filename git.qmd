@@ -155,13 +155,19 @@ One of the simplest things you can do with `--amend` is to change a `commit`�
 
     `git reset --hard seven_char_commit_hash`
 
-13. `git remote -v` Get the reminder of the remote repo. To rename the remote origin: `git remote rename origin upsteam` rename remote repo `origin` to `upstream`
+13. to go back to a previous commit, but not changing the files in the working directory use the `--soft`\` option.
+
+    ```         
+    git reset --soft seven_char_commit_hash
+    ```
+
+14. `git remote -v` Get the reminder of the remote repo. To rename the remote origin: `git remote rename origin upsteam` rename remote repo `origin` to `upstream`
 
     ::: callout-note
     According to Git naming conventions, it is recommended to name your own repository `origin` which you have read and write access; and the one you forked for `upstream` (which you only have read-only access.)
     :::
 
-14. if you want to remove the file only from the remote GitHub repository and not remove it from your local filesystem, use:
+15. if you want to remove the file only from the remote GitHub repository and not remove it from your local filesystem, use:
 
 ```         
 git rm -rf --cached file1.txt #This will only remote files; If intending to remove local files too, remove --cached
@@ -234,23 +240,27 @@ GitHub does not allow to upload a file of size greater than 150Mb. However, one 
 git lfs install  #(only need to do this the first time)
 ```
 
-Then In each Git repository where you want to use Git LFS, select the file types you'd like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at anytime.
+Then In each Git repository where you want to use Git LFS, select the file types you'd like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at any time.
 
 ```         
 git lfs track "path/to/file"
 ```
 
-Then do the regular `git add .` and `git -m "message"` and `git push`.
+Then do the regular `git add .` and `git -m "message"` and `git push`. Note one must use `git lfs track` a file first before doing `git add` and `git commit`.
 
 ::: callout-note
-Note you need to track the large-size file first before you add it to the staging area. But often you find this error after you try to push your changes to the GitHub. In this case, you will have to remove the commit history of this file first. One way to do this is the following:
+Note you need to track the large-size file first before you add it to the staging area. But often you will find this error after you try to push your changes to the GitHub. In this case, you will have to remove the commit history of this file first. One way to do this is to `reset –soft` the HEAD to the previous working HEAD, and then do `git lfs track` followed by `git add` and `git commit`, `git push`. Specifically,
 
 ```         
 
-git filter-branch --tree-filter 'rm -f path/to/your/file' HEAD
+git reset --soft HEAD ~` # or the_7-char_commit_hash
+git lfs track "path/to/large_file"
+git add .
+git commit -m "commit message"
+git push
 ```
 
-Note this will **remove** the file from the working directory. So make sure you have made a copy of the file. After doing this, do the steps mentioned above.
+Note the `--soft` option allows the changes in the working directory not affected, otherwise any change after the previous commit will be removed.
 :::
 
 ```         
