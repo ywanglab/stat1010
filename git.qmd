@@ -127,7 +127,7 @@ One of the simplest things you can do with `--amend` is to change a `commit`�
 
 9.  Git Revert HEAD:
 
-    Revert the latest `commit` using git `revert HEAD` (`revert` the latest change, and then `commit`), adding the option `--no-edit` to skip the commit message editor (getting the default `revert` message):
+    `revert` is the command we use when we want to take a previous commit and add it as a new commit, keeping the log intact. Revert the latest `commit` using git `revert HEAD` (`revert` the latest change, and then `commit`), adding the option `--no-edit` to skip the commit message editor (getting the default `revert` message):
 
     ```         
     git revert HEAD --no-edit
@@ -139,7 +139,9 @@ One of the simplest things you can do with `--amend` is to change a `commit`�
 
 10. Git Reset
 
-    `reset` is the command used when we want to move the repository back to a previous `commit`, discarding any changes made after that `commit`. `git reset seven-char-commit-hash`
+    `reset` is the command used when we want to move the repository back to a previous `commit`, discarding any changes made after that `commit`.  Let's try and do that with reset. 
+    
+    `git reset seven-char-commit-hash`
 
 11. Git Undo Reset
 

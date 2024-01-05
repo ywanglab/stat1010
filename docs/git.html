@@ -333,7 +333,7 @@ git push -u origin main</code></pre></li>
 One of the simplest things you can do with&nbsp;`--amend`&nbsp;is to change a&nbsp;`commit`&nbsp;message with spelling errors.</code></pre>
 <ol start="9" type="1">
 <li><p>Git Revert HEAD:</p>
-<p>Revert the latest <code>commit</code> using git <code>revert HEAD</code> (<code>revert</code> the latest change, and then <code>commit</code>), adding the option <code>--no-edit</code> to skip the commit message editor (getting the default <code>revert</code> message):</p>
+<p><code>revert</code> is the command we use when we want to take a previous commit and add it as a new commit, keeping the log intact. Revert the latest <code>commit</code> using git <code>revert HEAD</code> (<code>revert</code> the latest change, and then <code>commit</code>), adding the option <code>--no-edit</code> to skip the commit message editor (getting the default <code>revert</code> message):</p>
 <pre><code>git revert HEAD --no-edit</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -349,7 +349,8 @@ Note
 </div>
 </div></li>
 <li><p>Git Reset</p>
-<p><code>reset</code> is the command used when we want to move the repository back to a previous <code>commit</code>, discarding any changes made after that <code>commit</code>. <code>git reset seven-char-commit-hash</code></p></li>
+<p><code>reset</code> is the command used when we want to move the repository back to a previous <code>commit</code>, discarding any changes made after that <code>commit</code>. Let’s try and do that with reset.</p>
+<p><code>git reset seven-char-commit-hash</code></p></li>
 <li><p>Git Undo Reset</p>
 <p>Even though the commits are no longer showing up in the log, it is not removed from Git. If you know the commit hash you can reset to it:</p>
 <pre><code>git reset seven-char-commit-hash</code></pre></li>
