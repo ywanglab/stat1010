@@ -443,7 +443,7 @@ Note
 <p>Note you need to track the large-size file first before you add it to the staging area. But often you find this error after you try to push your changes to the GitHub. In this case, you will have to remove the commit history of this file first. One way to do this is the following:</p>
 <pre><code>
 git filter-branch --tree-filter 'rm -f path/to/your/file' HEAD</code></pre>
-<p>After doing this, do the steps mentioned above.</p>
+<p>Note this will <strong>remove</strong> the file from the working directory. So make sure you have made a copy of the file. After doing this, do the steps mentioned above.</p>
 </div>
 </div>
 <pre><code></code></pre>

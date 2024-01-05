@@ -250,11 +250,10 @@ Note you need to track the large-size file first before you add it to the stagin
 git filter-branch --tree-filter 'rm -f path/to/your/file' HEAD
 ```
 
-After doing this, do the steps mentioned above.
+Note this will **remove** the file from the working directory. So make sure you have made a copy of the file. After doing this, do the steps mentioned above.
 :::
 
 ```         
-
 ```
 
 ## Contribute by forking a GitHub repo and commit to the forked repo and create a pull request
