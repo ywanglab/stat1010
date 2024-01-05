@@ -444,7 +444,7 @@ Note
 <div class="callout-body-container callout-body">
 <p>Note you need to track the large-size file first before you add it to the staging area. But often you will find this error after you try to push your changes to the GitHub. In this case, you will have to remove the commit history of this file first. One way to do this is to <code>reset –soft</code> the HEAD to the previous working HEAD, and then do <code>git lfs track</code> followed by <code>git add</code> and <code>git commit</code>, <code>git push</code>. Specifically,</p>
 <pre><code>
-git reset --soft HEAD ~` # or the_7-char_commit_hash
+git reset --soft HEAD ~1  # or the_7-char_commit_hash
 git lfs track "path/to/large_file"
 git add .
 git commit -m "commit message"
