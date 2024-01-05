@@ -130,11 +130,21 @@
     ]
   },
   {
+    "objectID": "git.html#handle-large-files-150mb-on-github",
+    "href": "git.html#handle-large-files-150mb-on-github",
+    "title": "4  Use Git and GitHub",
+    "section": "4.8 Handle large files (>= 150Mb) on GitHub",
+    "text": "4.8 Handle large files (&gt;= 150Mb) on GitHub\nGitHub does not allow to upload a file of size greater than 150Mb. However, one can use git lfs to handle large files exceeding this size up to several Giga bytes. The first thing is to install git lfs. Head to https://git-lfs.com, once dowlonad and install the Git command line extension, set up Git LFS for your user account by running\ngit lfs install  #(only need to do this the first time)\nThen In each Git repository where you want to use Git LFS, select the file types you’d like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at anytime.\ngit lfs track \"path/to/file\"\nThen do the regular git add . and git -m \"message\" and git push.\n::: callout-note\nNote you need to track the large-size file first before you add it to the staging area. But often you find this error after you try to push your changes to the GitHub. In this case, you will have to remove the commit history of this file first. One way to  do this is the following:\n```\ngit filter-branch --tree-filter 'rm -f path/to/your/file' HEAD\n\n```\nAfter doing this, do the steps mentioned above. \n:::",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
     "objectID": "git.html#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request",
     "href": "git.html#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request",
     "title": "4  Use Git and GitHub",
-    "section": "4.8 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request",
-    "text": "4.8 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request\n\nafter forking a (foreign) GitHub repo to your own GitHub account, git clone that repo under your account to your local repo.\nmake changes in your local directory.\nSubmitting your changes for review\n\nCommit your changes locally. Once you are ready to submit your changes, run these commands in your terminal:\ngit add -A                            # Stages all changes, short for --all \ngit commit -m '[your commit message]' # Makes a git commit\nMake a pull request. (A pull request is a proposal to change) A GitHub pull request allows the owner of the forked upstream repo to review and make comments on your changes you proposed. Once approved, the upstream owner can merge your changes. Run:\ngit push origin # Push current branch to the same branch on GitHub\n\nThen go to your remote forked repo in your account on the GitHub site and click Contribute,and then Open pull request, this will take you to the upstream repo. In the form, leave a message explaining the change, and Create pull request. Do not select Close pull request unless you want to cancel the pull request.",
+    "section": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request",
+    "text": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request\n\nafter forking a (foreign) GitHub repo to your own GitHub account, git clone that repo under your account to your local repo.\nmake changes in your local directory.\nSubmitting your changes for review\n\nCommit your changes locally. Once you are ready to submit your changes, run these commands in your terminal:\ngit add -A                            # Stages all changes, short for --all \ngit commit -m '[your commit message]' # Makes a git commit\nMake a pull request. (A pull request is a proposal to change) A GitHub pull request allows the owner of the forked upstream repo to review and make comments on your changes you proposed. Once approved, the upstream owner can merge your changes. Run:\ngit push origin # Push current branch to the same branch on GitHub\n\nThen go to your remote forked repo in your account on the GitHub site and click Contribute,and then Open pull request, this will take you to the upstream repo. In the form, leave a message explaining the change, and Create pull request. Do not select Close pull request unless you want to cancel the pull request.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
@@ -143,8 +153,8 @@
     "objectID": "git.html#project",
     "href": "git.html#project",
     "title": "4  Use Git and GitHub",
-    "section": "4.9 Project",
-    "text": "4.9 Project\n\nFirst make sure you have forked the course repo https://github.com/ywanglab/stat1010.git\nto your own GitHub account.\nNow go to your GitHub account, git clone the forked course repo\n\ngit clone https://github.com/your_git_user_name/stat1010.git\nto your local computer\n\nadd your resume file in the folder ./resume\n\ngit add, commit and push your changes to the upstream repo using\ngit add .\n\ngit commit -m \"added YourFirstName's resume\"\n\ngit push origin\n\nThen go to your remote forked repo in your account on the GitHub site and click Contribute,and then Open pull request, this will take you to the upstream repo. In the form, leave a message explaining the change, and Create pull request. Do not select Close pull request unless you want to cancel the pull request.",
+    "section": "4.10 Project",
+    "text": "4.10 Project\n\nFirst make sure you have forked the course repo https://github.com/ywanglab/stat1010.git\nto your own GitHub account.\nNow go to your GitHub account, git clone the forked course repo\n\ngit clone https://github.com/your_git_user_name/stat1010.git\nto your local computer\n\nadd your resume file in the folder ./resume\n\ngit add, commit and push your changes to the upstream repo using\ngit add .\n\ngit commit -m \"added YourFirstName's resume\"\n\ngit push origin\n\nThen go to your remote forked repo in your account on the GitHub site and click Contribute,and then Open pull request, this will take you to the upstream repo. In the form, leave a message explaining the change, and Create pull request. Do not select Close pull request unless you want to cancel the pull request.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]

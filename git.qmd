@@ -226,6 +226,27 @@ To delete a branch:
 
 `git branch -d branchname`
 
+## Handle large files (>= 150Mb) on GitHub
+
+GitHub does not allow to upload a file of size greater than 150Mb. However, one can use `git lfs` to handle large files exceeding this size up to several Giga bytes. The first thing is to install `git lfs`. Head to <https://git-lfs.com>, once dowlonad and install the Git command line extension, set up Git LFS for your user account by running
+```
+git lfs install  #(only need to do this the first time)
+```
+Then In each Git repository where you want to use Git LFS, select the file types you'd like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at anytime.
+```
+git lfs track "path/to/file"
+```
+Then do the regular `git add .` and `git -m "message"` and `git push`. 
+
+    ::: callout-note
+    Note you need to track the large-size file first before you add it to the staging area. But often you find this error after you try to push your changes to the GitHub. In this case, you will have to remove the commit history of this file first. One way to  do this is the following:
+    ```
+    git filter-branch --tree-filter 'rm -f path/to/your/file' HEAD
+
+    ```
+    After doing this, do the steps mentioned above. 
+    :::
+
 ## Contribute by forking a GitHub repo and commit to the forked repo and create a pull request
 
 1.  after forking a (foreign) GitHub repo to your own GitHub account, `git clone` that repo under your account to your local repo.

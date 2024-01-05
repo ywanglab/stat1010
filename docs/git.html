@@ -194,8 +194,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#when-the-upstream-repo-changes" id="toc-when-the-upstream-repo-changes" class="nav-link" data-scroll-target="#when-the-upstream-repo-changes"><span class="header-section-number">4.5</span> When the upstream repo changes</a></li>
   <li><a href="#create-branch" id="toc-create-branch" class="nav-link" data-scroll-target="#create-branch"><span class="header-section-number">4.6</span> Create branch</a></li>
   <li><a href="#merge-branch-to-main-branch" id="toc-merge-branch-to-main-branch" class="nav-link" data-scroll-target="#merge-branch-to-main-branch"><span class="header-section-number">4.7</span> Merge branch to main branch</a></li>
-  <li><a href="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" id="toc-contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="nav-link" data-scroll-target="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.8</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</a></li>
-  <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project"><span class="header-section-number">4.9</span> Project</a></li>
+  <li><a href="#handle-large-files-150mb-on-github" id="toc-handle-large-files-150mb-on-github" class="nav-link" data-scroll-target="#handle-large-files-150mb-on-github"><span class="header-section-number">4.8</span> Handle large files (&gt;= 150Mb) on GitHub</a></li>
+  <li><a href="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" id="toc-contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="nav-link" data-scroll-target="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</a></li>
+  <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project"><span class="header-section-number">4.10</span> Project</a></li>
   </ul>
 </nav>
     </div>
@@ -422,8 +423,24 @@ git config --global user.mail "your@email.com"</code></pre>
 <p>To delete a branch:</p>
 <p><code>git branch -d branchname</code></p>
 </section>
-<section id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.8</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</h2>
+<section id="handle-large-files-150mb-on-github" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="handle-large-files-150mb-on-github"><span class="header-section-number">4.8</span> Handle large files (&gt;= 150Mb) on GitHub</h2>
+<p>GitHub does not allow to upload a file of size greater than 150Mb. However, one can use <code>git lfs</code> to handle large files exceeding this size up to several Giga bytes. The first thing is to install <code>git lfs</code>. Head to <a href="https://git-lfs.com" class="uri">https://git-lfs.com</a>, once dowlonad and install the Git command line extension, set up Git LFS for your user account by running</p>
+<pre><code>git lfs install  #(only need to do this the first time)</code></pre>
+<p>Then In each Git repository where you want to use Git LFS, select the file types you’d like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at anytime.</p>
+<pre><code>git lfs track "path/to/file"</code></pre>
+<p>Then do the regular <code>git add .</code> and <code>git -m "message"</code> and <code>git push</code>.</p>
+<pre><code>::: callout-note
+Note you need to track the large-size file first before you add it to the staging area. But often you find this error after you try to push your changes to the GitHub. In this case, you will have to remove the commit history of this file first. One way to  do this is the following:
+```
+git filter-branch --tree-filter 'rm -f path/to/your/file' HEAD
+
+```
+After doing this, do the steps mentioned above. 
+:::</code></pre>
+</section>
+<section id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</h2>
 <ol type="1">
 <li><p>after forking a (foreign) GitHub repo to your own GitHub account, <code>git clone</code> that repo under your account to your local repo.</p></li>
 <li><p>make changes in your local directory.</p></li>
@@ -438,8 +455,8 @@ git commit -m '[your commit message]' # Makes a git commit</code></pre></li>
 <li><p>Then go to your remote forked repo in your account on the GitHub site and click <strong>Contribute</strong>,and then <strong>Open pull request</strong>, this will take you to the upstream repo. In the form, leave a message explaining the change, and <strong>Create pull request</strong>. <strong>Do not</strong> select <code>Close pull request</code> unless you want to cancel the pull request.</p></li>
 </ol>
 </section>
-<section id="project" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="project"><span class="header-section-number">4.9</span> Project</h2>
+<section id="project" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="project"><span class="header-section-number">4.10</span> Project</h2>
 <ol type="1">
 <li><p>First make sure you have forked the course repo <code>https://github.com/ywanglab/stat1010.git</code></p>
 <p>to your own GitHub account.</p></li>
