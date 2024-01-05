@@ -430,14 +430,23 @@ git config --global user.mail "your@email.com"</code></pre>
 <p>Then In each Git repository where you want to use Git LFS, select the file types you’d like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at anytime.</p>
 <pre><code>git lfs track "path/to/file"</code></pre>
 <p>Then do the regular <code>git add .</code> and <code>git -m "message"</code> and <code>git push</code>.</p>
-<pre><code>::: callout-note
-Note you need to track the large-size file first before you add it to the staging area. But often you find this error after you try to push your changes to the GitHub. In this case, you will have to remove the commit history of this file first. One way to  do this is the following:
-```
-git filter-branch --tree-filter 'rm -f path/to/your/file' HEAD
-
-```
-After doing this, do the steps mentioned above. 
-:::</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note you need to track the large-size file first before you add it to the staging area. But often you find this error after you try to push your changes to the GitHub. In this case, you will have to remove the commit history of this file first. One way to do this is the following:</p>
+<pre><code>
+git filter-branch --tree-filter 'rm -f path/to/your/file' HEAD</code></pre>
+<p>After doing this, do the steps mentioned above.</p>
+</div>
+</div>
+<pre><code></code></pre>
 </section>
 <section id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="level2" data-number="4.9">
 <h2 data-number="4.9" class="anchored" data-anchor-id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</h2>
