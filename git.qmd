@@ -26,7 +26,7 @@ This is an easier way to establish a connection between a local repo and a remot
 4.  `git clone https://github.com/Your_Git_UserName/homework.git` (change the remote repo path to match your actual remote repo).
 
     ::: callout-note
-    To specify a specific folder to clone to, add the name of the folder after the repository `URL`, like this: `git clone github-repo-URL mylocalfolder`
+    To specify a specific folder to clone to, add the name of the folder after the repository `URL`, like this: `git clone github-repo-URL mylocalfolder`
     :::
 
 5.  Now you have established a connection between your local directory `homework` and the remote repo `homework` on GitHub.
@@ -314,3 +314,256 @@ git push origin
 ```
 
 5.  Then go to your remote forked repo in your account on the GitHub site and click **Contribute**,and then **Open pull request**, this will take you to the upstream repo. In the form, leave a message explaining the change, and **Create pull request**. **Do not** select `Close pull request` unless you want to cancel the pull request.
+
+## More on git
+
+`git pull` = `git fetch` + `git merge`
+
+* **`git fetch`** → downloads commits from the remote into your local refs (e.g. `origin/main`).
+* **`git merge`** → merges those new commits into your current branch.
+
+## 2. What does `--ff` mean?
+
+* `--ff` = **fast-forward if possible**.
+* That means: if your branch has **no local commits** since it last matched the remote, Git will simply **move the branch pointer forward** to match the remote — no merge commit is created.
+
+Example (before pull):
+
+```
+A---B---C  (origin/main)
+     
+A---B   (main)
+```
+
+If you run `git pull --ff` and your branch is strictly behind `origin/main`, Git just slides `main` forward:
+
+```
+A---B---C   (origin/main, main)
+```
+
+---
+
+## 3. How is this different from the defaults?
+
+* `git pull` without flags:
+
+  * May create a **merge commit** if histories diverged.
+* `git pull --ff`:
+
+  * Does a fast-forward if possible.
+  * If not possible (you made local commits), Git falls back to a **merge commit**.
+* `git pull --ff-only`:
+
+  * Does a fast-forward **only**.
+  * If not possible, it **aborts** with an error (no merge commit allowed).
+
+## 4. When to use it
+
+* `--ff` is safe if you don’t mind merge commits being created when necessary.
+* `--ff-only` is stricter (no merge bubbles, linear history).
+* Teams often configure one of these globally so `git pull` always behaves consistently.
+
+## 1) when there is a diverge 
+
+Recall the setup:
+
+```
+A──B──C     (origin/main)
+     \
+      D     (main)
+```
+* `C` and `D`  share a common ancestor `B`.
+So Git sees:
+* One branch has new work (`C`).
+* Another branch has different new work (`D`).
+* **D** is a **local commit** you made on `main` after you last pulled.
+* If you run `git pull --ff` (or `--ff-only`), **fast‑forward is NOT possible** because your branch has extra work (D).
+
+  * `--ff-only` → **aborts** with an error.
+  * `--ff` → falls back to a **merge**, creating a merge commit (see next section).
+
+### `git pull` or `git pull --ff` (merge fallback)
+
+* Git fetches `origin/main` at `C`
+* Git merges `C` into your local `main` with `D`, producing **M**:
+
+```
+After pull (local):
+A──B──C
+     \ \
+      D─M    (main)
+        ^
+     merge commit
+```
+When you run `git merge origin/main` (or `git pull` with merge strategy):
+
+* Git identifies the **common ancestor** of the two branches → here, commit **B**.
+* Then it looks at:
+
+  * The changes between `B` → `C` (remote’s changes).
+  * The changes between `B` → `D` (your changes).
+* Git tries to combine both sets of changes into a new snapshot.
+
+That new snapshot becomes a new commit **M**.
+The merge commit **M** exists only **locally** until you `git push`.
+* When you **push**, `origin/main` is updated to point to **M**, and the remote history now includes that merge commit.
+
+
+* Pros: Preserves exact history as it happened (no rewrite).
+* Cons: Adds **merge commits**; history can get “braided”.
+
+### Option 2: `git pull --rebase`  (**replay** your work on top of remote)
+
+* Git rewrites your local commits onto the fetched remote tip:
+
+  * Rewrites `D` into `D'` applied after `C`.
+
+```
+A──B──C──D'     (main)
+        ^
+      rebased (new) commit
+```
+
+* Pros: **Linear history**, no merge commit.
+* Cons: **Rewrites** your local commits (new SHAs). If you had already pushed `D`, you’ll need `git push --force-with-lease`.
+
+## How to set opitons gloabally
+
+* **Team prefers linear history** → `git pull --rebase` (and set it as default)
+
+  ```bash
+  git config --global pull.rebase true
+  git config --global rebase.autoStash true
+  ```
+* **Keep exact history / avoid rewrite** → `git pull --ff` (merge when needed)
+
+  ```bash
+  git config --global pull.rebase false
+  ```
+* **Never auto-merge; be explicit** → `git pull --ff-only`
+
+  ```bash
+  git config --global pull.ff only
+  ```
+
+
+# 1) Concrete example: what does “merge C with D to produce M” look like?
+
+Assume the repo has one file, `README.md`.
+
+### Commits and changes
+
+* **B (common ancestor)**
+  `README.md`:
+
+  ```
+  Hello project
+  ```
+
+* **C (remote, on origin/main)** — someone else added a line:
+
+  ```
+  Hello project
+  Remote line
+  ```
+
+* **D (your local commit, on main)** — you added a different line:
+
+  ```
+  Hello project
+  Local line
+  ```
+
+So history diverged:
+
+```
+A──B──C        (origin/main)
+     \
+      D        (main)
+```
+
+### You run: `git pull` (merge strategy) or `git merge origin/main`
+
+Git computes the diff **B→C** (“add `Remote line`”) and **B→D** (“add `Local line`”), applies both, and creates **merge commit M**:
+
+* **M (merge result)**:
+
+  ```
+  Hello project
+  Local line
+  Remote line
+  ```
+
+  (order may vary if both append—Git picks a consistent merge; if both edit *the same* line, you’ll get a conflict to resolve.)
+
+New history:
+
+```
+A──B──C
+     \ \
+      D─M      (main)
+```
+
+**M** has **two parents**: D and C. That’s a “merge commit”.
+
+## Option B: `git pull --rebase` (**replay** your work on top of remote)
+
+Git takes your local commit(s) and **replays** them atop `C`, producing a *new* commit `D'`:
+
+```
+A──B──C──D'    (main)
+```
+
+* ✅ Pros: **Linear history** (no merge commits), cleaner `git log`, bisect/blame often simpler.
+* ❗ Cons: **Rewrites** your local commit(s) (new SHAs).
+
+  * If you had already pushed `D`, you must **force-push** the rewritten branch (see below).
+
+### Which should you use?
+
+* Many teams prefer **`--rebase`** for a clean linear history (especially on feature branches).
+* If your team forbids history rewrites on shared branches, use **merge** (`git pull` or `git pull --ff`), or make sure you only rebase commits that haven’t been pushed/shared yet.
+
+> Tip to make rebase the default:
+>
+> ```bash
+> git config --global pull.rebase true
+> git config --global rebase.autoStash true
+> ```
+
+---
+
+# 3) What is `git push --force-with-lease` (and why it’s safer than `--force`)?
+
+When you **rebase** local commits that were already pushed, your local branch history no longer matches the remote’s. A normal `git push` will be rejected. You need to overwrite the remote branch tip—i.e., a force push.
+
+* **`git push --force`** overwrites the remote branch **unconditionally** (dangerous—you could clobber someone else’s new commits if they pushed while you were rebasing).
+* **`git push --force-with-lease`** is the **safe** version:
+
+  * It says: “Force-push **only if** the remote branch still points to the commit I think it does.”
+  * If someone else has pushed new commits, **the push is rejected** instead of overwriting their work.
+
+### Typical rebase + push flow
+
+```bash
+# Update local view of remote
+git fetch
+
+# Rebase your local work onto the remote tip
+git rebase origin/main   # resolve conflicts if any; git rebase --continue
+
+# Safely update the remote branch
+git push --force-with-lease
+```
+
+If the last command refuses, someone pushed in the meantime—inspect, fetch, and decide whether to rebase again or merge.
+
+
+
+
+
+
+
+
+
+

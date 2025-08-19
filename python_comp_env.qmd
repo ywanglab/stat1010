@@ -63,3 +63,22 @@ This is to change the directory to the project directory on the Google Drive. Ru
 12. Continue to run other cells.
 
 13. After finishing using VSC, close the VSC, and deactivate the virtual environment in a conda terminal: `conda deactivate`
+
+## Best workflow with GitHub from Colab (or a local device)
+**Pre-req**: Local repo is a clone of the GitHub repo with aligned HEAD
+
+1. Before working on a device (local or Colab)
+  * `git pull` or `git pull --ff` or `git pull --ff-only`
+2. If on Colab, open (or create) a notebook from G-drive to work with. Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook). 
+3. Before finish
+```bash
+git status
+git add  files-to-commit
+git commit -m "commit message"
+git push
+```
+If permission denied on G-drive 
+```bash
+chmod +x .git/hooks/*
+```
+```

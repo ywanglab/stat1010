@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -197,6 +231,29 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#handle-large-files-150mb-on-github" id="toc-handle-large-files-150mb-on-github" class="nav-link" data-scroll-target="#handle-large-files-150mb-on-github"><span class="header-section-number">4.8</span> Handle large files (&gt;= 150Mb) on GitHub</a></li>
   <li><a href="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" id="toc-contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="nav-link" data-scroll-target="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</a></li>
   <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project"><span class="header-section-number">4.10</span> Project</a></li>
+  <li><a href="#more-on-git" id="toc-more-on-git" class="nav-link" data-scroll-target="#more-on-git"><span class="header-section-number">4.11</span> More on git</a></li>
+  <li><a href="#what-does---ff-mean" id="toc-what-does---ff-mean" class="nav-link" data-scroll-target="#what-does---ff-mean"><span class="header-section-number">4.12</span> 2. What does <code>--ff</code> mean?</a></li>
+  <li><a href="#how-is-this-different-from-the-defaults" id="toc-how-is-this-different-from-the-defaults" class="nav-link" data-scroll-target="#how-is-this-different-from-the-defaults"><span class="header-section-number">4.13</span> 3. How is this different from the defaults?</a></li>
+  <li><a href="#when-to-use-it" id="toc-when-to-use-it" class="nav-link" data-scroll-target="#when-to-use-it"><span class="header-section-number">4.14</span> 4. When to use it</a></li>
+  <li><a href="#when-there-is-a-diverge" id="toc-when-there-is-a-diverge" class="nav-link" data-scroll-target="#when-there-is-a-diverge"><span class="header-section-number">4.15</span> 1) when there is a diverge</a>
+  <ul class="collapse">
+  <li><a href="#git-pull-or-git-pull---ff-merge-fallback" id="toc-git-pull-or-git-pull---ff-merge-fallback" class="nav-link" data-scroll-target="#git-pull-or-git-pull---ff-merge-fallback"><span class="header-section-number">4.15.1</span> <code>git pull</code> or <code>git pull --ff</code> (merge fallback)</a></li>
+  <li><a href="#option-2-git-pull---rebase-replay-your-work-on-top-of-remote" id="toc-option-2-git-pull---rebase-replay-your-work-on-top-of-remote" class="nav-link" data-scroll-target="#option-2-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">4.15.2</span> Option 2: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</a></li>
+  </ul></li>
+  <li><a href="#how-to-set-opitons-gloabally" id="toc-how-to-set-opitons-gloabally" class="nav-link" data-scroll-target="#how-to-set-opitons-gloabally"><span class="header-section-number">4.16</span> How to set opitons gloabally</a></li>
+  <li><a href="#concrete-example-what-does-merge-c-with-d-to-produce-m-look-like" id="toc-concrete-example-what-does-merge-c-with-d-to-produce-m-look-like" class="nav-link" data-scroll-target="#concrete-example-what-does-merge-c-with-d-to-produce-m-look-like"><span class="header-section-number">5</span> 1) Concrete example: what does “merge C with D to produce M” look like?</a>
+  <ul class="collapse">
+  <li><a href="#commits-and-changes" id="toc-commits-and-changes" class="nav-link" data-scroll-target="#commits-and-changes"><span class="header-section-number">5.0.1</span> Commits and changes</a></li>
+  <li><a href="#you-run-git-pull-merge-strategy-or-git-merge-originmain" id="toc-you-run-git-pull-merge-strategy-or-git-merge-originmain" class="nav-link" data-scroll-target="#you-run-git-pull-merge-strategy-or-git-merge-originmain"><span class="header-section-number">5.0.2</span> You run: <code>git pull</code> (merge strategy) or <code>git merge origin/main</code></a></li>
+  <li><a href="#option-b-git-pull---rebase-replay-your-work-on-top-of-remote" id="toc-option-b-git-pull---rebase-replay-your-work-on-top-of-remote" class="nav-link" data-scroll-target="#option-b-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">5.1</span> Option B: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</a>
+  <ul class="collapse">
+  <li><a href="#which-should-you-use" id="toc-which-should-you-use" class="nav-link" data-scroll-target="#which-should-you-use"><span class="header-section-number">5.1.1</span> Which should you use?</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#what-is-git-push---force-with-lease-and-why-its-safer-than---force" id="toc-what-is-git-push---force-with-lease-and-why-its-safer-than---force" class="nav-link" data-scroll-target="#what-is-git-push---force-with-lease-and-why-its-safer-than---force"><span class="header-section-number">6</span> 3) What is <code>git push --force-with-lease</code> (and why it’s safer than <code>--force</code>)?</a>
+  <ul class="collapse">
+  <li><a href="#typical-rebase-push-flow" id="toc-typical-rebase-push-flow" class="nav-link" data-scroll-target="#typical-rebase-push-flow"><span class="header-section-number">6.0.1</span> Typical rebase + push flow</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -256,7 +313,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To specify a specific folder to clone to, add the name of the folder after the repository&nbsp;<code>URL</code>, like this:&nbsp;<code>git clone github-repo-URL mylocalfolder</code></p>
+<p>To specify a specific folder to clone to, add the name of the folder after the repository <code>URL</code>, like this: <code>git clone github-repo-URL mylocalfolder</code></p>
 </div>
 </div></li>
 <li><p>Now you have established a connection between your local directory <code>homework</code> and the remote repo <code>homework</code> on GitHub.</p></li>
@@ -491,8 +548,217 @@ git push origin</code></pre>
 <ol start="5" type="1">
 <li>Then go to your remote forked repo in your account on the GitHub site and click <strong>Contribute</strong>,and then <strong>Open pull request</strong>, this will take you to the upstream repo. In the form, leave a message explaining the change, and <strong>Create pull request</strong>. <strong>Do not</strong> select <code>Close pull request</code> unless you want to cancel the pull request.</li>
 </ol>
+</section>
+<section id="more-on-git" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="more-on-git"><span class="header-section-number">4.11</span> More on git</h2>
+<p><code>git pull</code> = <code>git fetch</code> + <code>git merge</code></p>
+<ul>
+<li><strong><code>git fetch</code></strong> → downloads commits from the remote into your local refs (e.g.&nbsp;<code>origin/main</code>).</li>
+<li><strong><code>git merge</code></strong> → merges those new commits into your current branch.</li>
+</ul>
+</section>
+<section id="what-does---ff-mean" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="what-does---ff-mean"><span class="header-section-number">4.12</span> 2. What does <code>--ff</code> mean?</h2>
+<ul>
+<li><code>--ff</code> = <strong>fast-forward if possible</strong>.</li>
+<li>That means: if your branch has <strong>no local commits</strong> since it last matched the remote, Git will simply <strong>move the branch pointer forward</strong> to match the remote — no merge commit is created.</li>
+</ul>
+<p>Example (before pull):</p>
+<pre><code>A---B---C  (origin/main)
+     
+A---B   (main)</code></pre>
+<p>If you run <code>git pull --ff</code> and your branch is strictly behind <code>origin/main</code>, Git just slides <code>main</code> forward:</p>
+<pre><code>A---B---C   (origin/main, main)</code></pre>
+<hr>
+</section>
+<section id="how-is-this-different-from-the-defaults" class="level2" data-number="4.13">
+<h2 data-number="4.13" class="anchored" data-anchor-id="how-is-this-different-from-the-defaults"><span class="header-section-number">4.13</span> 3. How is this different from the defaults?</h2>
+<ul>
+<li><p><code>git pull</code> without flags:</p>
+<ul>
+<li>May create a <strong>merge commit</strong> if histories diverged.</li>
+</ul></li>
+<li><p><code>git pull --ff</code>:</p>
+<ul>
+<li>Does a fast-forward if possible.</li>
+<li>If not possible (you made local commits), Git falls back to a <strong>merge commit</strong>.</li>
+</ul></li>
+<li><p><code>git pull --ff-only</code>:</p>
+<ul>
+<li>Does a fast-forward <strong>only</strong>.</li>
+<li>If not possible, it <strong>aborts</strong> with an error (no merge commit allowed).</li>
+</ul></li>
+</ul>
+</section>
+<section id="when-to-use-it" class="level2" data-number="4.14">
+<h2 data-number="4.14" class="anchored" data-anchor-id="when-to-use-it"><span class="header-section-number">4.14</span> 4. When to use it</h2>
+<ul>
+<li><code>--ff</code> is safe if you don’t mind merge commits being created when necessary.</li>
+<li><code>--ff-only</code> is stricter (no merge bubbles, linear history).</li>
+<li>Teams often configure one of these globally so <code>git pull</code> always behaves consistently.</li>
+</ul>
+</section>
+<section id="when-there-is-a-diverge" class="level2" data-number="4.15">
+<h2 data-number="4.15" class="anchored" data-anchor-id="when-there-is-a-diverge"><span class="header-section-number">4.15</span> 1) when there is a diverge</h2>
+<p>Recall the setup:</p>
+<pre><code>A──B──C     (origin/main)
+     \
+      D     (main)</code></pre>
+<ul>
+<li><p><code>C</code> and <code>D</code> share a common ancestor <code>B</code>. So Git sees:</p></li>
+<li><p>One branch has new work (<code>C</code>).</p></li>
+<li><p>Another branch has different new work (<code>D</code>).</p></li>
+<li><p><strong>D</strong> is a <strong>local commit</strong> you made on <code>main</code> after you last pulled.</p></li>
+<li><p>If you run <code>git pull --ff</code> (or <code>--ff-only</code>), <strong>fast‑forward is NOT possible</strong> because your branch has extra work (D).</p>
+<ul>
+<li><code>--ff-only</code> → <strong>aborts</strong> with an error.</li>
+<li><code>--ff</code> → falls back to a <strong>merge</strong>, creating a merge commit (see next section).</li>
+</ul></li>
+</ul>
+<section id="git-pull-or-git-pull---ff-merge-fallback" class="level3" data-number="4.15.1">
+<h3 data-number="4.15.1" class="anchored" data-anchor-id="git-pull-or-git-pull---ff-merge-fallback"><span class="header-section-number">4.15.1</span> <code>git pull</code> or <code>git pull --ff</code> (merge fallback)</h3>
+<ul>
+<li>Git fetches <code>origin/main</code> at <code>C</code></li>
+<li>Git merges <code>C</code> into your local <code>main</code> with <code>D</code>, producing <strong>M</strong>:</li>
+</ul>
+<pre><code>After pull (local):
+A──B──C
+     \ \
+      D─M    (main)
+        ^
+     merge commit</code></pre>
+<p>When you run <code>git merge origin/main</code> (or <code>git pull</code> with merge strategy):</p>
+<ul>
+<li><p>Git identifies the <strong>common ancestor</strong> of the two branches → here, commit <strong>B</strong>.</p></li>
+<li><p>Then it looks at:</p>
+<ul>
+<li>The changes between <code>B</code> → <code>C</code> (remote’s changes).</li>
+<li>The changes between <code>B</code> → <code>D</code> (your changes).</li>
+</ul></li>
+<li><p>Git tries to combine both sets of changes into a new snapshot.</p></li>
+</ul>
+<p>That new snapshot becomes a new commit <strong>M</strong>. The merge commit <strong>M</strong> exists only <strong>locally</strong> until you <code>git push</code>. * When you <strong>push</strong>, <code>origin/main</code> is updated to point to <strong>M</strong>, and the remote history now includes that merge commit.</p>
+<ul>
+<li>Pros: Preserves exact history as it happened (no rewrite).</li>
+<li>Cons: Adds <strong>merge commits</strong>; history can get “braided”.</li>
+</ul>
+</section>
+<section id="option-2-git-pull---rebase-replay-your-work-on-top-of-remote" class="level3" data-number="4.15.2">
+<h3 data-number="4.15.2" class="anchored" data-anchor-id="option-2-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">4.15.2</span> Option 2: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</h3>
+<ul>
+<li><p>Git rewrites your local commits onto the fetched remote tip:</p>
+<ul>
+<li>Rewrites <code>D</code> into <code>D'</code> applied after <code>C</code>.</li>
+</ul></li>
+</ul>
+<pre><code>A──B──C──D'     (main)
+        ^
+      rebased (new) commit</code></pre>
+<ul>
+<li>Pros: <strong>Linear history</strong>, no merge commit.</li>
+<li>Cons: <strong>Rewrites</strong> your local commits (new SHAs). If you had already pushed <code>D</code>, you’ll need <code>git push --force-with-lease</code>.</li>
+</ul>
+</section>
+</section>
+<section id="how-to-set-opitons-gloabally" class="level2" data-number="4.16">
+<h2 data-number="4.16" class="anchored" data-anchor-id="how-to-set-opitons-gloabally"><span class="header-section-number">4.16</span> How to set opitons gloabally</h2>
+<ul>
+<li><p><strong>Team prefers linear history</strong> → <code>git pull --rebase</code> (and set it as default)</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase true</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> rebase.autoStash true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Keep exact history / avoid rewrite</strong> → <code>git pull --ff</code> (merge when needed)</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Never auto-merge; be explicit</strong> → <code>git pull --ff-only</code></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.ff only</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="concrete-example-what-does-merge-c-with-d-to-produce-m-look-like" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 1) Concrete example: what does “merge C with D to produce M” look like?</h1>
+<p>Assume the repo has one file, <code>README.md</code>.</p>
+<section id="commits-and-changes" class="level3" data-number="5.0.1">
+<h3 data-number="5.0.1" class="anchored" data-anchor-id="commits-and-changes"><span class="header-section-number">5.0.1</span> Commits and changes</h3>
+<ul>
+<li><p><strong>B (common ancestor)</strong> <code>README.md</code>:</p>
+<pre><code>Hello project</code></pre></li>
+<li><p><strong>C (remote, on origin/main)</strong> — someone else added a line:</p>
+<pre><code>Hello project
+Remote line</code></pre></li>
+<li><p><strong>D (your local commit, on main)</strong> — you added a different line:</p>
+<pre><code>Hello project
+Local line</code></pre></li>
+</ul>
+<p>So history diverged:</p>
+<pre><code>A──B──C        (origin/main)
+     \
+      D        (main)</code></pre>
+</section>
+<section id="you-run-git-pull-merge-strategy-or-git-merge-originmain" class="level3" data-number="5.0.2">
+<h3 data-number="5.0.2" class="anchored" data-anchor-id="you-run-git-pull-merge-strategy-or-git-merge-originmain"><span class="header-section-number">5.0.2</span> You run: <code>git pull</code> (merge strategy) or <code>git merge origin/main</code></h3>
+<p>Git computes the diff <strong>B→C</strong> (“add <code>Remote line</code>”) and <strong>B→D</strong> (“add <code>Local line</code>”), applies both, and creates <strong>merge commit M</strong>:</p>
+<ul>
+<li><p><strong>M (merge result)</strong>:</p>
+<pre><code>Hello project
+Local line
+Remote line</code></pre>
+<p>(order may vary if both append—Git picks a consistent merge; if both edit <em>the same</em> line, you’ll get a conflict to resolve.)</p></li>
+</ul>
+<p>New history:</p>
+<pre><code>A──B──C
+     \ \
+      D─M      (main)</code></pre>
+<p><strong>M</strong> has <strong>two parents</strong>: D and C. That’s a “merge commit”.</p>
+</section>
+<section id="option-b-git-pull---rebase-replay-your-work-on-top-of-remote" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="option-b-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">5.1</span> Option B: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</h2>
+<p>Git takes your local commit(s) and <strong>replays</strong> them atop <code>C</code>, producing a <em>new</em> commit <code>D'</code>:</p>
+<pre><code>A──B──C──D'    (main)</code></pre>
+<ul>
+<li><p>✅ Pros: <strong>Linear history</strong> (no merge commits), cleaner <code>git log</code>, bisect/blame often simpler.</p></li>
+<li><p>❗ Cons: <strong>Rewrites</strong> your local commit(s) (new SHAs).</p>
+<ul>
+<li>If you had already pushed <code>D</code>, you must <strong>force-push</strong> the rewritten branch (see below).</li>
+</ul></li>
+</ul>
+<section id="which-should-you-use" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="which-should-you-use"><span class="header-section-number">5.1.1</span> Which should you use?</h3>
+<ul>
+<li>Many teams prefer <strong><code>--rebase</code></strong> for a clean linear history (especially on feature branches).</li>
+<li>If your team forbids history rewrites on shared branches, use <strong>merge</strong> (<code>git pull</code> or <code>git pull --ff</code>), or make sure you only rebase commits that haven’t been pushed/shared yet.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Tip to make rebase the default:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase true</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> rebase.autoStash true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</blockquote>
+<hr>
+</section>
+</section>
+</section>
+<section id="what-is-git-push---force-with-lease-and-why-its-safer-than---force" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 3) What is <code>git push --force-with-lease</code> (and why it’s safer than <code>--force</code>)?</h1>
+<p>When you <strong>rebase</strong> local commits that were already pushed, your local branch history no longer matches the remote’s. A normal <code>git push</code> will be rejected. You need to overwrite the remote branch tip—i.e., a force push.</p>
+<ul>
+<li><p><strong><code>git push --force</code></strong> overwrites the remote branch <strong>unconditionally</strong> (dangerous—you could clobber someone else’s new commits if they pushed while you were rebasing).</p></li>
+<li><p><strong><code>git push --force-with-lease</code></strong> is the <strong>safe</strong> version:</p>
+<ul>
+<li>It says: “Force-push <strong>only if</strong> the remote branch still points to the commit I think it does.”</li>
+<li>If someone else has pushed new commits, <strong>the push is rejected</strong> instead of overwriting their work.</li>
+</ul></li>
+</ul>
+<section id="typical-rebase-push-flow" class="level3" data-number="6.0.1">
+<h3 data-number="6.0.1" class="anchored" data-anchor-id="typical-rebase-push-flow"><span class="header-section-number">6.0.1</span> Typical rebase + push flow</h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update local view of remote</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Rebase your local work onto the remote tip</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase origin/main   <span class="co"># resolve conflicts if any; git rebase --continue</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Safely update the remote branch</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the last command refuses, someone pushed in the meantime—inspect, fetch, and decide whether to rebase again or merge.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
