@@ -222,6 +222,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#on-your-own-computer" id="toc-on-your-own-computer" class="nav-link" data-scroll-target="#on-your-own-computer"><span class="header-section-number">2.2</span> On your own computer</a></li>
   <li><a href="#best-workflow-with-github-from-colab-or-a-local-device" id="toc-best-workflow-with-github-from-colab-or-a-local-device" class="nav-link" data-scroll-target="#best-workflow-with-github-from-colab-or-a-local-device"><span class="header-section-number">2.3</span> Best workflow with GitHub from Colab (or a local device)</a></li>
+  <li><a href="#team-github-workflow" id="toc-team-github-workflow" class="nav-link" data-scroll-target="#team-github-workflow"><span class="header-section-number">2.4</span> Team Github workflow</a></li>
+  <li><a href="#initial-setup" id="toc-initial-setup" class="nav-link" data-scroll-target="#initial-setup"><span class="header-section-number">2.5</span> Initial setup</a></li>
+  <li><a href="#keep-your-fork-in-sync" id="toc-keep-your-fork-in-sync" class="nav-link" data-scroll-target="#keep-your-fork-in-sync"><span class="header-section-number">2.6</span> Keep your fork in sync</a></li>
   </ul>
 </nav>
     </div>
@@ -291,22 +294,81 @@ drive.mount('/content/drive')</code></pre>
 <h2 data-number="2.3" class="anchored" data-anchor-id="best-workflow-with-github-from-colab-or-a-local-device"><span class="header-section-number">2.3</span> Best workflow with GitHub from Colab (or a local device)</h2>
 <p><strong>Pre-req</strong>: Local repo is a clone of the GitHub repo with aligned HEAD</p>
 <ol type="1">
+<li><p>Keep sync with the upstream original owner repo. On GitHub, in the forked repo (under your account), Click on “Sinc fork”.</p></li>
 <li><p>Open (or create) a notebook from G-drive to work with in Colab.</p></li>
-<li><p>Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook).</p></li>
-<li><p>In Colab (or in VSC in a local device)</p></li>
+<li><p>Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook from the project directory).</p></li>
+<li><p>In a termnal of Colab (or a terminal in VSC in a local device)</p></li>
 </ol>
 <ul>
 <li><code>git pull</code> or <code>git pull --ff</code> or (safer method: <code>git pull --ff-only</code>)</li>
 </ul>
-<p>If permission denied on G-drive</p>
+<p>If permission denied on G-drive, run this first then repeat git pull.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x .git/hooks/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="3" type="1">
-<li>Before finish</li>
+<li>After editing, and before finish</li>
 </ol>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add  files-to-commit</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"commit message"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push  <span class="co"># this will push the files-to-commit to your fork/main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="team-github-workflow" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="team-github-workflow"><span class="header-section-number">2.4</span> Team Github workflow</h2>
+</section>
+<section id="initial-setup" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="initial-setup"><span class="header-section-number">2.5</span> Initial setup</h2>
+<ol type="1">
+<li>Fork and Clone</li>
+</ol>
+<ul>
+<li><strong>Fork</strong>: You click “Fork” on GitHub → it creates a <strong>copy</strong> of the repo under <em>your GitHub account</em>. Navigate to <code>https://github.com/ywanglab/STAT4160</code>, then click on “Fork”.</li>
+<li><strong>Clone</strong>: You download a local copy of <em>your fork</em> to your computer. (only do this for the first time)</li>
+</ul>
+<p>So after forking, you typically do (only for the first time)</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/YOUR-USERNAME/REPO-NAME.git <span class="co">#REPO-NAME should be STAT4160</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> REPO-NAME   <span class="co"># the REPO-NAME should be STAT4160, cd to the current working directory  </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Add the original repo as “upstream”</li>
+</ol>
+<p>Your fork is linked to your GitHub account (the “origin”). To stay in sync with the original project, add a remote for the source repository:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add upstream https://github.com/ywanglab/STAT4160</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check remotes:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># origin    https://github.com/YOUR-USERNAME/REPO-NAME.git (push/pull)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># upstream  https://github.com/ORIGINAL-OWNER/REPO-NAME.git (pull only)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Create a feature branch in your fork</li>
+</ol>
+<p>Never work directly on <code>main</code>. Instead create a new branch:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/my-contribution  <span class="co"># or homework/your_initial</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># edit files...</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># after you done your edit, push changes to origin/main</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add files-to-commit  <span class="co"># git add filename (or directoryname) use `.` rarely as it will add all files in the git directory. </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Fix bug in utils"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin feature/my-contribution  <span class="co">#git push by default push changes to origin/main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li><p>Open a Pull Request (PR) (only do this for the contribution you want to make, such as homework)</p></li>
+<li><p>Go to your fork on GitHub (<code>https://github.com/YOUR-USERNAME/REPO-NAME</code>).</p></li>
+<li><p>GitHub will show a banner: “You recently pushed to <code>feature/my-contribution</code>. Do you want to open a Pull Request?”</p></li>
+<li><p>Click it → select <strong>base repository = (upstream) original owner repo</strong>, <strong>compare = your branch</strong>.</p></li>
+</ol>
+<p>Note: <code>head repository</code> → your fork (e.g.&nbsp;YOUR-USERNAME/REPO-NAME) and branch (feature/…) that contains your changes.</p>
+<ol start="4" type="1">
+<li>Write a good description and submit the PR.</li>
+</ol>
+<p>Now the maintainers of the original repo will review it. If approved, they’ll merge it.</p>
+</section>
+<section id="keep-your-fork-in-sync" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="keep-your-fork-in-sync"><span class="header-section-number">2.6</span> Keep your fork in sync</h2>
+<p>Before making new contributions, update your <code>fork/main</code> with the latest <code>main</code> from upstream:</p>
+<p>Option A) Do it on GitHub: If GitHub shows something like “This branch is 1 commit behind”, “Sync Fork”.</p>
+<p>Option B): do it via terminal:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main   <span class="co"># checkout main</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull upstream main        <span class="co"># pull from the upstream original repo</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main          <span class="co"># update your fork on GitHub</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then branch off <code>main</code> again for your next feature.</p>
 
 
 </section>

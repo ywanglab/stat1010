@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#what-is-git-push---force-with-lease-and-why-its-safer-than---force" id="toc-what-is-git-push---force-with-lease-and-why-its-safer-than---force" class="nav-link" data-scroll-target="#what-is-git-push---force-with-lease-and-why-its-safer-than---force"><span class="header-section-number">6</span> 3) What is <code>git push --force-with-lease</code> (and why it’s safer than <code>--force</code>)?</a>
   <ul class="collapse">
   <li><a href="#typical-rebase-push-flow" id="toc-typical-rebase-push-flow" class="nav-link" data-scroll-target="#typical-rebase-push-flow"><span class="header-section-number">6.0.1</span> Typical rebase + push flow</a></li>
-  <li><a href="#example-workflow-with-git-stash" id="toc-example-workflow-with-git-stash" class="nav-link" data-scroll-target="#example-workflow-with-git-stash"><span class="header-section-number">6.0.2</span> 📝 Example workflow with <code>git stash</code></a></li>
+  <li><a href="#example-workflow-with-git-stash" id="toc-example-workflow-with-git-stash" class="nav-link" data-scroll-target="#example-workflow-with-git-stash"><span class="header-section-number">6.0.2</span> Example workflow with <code>git stash</code></a></li>
   <li><a href="#rebuild-the-index-respecting-.gitignore" id="toc-rebuild-the-index-respecting-.gitignore" class="nav-link" data-scroll-target="#rebuild-the-index-respecting-.gitignore"><span class="header-section-number">6.1</span> Rebuild the index respecting <code>.gitignore</code></a></li>
   <li><a href="#team-git-workflow" id="toc-team-git-workflow" class="nav-link" data-scroll-target="#team-git-workflow"><span class="header-section-number">6.2</span> Team Git workflow</a>
   <ul class="collapse">
@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#create-feature-branches" id="toc-create-feature-branches" class="nav-link" data-scroll-target="#create-feature-branches"><span class="header-section-number">6.2.2</span> 2. <strong>Create feature branches</strong></a></li>
   <li><a href="#push-branch-to-github-and-open-a-pull-request-pr" id="toc-push-branch-to-github-and-open-a-pull-request-pr" class="nav-link" data-scroll-target="#push-branch-to-github-and-open-a-pull-request-pr"><span class="header-section-number">6.2.3</span> 3. <strong>Push branch to GitHub and open a Pull Request (PR)</strong></a></li>
   <li><a href="#keep-your-branch-up-to-date" id="toc-keep-your-branch-up-to-date" class="nav-link" data-scroll-target="#keep-your-branch-up-to-date"><span class="header-section-number">6.2.4</span> 4. <strong>Keep your branch up-to-date</strong></a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.2.5</span> 🔑 Summary</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.2.5</span> Summary</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -766,7 +766,7 @@ Remote line</code></pre>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="example-workflow-with-git-stash" class="level3" data-number="6.0.2">
-<h3 data-number="6.0.2" class="anchored" data-anchor-id="example-workflow-with-git-stash"><span class="header-section-number">6.0.2</span> 📝 Example workflow with <code>git stash</code></h3>
+<h3 data-number="6.0.2" class="anchored" data-anchor-id="example-workflow-with-git-stash"><span class="header-section-number">6.0.2</span> Example workflow with <code>git stash</code></h3>
 <section id="check-repo-status" class="level4" data-number="6.0.2.1">
 <h4 data-number="6.0.2.1" class="anchored" data-anchor-id="check-repo-status"><span class="header-section-number">6.0.2.1</span> 1. Check repo status</h4>
 <div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
@@ -777,26 +777,26 @@ Remote line</code></pre>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>👉 You’ve made some edits but don’t want to commit yet.</p>
+<p>You’ve made some edits but don’t want to commit yet.</p>
 </section>
 <section id="stash-your-changes" class="level4" data-number="6.0.2.2">
 <h4 data-number="6.0.2.2" class="anchored" data-anchor-id="stash-your-changes"><span class="header-section-number">6.0.2.2</span> 2. Stash your changes</h4>
 <div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash push <span class="at">-m</span> <span class="st">"WIP: refactor utils"</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Saved</span> working directory and index state WIP on main: 1a2b3c4 Add logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>👉 Now the working directory is clean.</p>
+<p>Now the working directory is clean.</p>
 </section>
 <section id="verify-with-status" class="level4" data-number="6.0.2.3">
 <h4 data-number="6.0.2.3" class="anchored" data-anchor-id="verify-with-status"><span class="header-section-number">6.0.2.3</span> 3. Verify with <code>status</code></h4>
 <div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> to commit, working tree clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>✅ The changes are hidden away.</p>
+<p>The changes are hidden away.</p>
 </section>
 <section id="list-stashes" class="level4" data-number="6.0.2.4">
 <h4 data-number="6.0.2.4" class="anchored" data-anchor-id="list-stashes"><span class="header-section-number">6.0.2.4</span> 4. List stashes</h4>
 <div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash list</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">stash@{0}:</span> On main: WIP: refactor utils</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>👉 Your stash is safely stored.</p>
+<p>Your stash is safely stored.</p>
 </section>
 <section id="switch-branch-pull-or-do-other-work" class="level4" data-number="6.0.2.5">
 <h4 data-number="6.0.2.5" class="anchored" data-anchor-id="switch-branch-pull-or-do-other-work"><span class="header-section-number">6.0.2.5</span> 5. Switch branch, pull, or do other work</h4>
@@ -810,7 +810,7 @@ Remote line</code></pre>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>👉 Changes are back, but the stash still exists in the list.</p>
+<p>Changes are back, but the stash still exists in the list.</p>
 </section>
 <section id="or-use-pop-to-apply-and-remove" class="level4" data-number="6.0.2.7">
 <h4 data-number="6.0.2.7" class="anchored" data-anchor-id="or-use-pop-to-apply-and-remove"><span class="header-section-number">6.0.2.7</span> 7. Or use <code>pop</code> to apply <em>and remove</em></h4>
@@ -825,7 +825,7 @@ Remote line</code></pre>
 <h4 data-number="6.0.2.8" class="anchored" data-anchor-id="confirm-stash-list-is-empty"><span class="header-section-number">6.0.2.8</span> 8. Confirm stash list is empty</h4>
 <div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash list</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (no output — list is empty)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>✅ <strong>Summary of this session</strong></p>
+<p>*Summary of this session**</p>
 <ul>
 <li>You edited files.</li>
 <li><code>git stash push</code> cleaned your working directory but saved changes.</li>
@@ -884,7 +884,7 @@ Remote line</code></pre>
 <p>This keeps your branch compatible with the latest <code>main</code>.</p>
 </section>
 <section id="summary" class="level3" data-number="6.2.5">
-<h3 data-number="6.2.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.2.5</span> 🔑 Summary</h3>
+<h3 data-number="6.2.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.2.5</span> Summary</h3>
 <ul>
 <li><strong>Don’t commit directly to <code>main</code>.</strong></li>
 <li>Each collaborator works in their own <strong>branch</strong>, pushes it to GitHub, and opens a <strong>Pull Request</strong>.</li>

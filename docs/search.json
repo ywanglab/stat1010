@@ -44,7 +44,37 @@
     "href": "python_comp_env.html#best-workflow-with-github-from-colab-or-a-local-device",
     "title": "2  Setting-up Python Computing Environment",
     "section": "2.3 Best workflow with GitHub from Colab (or a local device)",
-    "text": "2.3 Best workflow with GitHub from Colab (or a local device)\nPre-req: Local repo is a clone of the GitHub repo with aligned HEAD\n\nOpen (or create) a notebook from G-drive to work with in Colab.\nThen, mount the G-drive. If on a local device, use the same workflow (open or create a notebook).\nIn Colab (or in VSC in a local device)\n\n\ngit pull or git pull --ff or (safer method: git pull --ff-only)\n\nIf permission denied on G-drive\nchmod +x .git/hooks/*\n\nBefore finish\n\ngit status\ngit add  files-to-commit\ngit commit -m \"commit message\"\ngit push",
+    "text": "2.3 Best workflow with GitHub from Colab (or a local device)\nPre-req: Local repo is a clone of the GitHub repo with aligned HEAD\n\nKeep sync with the upstream original owner repo. On GitHub, in the forked repo (under your account), Click on “Sinc fork”.\nOpen (or create) a notebook from G-drive to work with in Colab.\nThen, mount the G-drive. If on a local device, use the same workflow (open or create a notebook from the project directory).\nIn a termnal of Colab (or a terminal in VSC in a local device)\n\n\ngit pull or git pull --ff or (safer method: git pull --ff-only)\n\nIf permission denied on G-drive, run this first then repeat git pull.\nchmod +x .git/hooks/*\n\nAfter editing, and before finish\n\ngit status\ngit add  files-to-commit\ngit commit -m \"commit message\"\ngit push  # this will push the files-to-commit to your fork/main",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting-up Python Computing Environment</span>"
+    ]
+  },
+  {
+    "objectID": "python_comp_env.html#team-github-workflow",
+    "href": "python_comp_env.html#team-github-workflow",
+    "title": "2  Setting-up Python Computing Environment",
+    "section": "2.4 Team Github workflow",
+    "text": "2.4 Team Github workflow",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting-up Python Computing Environment</span>"
+    ]
+  },
+  {
+    "objectID": "python_comp_env.html#initial-setup",
+    "href": "python_comp_env.html#initial-setup",
+    "title": "2  Setting-up Python Computing Environment",
+    "section": "2.5 Initial setup",
+    "text": "2.5 Initial setup\n\nFork and Clone\n\n\nFork: You click “Fork” on GitHub → it creates a copy of the repo under your GitHub account. Navigate to https://github.com/ywanglab/STAT4160, then click on “Fork”.\nClone: You download a local copy of your fork to your computer. (only do this for the first time)\n\nSo after forking, you typically do (only for the first time)\ngit clone https://github.com/YOUR-USERNAME/REPO-NAME.git #REPO-NAME should be STAT4160\ncd REPO-NAME   # the REPO-NAME should be STAT4160, cd to the current working directory  \n\nAdd the original repo as “upstream”\n\nYour fork is linked to your GitHub account (the “origin”). To stay in sync with the original project, add a remote for the source repository:\ngit remote add upstream https://github.com/ywanglab/STAT4160\nCheck remotes:\ngit remote -v\n# origin    https://github.com/YOUR-USERNAME/REPO-NAME.git (push/pull)\n# upstream  https://github.com/ORIGINAL-OWNER/REPO-NAME.git (pull only)\n\nCreate a feature branch in your fork\n\nNever work directly on main. Instead create a new branch:\ngit checkout -b feature/my-contribution  # or homework/your_initial\n# edit files...\n\n# after you done your edit, push changes to origin/main\n\ngit add files-to-commit  # git add filename (or directoryname) use `.` rarely as it will add all files in the git directory. \ngit commit -m \"Fix bug in utils\"\ngit push origin feature/my-contribution  #git push by default push changes to origin/main\n\nOpen a Pull Request (PR) (only do this for the contribution you want to make, such as homework)\nGo to your fork on GitHub (https://github.com/YOUR-USERNAME/REPO-NAME).\nGitHub will show a banner: “You recently pushed to feature/my-contribution. Do you want to open a Pull Request?”\nClick it → select base repository = (upstream) original owner repo, compare = your branch.\n\nNote: head repository → your fork (e.g. YOUR-USERNAME/REPO-NAME) and branch (feature/…) that contains your changes.\n\nWrite a good description and submit the PR.\n\nNow the maintainers of the original repo will review it. If approved, they’ll merge it.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting-up Python Computing Environment</span>"
+    ]
+  },
+  {
+    "objectID": "python_comp_env.html#keep-your-fork-in-sync",
+    "href": "python_comp_env.html#keep-your-fork-in-sync",
+    "title": "2  Setting-up Python Computing Environment",
+    "section": "2.6 Keep your fork in sync",
+    "text": "2.6 Keep your fork in sync\nBefore making new contributions, update your fork/main with the latest main from upstream:\nOption A) Do it on GitHub: If GitHub shows something like “This branch is 1 commit behind”, “Sync Fork”.\nOption B): do it via terminal:\ngit checkout main   # checkout main\ngit pull upstream main        # pull from the upstream original repo\ngit push origin main          # update your fork on GitHub\nThen branch off main again for your next feature.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting-up Python Computing Environment</span>"
     ]
@@ -264,7 +294,7 @@
     "href": "git.html#team-git-workflow",
     "title": "4  Use Git and GitHub",
     "section": "6.2 Team Git workflow",
-    "text": "6.2 Team Git workflow\nAvoid committing directly to main?\n\n6.2.1 1. Clone the repo & stay off main\nEveryone starts from:\ngit clone https://github.com/org/project.git\ncd project\ngit checkout main\nBut nobody codes directly on main.\n\n\n6.2.2 2. Create feature branches\nWhen starting new work:\ngit checkout -b feature/login-page\n# do edits, commits...\ngit push origin feature/login-page\n\nEach branch is short-lived, focused on a feature, fix, or experiment.\nBranch names like feature/, bugfix/, hotfix/ make it clear what’s happening.\n\n\n\n6.2.3 3. Push branch to GitHub and open a Pull Request (PR)\nOn GitHub:\n\nOpen a PR from feature/login-page → main.\nTeammates can review code, request changes, and run tests before merging.\n\n\n\n6.2.4 4. Keep your branch up-to-date\nIf main has moved on while you’re coding:\ngit checkout main\ngit pull origin main\ngit checkout feature/login-page\ngit merge main   # or git rebase main\nThis keeps your branch compatible with the latest main.\n\n\n6.2.5 🔑 Summary\n\nDon’t commit directly to main.\nEach collaborator works in their own branch, pushes it to GitHub, and opens a Pull Request.\nMerges into main only after review + tests pass.\n\nThis way, main always works, and the team avoids chaos.",
+    "text": "6.2 Team Git workflow\nAvoid committing directly to main?\n\n6.2.1 1. Clone the repo & stay off main\nEveryone starts from:\ngit clone https://github.com/org/project.git\ncd project\ngit checkout main\nBut nobody codes directly on main.\n\n\n6.2.2 2. Create feature branches\nWhen starting new work:\ngit checkout -b feature/login-page\n# do edits, commits...\ngit push origin feature/login-page\n\nEach branch is short-lived, focused on a feature, fix, or experiment.\nBranch names like feature/, bugfix/, hotfix/ make it clear what’s happening.\n\n\n\n6.2.3 3. Push branch to GitHub and open a Pull Request (PR)\nOn GitHub:\n\nOpen a PR from feature/login-page → main.\nTeammates can review code, request changes, and run tests before merging.\n\n\n\n6.2.4 4. Keep your branch up-to-date\nIf main has moved on while you’re coding:\ngit checkout main\ngit pull origin main\ngit checkout feature/login-page\ngit merge main   # or git rebase main\nThis keeps your branch compatible with the latest main.\n\n\n6.2.5 Summary\n\nDon’t commit directly to main.\nEach collaborator works in their own branch, pushes it to GitHub, and opens a Pull Request.\nMerges into main only after review + tests pass.\n\nThis way, main always works, and the team avoids chaos.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]

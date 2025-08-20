@@ -556,7 +556,7 @@ git push --force-with-lease
 ```
 
 
-### 📝 Example workflow with `git stash`
+### Example workflow with `git stash`
 
 #### 1. Check repo status
 
@@ -571,7 +571,7 @@ Changes not staged for commit:
     modified:   utils.py
 ```
 
-👉 You’ve made some edits but don’t want to commit yet.
+You’ve made some edits but don’t want to commit yet.
 
 #### 2. Stash your changes
 
@@ -580,7 +580,7 @@ $ git stash push -m "WIP: refactor utils"
 Saved working directory and index state WIP on main: 1a2b3c4 Add logging
 ```
 
-👉 Now the working directory is clean.
+Now the working directory is clean.
 
 #### 3. Verify with `status`
 
@@ -590,7 +590,7 @@ On branch main
 nothing to commit, working tree clean
 ```
 
-✅ The changes are hidden away.
+The changes are hidden away.
 
 #### 4. List stashes
 
@@ -599,7 +599,7 @@ $ git stash list
 stash@{0}: On main: WIP: refactor utils
 ```
 
-👉 Your stash is safely stored.
+Your stash is safely stored.
 
 #### 5. Switch branch, pull, or do other work
 
@@ -617,7 +617,7 @@ Changes not staged for commit:
     modified:   utils.py
 ```
 
-👉 Changes are back, but the stash still exists in the list.
+Changes are back, but the stash still exists in the list.
 
 #### 7. Or use `pop` to apply *and remove*
 
@@ -635,7 +635,7 @@ Dropped refs/stash@{0} (abc123def456...)
 $ git stash list
 # (no output — list is empty)
 ```
-✅ **Summary of this session**
+*Summary of this session**
 
 * You edited files.
 * `git stash push` cleaned your working directory but saved changes.
@@ -707,7 +707,7 @@ git merge main   # or git rebase main
 This keeps your branch compatible with the latest `main`.
 
 
-### 🔑 Summary
+### Summary
 
 * **Don’t commit directly to `main`.**
 * Each collaborator works in their own **branch**, pushes it to GitHub, and opens a **Pull Request**.
