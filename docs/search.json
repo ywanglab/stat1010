@@ -250,6 +250,26 @@
     ]
   },
   {
+    "objectID": "git.html#rebuild-the-index-respecting-.gitignore",
+    "href": "git.html#rebuild-the-index-respecting-.gitignore",
+    "title": "4  Use Git and GitHub",
+    "section": "6.1 Rebuild the index respecting .gitignore",
+    "text": "6.1 Rebuild the index respecting .gitignore\nIf you have modified .gitignore and you already pushed some files that you did not want to push, to remove those files already pushed to Github, you need to remove them from the git index to untrach them.\ngit rm -r --cached .\ngit add .\ngit commit -m \"Reindex: drop ignored files from repo\"\ngit push origin &lt;your-branch&gt;\nto remove specific folder or files:\ngit rm -r --cached .Rhistory .Rproj.user # `-r` is needed for a directory",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#team-git-workflow",
+    "href": "git.html#team-git-workflow",
+    "title": "4  Use Git and GitHub",
+    "section": "6.2 Team Git workflow",
+    "text": "6.2 Team Git workflow\nAvoid committing directly to main?\n\n6.2.1 1. Clone the repo & stay off main\nEveryone starts from:\ngit clone https://github.com/org/project.git\ncd project\ngit checkout main\nBut nobody codes directly on main.\n\n\n6.2.2 2. Create feature branches\nWhen starting new work:\ngit checkout -b feature/login-page\n# do edits, commits...\ngit push origin feature/login-page\n\nEach branch is short-lived, focused on a feature, fix, or experiment.\nBranch names like feature/, bugfix/, hotfix/ make it clear what’s happening.\n\n\n\n6.2.3 3. Push branch to GitHub and open a Pull Request (PR)\nOn GitHub:\n\nOpen a PR from feature/login-page → main.\nTeammates can review code, request changes, and run tests before merging.\n\n\n\n6.2.4 4. Keep your branch up-to-date\nIf main has moved on while you’re coding:\ngit checkout main\ngit pull origin main\ngit checkout feature/login-page\ngit merge main   # or git rebase main\nThis keeps your branch compatible with the latest main.\n\n\n6.2.5 🔑 Summary\n\nDon’t commit directly to main.\nEach collaborator works in their own branch, pushes it to GitHub, and opens a Pull Request.\nMerges into main only after review + tests pass.\n\nThis way, main always works, and the team avoids chaos.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
     "objectID": "0_markdown.html",
     "href": "0_markdown.html",
     "title": "5  My Jupyter Notebook",

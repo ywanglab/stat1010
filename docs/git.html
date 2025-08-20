@@ -253,6 +253,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#what-is-git-push---force-with-lease-and-why-its-safer-than---force" id="toc-what-is-git-push---force-with-lease-and-why-its-safer-than---force" class="nav-link" data-scroll-target="#what-is-git-push---force-with-lease-and-why-its-safer-than---force"><span class="header-section-number">6</span> 3) What is <code>git push --force-with-lease</code> (and why it’s safer than <code>--force</code>)?</a>
   <ul class="collapse">
   <li><a href="#typical-rebase-push-flow" id="toc-typical-rebase-push-flow" class="nav-link" data-scroll-target="#typical-rebase-push-flow"><span class="header-section-number">6.0.1</span> Typical rebase + push flow</a></li>
+  <li><a href="#example-workflow-with-git-stash" id="toc-example-workflow-with-git-stash" class="nav-link" data-scroll-target="#example-workflow-with-git-stash"><span class="header-section-number">6.0.2</span> 📝 Example workflow with <code>git stash</code></a></li>
+  <li><a href="#rebuild-the-index-respecting-.gitignore" id="toc-rebuild-the-index-respecting-.gitignore" class="nav-link" data-scroll-target="#rebuild-the-index-respecting-.gitignore"><span class="header-section-number">6.1</span> Rebuild the index respecting <code>.gitignore</code></a></li>
+  <li><a href="#team-git-workflow" id="toc-team-git-workflow" class="nav-link" data-scroll-target="#team-git-workflow"><span class="header-section-number">6.2</span> Team Git workflow</a>
+  <ul class="collapse">
+  <li><a href="#clone-the-repo-stay-off-main" id="toc-clone-the-repo-stay-off-main" class="nav-link" data-scroll-target="#clone-the-repo-stay-off-main"><span class="header-section-number">6.2.1</span> 1. <strong>Clone the repo &amp; stay off <code>main</code></strong></a></li>
+  <li><a href="#create-feature-branches" id="toc-create-feature-branches" class="nav-link" data-scroll-target="#create-feature-branches"><span class="header-section-number">6.2.2</span> 2. <strong>Create feature branches</strong></a></li>
+  <li><a href="#push-branch-to-github-and-open-a-pull-request-pr" id="toc-push-branch-to-github-and-open-a-pull-request-pr" class="nav-link" data-scroll-target="#push-branch-to-github-and-open-a-pull-request-pr"><span class="header-section-number">6.2.3</span> 3. <strong>Push branch to GitHub and open a Pull Request (PR)</strong></a></li>
+  <li><a href="#keep-your-branch-up-to-date" id="toc-keep-your-branch-up-to-date" class="nav-link" data-scroll-target="#keep-your-branch-up-to-date"><span class="header-section-number">6.2.4</span> 4. <strong>Keep your branch up-to-date</strong></a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.2.5</span> 🔑 Summary</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -730,7 +740,6 @@ Remote line</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase true</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> rebase.autoStash true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </blockquote>
-<hr>
 </section>
 </section>
 </section>
@@ -755,9 +764,136 @@ Remote line</code></pre>
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Safely update the remote branch</span></span>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If the last command refuses, someone pushed in the meantime—inspect, fetch, and decide whether to rebase again or merge.</p>
+</section>
+<section id="example-workflow-with-git-stash" class="level3" data-number="6.0.2">
+<h3 data-number="6.0.2" class="anchored" data-anchor-id="example-workflow-with-git-stash"><span class="header-section-number">6.0.2</span> 📝 Example workflow with <code>git stash</code></h3>
+<section id="check-repo-status" class="level4" data-number="6.0.2.1">
+<h4 data-number="6.0.2.1" class="anchored" data-anchor-id="check-repo-status"><span class="header-section-number">6.0.2.1</span> 1. Check repo status</h4>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Your</span> branch is up to date with <span class="st">'origin/main'</span>.</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>👉 You’ve made some edits but don’t want to commit yet.</p>
+</section>
+<section id="stash-your-changes" class="level4" data-number="6.0.2.2">
+<h4 data-number="6.0.2.2" class="anchored" data-anchor-id="stash-your-changes"><span class="header-section-number">6.0.2.2</span> 2. Stash your changes</h4>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash push <span class="at">-m</span> <span class="st">"WIP: refactor utils"</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Saved</span> working directory and index state WIP on main: 1a2b3c4 Add logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>👉 Now the working directory is clean.</p>
+</section>
+<section id="verify-with-status" class="level4" data-number="6.0.2.3">
+<h4 data-number="6.0.2.3" class="anchored" data-anchor-id="verify-with-status"><span class="header-section-number">6.0.2.3</span> 3. Verify with <code>status</code></h4>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> to commit, working tree clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ The changes are hidden away.</p>
+</section>
+<section id="list-stashes" class="level4" data-number="6.0.2.4">
+<h4 data-number="6.0.2.4" class="anchored" data-anchor-id="list-stashes"><span class="header-section-number">6.0.2.4</span> 4. List stashes</h4>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash list</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">stash@{0}:</span> On main: WIP: refactor utils</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>👉 Your stash is safely stored.</p>
+</section>
+<section id="switch-branch-pull-or-do-other-work" class="level4" data-number="6.0.2.5">
+<h4 data-number="6.0.2.5" class="anchored" data-anchor-id="switch-branch-pull-or-do-other-work"><span class="header-section-number">6.0.2.5</span> 5. Switch branch, pull, or do other work</h4>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git switch feature-branch</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Switched</span> to branch <span class="st">'feature-branch'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="apply-the-stash-back" class="level4" data-number="6.0.2.6">
+<h4 data-number="6.0.2.6" class="anchored" data-anchor-id="apply-the-stash-back"><span class="header-section-number">6.0.2.6</span> 6. Apply the stash back</h4>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash apply stash@{0}</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch feature-branch</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>👉 Changes are back, but the stash still exists in the list.</p>
+</section>
+<section id="or-use-pop-to-apply-and-remove" class="level4" data-number="6.0.2.7">
+<h4 data-number="6.0.2.7" class="anchored" data-anchor-id="or-use-pop-to-apply-and-remove"><span class="header-section-number">6.0.2.7</span> 7. Or use <code>pop</code> to apply <em>and remove</em></h4>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash pop</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch feature-branch</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Dropped</span> refs/stash@{0} <span class="er">(</span><span class="ex">abc123def456...</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="confirm-stash-list-is-empty" class="level4" data-number="6.0.2.8">
+<h4 data-number="6.0.2.8" class="anchored" data-anchor-id="confirm-stash-list-is-empty"><span class="header-section-number">6.0.2.8</span> 8. Confirm stash list is empty</h4>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash list</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (no output — list is empty)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ <strong>Summary of this session</strong></p>
+<ul>
+<li>You edited files.</li>
+<li><code>git stash push</code> cleaned your working directory but saved changes.</li>
+<li>Later, <code>git stash apply</code> or <code>git stash pop</code> restored those changes.</li>
+</ul>
+</section>
+</section>
+<section id="rebuild-the-index-respecting-.gitignore" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="rebuild-the-index-respecting-.gitignore"><span class="header-section-number">6.1</span> Rebuild the index respecting <code>.gitignore</code></h2>
+<p>If you have modified <code>.gitignore</code> and you already pushed some files that you did not want to push, to remove those files already pushed to Github, you need to remove them from the git index to untrach them.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-r</span> <span class="at">--cached</span> .</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Reindex: drop ignored files from repo"</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin <span class="op">&lt;</span>your-branch<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to remove specific folder or files:</p>
+<pre><code>git rm -r --cached .Rhistory .Rproj.user # `-r` is needed for a directory 
+</code></pre>
+</section>
+<section id="team-git-workflow" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="team-git-workflow"><span class="header-section-number">6.2</span> Team Git workflow</h2>
+<p>Avoid committing directly to <code>main</code>?</p>
+<section id="clone-the-repo-stay-off-main" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="clone-the-repo-stay-off-main"><span class="header-section-number">6.2.1</span> 1. <strong>Clone the repo &amp; stay off <code>main</code></strong></h3>
+<p>Everyone starts from:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/org/project.git</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> project</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But nobody codes directly on <code>main</code>.</p>
+</section>
+<section id="create-feature-branches" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="create-feature-branches"><span class="header-section-number">6.2.2</span> 2. <strong>Create feature branches</strong></h3>
+<p>When starting new work:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/login-page</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># do edits, commits...</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin feature/login-page</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Each branch is <strong>short-lived</strong>, focused on a feature, fix, or experiment.</li>
+<li>Branch names like <code>feature/</code>, <code>bugfix/</code>, <code>hotfix/</code> make it clear what’s happening.</li>
+</ul>
+</section>
+<section id="push-branch-to-github-and-open-a-pull-request-pr" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="push-branch-to-github-and-open-a-pull-request-pr"><span class="header-section-number">6.2.3</span> 3. <strong>Push branch to GitHub and open a Pull Request (PR)</strong></h3>
+<p>On GitHub:</p>
+<ul>
+<li>Open a <strong>PR from <code>feature/login-page</code> → <code>main</code></strong>.</li>
+<li>Teammates can review code, request changes, and run tests before merging.</li>
+</ul>
+</section>
+<section id="keep-your-branch-up-to-date" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="keep-your-branch-up-to-date"><span class="header-section-number">6.2.4</span> 4. <strong>Keep your branch up-to-date</strong></h3>
+<p>If <code>main</code> has moved on while you’re coding:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout feature/login-page</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge main   <span class="co"># or git rebase main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This keeps your branch compatible with the latest <code>main</code>.</p>
+</section>
+<section id="summary" class="level3" data-number="6.2.5">
+<h3 data-number="6.2.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.2.5</span> 🔑 Summary</h3>
+<ul>
+<li><strong>Don’t commit directly to <code>main</code>.</strong></li>
+<li>Each collaborator works in their own <strong>branch</strong>, pushes it to GitHub, and opens a <strong>Pull Request</strong>.</li>
+<li>Merges into <code>main</code> only after <strong>review + tests pass</strong>.</li>
+</ul>
+<p>This way, <code>main</code> always works, and the team avoids chaos.</p>
 
 
+</section>
 </section>
 </section>
 
