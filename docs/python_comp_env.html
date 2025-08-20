@@ -291,22 +291,22 @@ drive.mount('/content/drive')</code></pre>
 <h2 data-number="2.3" class="anchored" data-anchor-id="best-workflow-with-github-from-colab-or-a-local-device"><span class="header-section-number">2.3</span> Best workflow with GitHub from Colab (or a local device)</h2>
 <p><strong>Pre-req</strong>: Local repo is a clone of the GitHub repo with aligned HEAD</p>
 <ol type="1">
-<li>Before working on a device (local or Colab)</li>
+<li><p>Open (or create) a notebook from G-drive to work with in Colab.</p></li>
+<li><p>Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook).</p></li>
+<li><p>In Colab (or in VSC in a local device)</p></li>
 </ol>
 <ul>
-<li><code>git pull</code> or <code>git pull --ff</code> or <code>git pull --ff-only</code></li>
+<li><code>git pull</code> or <code>git pull --ff</code> or (safer method: <code>git pull --ff-only</code>)</li>
 </ul>
-<ol start="2" type="1">
-<li>If on Colab, open (or create) a notebook from G-drive to work with. Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook).</li>
+<p>If permission denied on G-drive</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x .git/hooks/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
 <li>Before finish</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add  files-to-commit</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"commit message"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If permission denied on G-drive</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x .git/hooks/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>```</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add  files-to-commit</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"commit message"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

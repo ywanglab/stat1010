@@ -67,9 +67,19 @@ This is to change the directory to the project directory on the Google Drive. Ru
 ## Best workflow with GitHub from Colab (or a local device)
 **Pre-req**: Local repo is a clone of the GitHub repo with aligned HEAD
 
-1. Before working on a device (local or Colab)
-  * `git pull` or `git pull --ff` or `git pull --ff-only`
-2. If on Colab, open (or create) a notebook from G-drive to work with. Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook). 
+
+1. Open (or create) a notebook from G-drive to work with in Colab. 
+
+2. Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook). 
+
+3. In Colab (or in VSC in a local device)
+  * `git pull` or `git pull --ff` or (safer method: `git pull --ff-only`)
+  
+If permission denied on G-drive 
+```bash
+chmod +x .git/hooks/*
+```
+
 3. Before finish
 ```bash
 git status
@@ -77,8 +87,5 @@ git add  files-to-commit
 git commit -m "commit message"
 git push
 ```
-If permission denied on G-drive 
-```bash
-chmod +x .git/hooks/*
-```
-```
+
+

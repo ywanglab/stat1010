@@ -44,7 +44,7 @@
     "href": "python_comp_env.html#best-workflow-with-github-from-colab-or-a-local-device",
     "title": "2  Setting-up Python Computing Environment",
     "section": "2.3 Best workflow with GitHub from Colab (or a local device)",
-    "text": "2.3 Best workflow with GitHub from Colab (or a local device)\nPre-req: Local repo is a clone of the GitHub repo with aligned HEAD\n\nBefore working on a device (local or Colab)\n\n\ngit pull or git pull --ff or git pull --ff-only\n\n\nIf on Colab, open (or create) a notebook from G-drive to work with. Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook).\nBefore finish\n\ngit status\ngit add  files-to-commit\ngit commit -m \"commit message\"\ngit push\nIf permission denied on G-drive\nchmod +x .git/hooks/*\n```",
+    "text": "2.3 Best workflow with GitHub from Colab (or a local device)\nPre-req: Local repo is a clone of the GitHub repo with aligned HEAD\n\nOpen (or create) a notebook from G-drive to work with in Colab.\nThen, mount the G-drive. If on a local device, use the same workflow (open or create a notebook).\nIn Colab (or in VSC in a local device)\n\n\ngit pull or git pull --ff or (safer method: git pull --ff-only)\n\nIf permission denied on G-drive\nchmod +x .git/hooks/*\n\nBefore finish\n\ngit status\ngit add  files-to-commit\ngit commit -m \"commit message\"\ngit push",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Setting-up Python Computing Environment</span>"
     ]
