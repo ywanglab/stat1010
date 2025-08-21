@@ -255,13 +255,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#typical-rebase-push-flow" id="toc-typical-rebase-push-flow" class="nav-link" data-scroll-target="#typical-rebase-push-flow"><span class="header-section-number">6.0.1</span> Typical rebase + push flow</a></li>
   <li><a href="#example-workflow-with-git-stash" id="toc-example-workflow-with-git-stash" class="nav-link" data-scroll-target="#example-workflow-with-git-stash"><span class="header-section-number">6.0.2</span> Example workflow with <code>git stash</code></a></li>
   <li><a href="#rebuild-the-index-respecting-.gitignore" id="toc-rebuild-the-index-respecting-.gitignore" class="nav-link" data-scroll-target="#rebuild-the-index-respecting-.gitignore"><span class="header-section-number">6.1</span> Rebuild the index respecting <code>.gitignore</code></a></li>
-  <li><a href="#team-git-workflow" id="toc-team-git-workflow" class="nav-link" data-scroll-target="#team-git-workflow"><span class="header-section-number">6.2</span> Team Git workflow</a>
+  <li><a href="#unstage-and-untrack" id="toc-unstage-and-untrack" class="nav-link" data-scroll-target="#unstage-and-untrack"><span class="header-section-number">6.2</span> Unstage and untrack</a>
   <ul class="collapse">
-  <li><a href="#clone-the-repo-stay-off-main" id="toc-clone-the-repo-stay-off-main" class="nav-link" data-scroll-target="#clone-the-repo-stay-off-main"><span class="header-section-number">6.2.1</span> 1. <strong>Clone the repo &amp; stay off <code>main</code></strong></a></li>
-  <li><a href="#create-feature-branches" id="toc-create-feature-branches" class="nav-link" data-scroll-target="#create-feature-branches"><span class="header-section-number">6.2.2</span> 2. <strong>Create feature branches</strong></a></li>
-  <li><a href="#push-branch-to-github-and-open-a-pull-request-pr" id="toc-push-branch-to-github-and-open-a-pull-request-pr" class="nav-link" data-scroll-target="#push-branch-to-github-and-open-a-pull-request-pr"><span class="header-section-number">6.2.3</span> 3. <strong>Push branch to GitHub and open a Pull Request (PR)</strong></a></li>
-  <li><a href="#keep-your-branch-up-to-date" id="toc-keep-your-branch-up-to-date" class="nav-link" data-scroll-target="#keep-your-branch-up-to-date"><span class="header-section-number">6.2.4</span> 4. <strong>Keep your branch up-to-date</strong></a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.2.5</span> Summary</a></li>
+  <li><a href="#to-unstage-but-keep-tracking" id="toc-to-unstage-but-keep-tracking" class="nav-link" data-scroll-target="#to-unstage-but-keep-tracking"><span class="header-section-number">6.2.1</span> To <strong>unstage</strong> (but keep tracking):</a></li>
+  <li><a href="#to-untrack-stop-git-tracking-the-file" id="toc-to-untrack-stop-git-tracking-the-file" class="nav-link" data-scroll-target="#to-untrack-stop-git-tracking-the-file"><span class="header-section-number">6.2.2</span> To <strong>untrack</strong> (stop Git tracking the file):</a></li>
+  <li><a href="#prevent-tracking-in-the-future" id="toc-prevent-tracking-in-the-future" class="nav-link" data-scroll-target="#prevent-tracking-in-the-future"><span class="header-section-number">6.2.3</span> Prevent tracking in the future</a></li>
+  </ul></li>
+  <li><a href="#team-git-workflow" id="toc-team-git-workflow" class="nav-link" data-scroll-target="#team-git-workflow"><span class="header-section-number">6.3</span> Team Git workflow</a>
+  <ul class="collapse">
+  <li><a href="#clone-the-repo-stay-off-main" id="toc-clone-the-repo-stay-off-main" class="nav-link" data-scroll-target="#clone-the-repo-stay-off-main"><span class="header-section-number">6.3.1</span> 1. <strong>Clone the repo &amp; stay off <code>main</code></strong></a></li>
+  <li><a href="#create-feature-branches" id="toc-create-feature-branches" class="nav-link" data-scroll-target="#create-feature-branches"><span class="header-section-number">6.3.2</span> 2. <strong>Create feature branches</strong></a></li>
+  <li><a href="#push-branch-to-github-and-open-a-pull-request-pr" id="toc-push-branch-to-github-and-open-a-pull-request-pr" class="nav-link" data-scroll-target="#push-branch-to-github-and-open-a-pull-request-pr"><span class="header-section-number">6.3.3</span> 3. <strong>Push branch to GitHub and open a Pull Request (PR)</strong></a></li>
+  <li><a href="#keep-your-branch-up-to-date" id="toc-keep-your-branch-up-to-date" class="nav-link" data-scroll-target="#keep-your-branch-up-to-date"><span class="header-section-number">6.3.4</span> 4. <strong>Keep your branch up-to-date</strong></a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.3.5</span> Summary</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -844,47 +850,79 @@ Remote line</code></pre>
 <pre><code>git rm -r --cached .Rhistory .Rproj.user # `-r` is needed for a directory 
 </code></pre>
 </section>
-<section id="team-git-workflow" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="team-git-workflow"><span class="header-section-number">6.2</span> Team Git workflow</h2>
+<section id="unstage-and-untrack" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="unstage-and-untrack"><span class="header-section-number">6.2</span> Unstage and untrack</h2>
+<ul>
+<li><strong>unstage</strong> = remove from the staging area (index), but keep the file under Git’s tracking.</li>
+<li><strong>untrack</strong> = stop Git from tracking the file altogether.</li>
+</ul>
+<section id="to-unstage-but-keep-tracking" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="to-unstage-but-keep-tracking"><span class="header-section-number">6.2.1</span> To <strong>unstage</strong> (but keep tracking):</h3>
+<p>If you already ran <code>git add file.txt</code> and want to undo that:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD file.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now <code>file.txt</code> is back in “modified” state but not staged. To unstage everything:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="to-untrack-stop-git-tracking-the-file" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="to-untrack-stop-git-tracking-the-file"><span class="header-section-number">6.2.2</span> To <strong>untrack</strong> (stop Git tracking the file):</h3>
+<p>If a file is already committed to the repo but you want Git to forget it:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> file.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>--cached</code> removes it from the index (tracking) but leaves it in your working directory.</li>
+<li>Next commit will record the removal.</li>
+<li>If you want to untrack entire directories:</li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-r</span> <span class="at">--cached</span> my_folder/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="prevent-tracking-in-the-future" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="prevent-tracking-in-the-future"><span class="header-section-number">6.2.3</span> Prevent tracking in the future</h3>
+<p>Add the file or folder to <code>.gitignore</code> so Git won’t pick it up again:</p>
+<pre><code># .gitignore
+file.txt
+my_folder/</code></pre>
+</section>
+</section>
+<section id="team-git-workflow" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="team-git-workflow"><span class="header-section-number">6.3</span> Team Git workflow</h2>
 <p>Avoid committing directly to <code>main</code>?</p>
-<section id="clone-the-repo-stay-off-main" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="clone-the-repo-stay-off-main"><span class="header-section-number">6.2.1</span> 1. <strong>Clone the repo &amp; stay off <code>main</code></strong></h3>
+<section id="clone-the-repo-stay-off-main" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="clone-the-repo-stay-off-main"><span class="header-section-number">6.3.1</span> 1. <strong>Clone the repo &amp; stay off <code>main</code></strong></h3>
 <p>Everyone starts from:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/org/project.git</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> project</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/org/project.git</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> project</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>But nobody codes directly on <code>main</code>.</p>
 </section>
-<section id="create-feature-branches" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="create-feature-branches"><span class="header-section-number">6.2.2</span> 2. <strong>Create feature branches</strong></h3>
+<section id="create-feature-branches" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="create-feature-branches"><span class="header-section-number">6.3.2</span> 2. <strong>Create feature branches</strong></h3>
 <p>When starting new work:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/login-page</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># do edits, commits...</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin feature/login-page</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/login-page</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># do edits, commits...</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin feature/login-page</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Each branch is <strong>short-lived</strong>, focused on a feature, fix, or experiment.</li>
 <li>Branch names like <code>feature/</code>, <code>bugfix/</code>, <code>hotfix/</code> make it clear what’s happening.</li>
 </ul>
 </section>
-<section id="push-branch-to-github-and-open-a-pull-request-pr" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="push-branch-to-github-and-open-a-pull-request-pr"><span class="header-section-number">6.2.3</span> 3. <strong>Push branch to GitHub and open a Pull Request (PR)</strong></h3>
+<section id="push-branch-to-github-and-open-a-pull-request-pr" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="push-branch-to-github-and-open-a-pull-request-pr"><span class="header-section-number">6.3.3</span> 3. <strong>Push branch to GitHub and open a Pull Request (PR)</strong></h3>
 <p>On GitHub:</p>
 <ul>
 <li>Open a <strong>PR from <code>feature/login-page</code> → <code>main</code></strong>.</li>
 <li>Teammates can review code, request changes, and run tests before merging.</li>
 </ul>
 </section>
-<section id="keep-your-branch-up-to-date" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="keep-your-branch-up-to-date"><span class="header-section-number">6.2.4</span> 4. <strong>Keep your branch up-to-date</strong></h3>
+<section id="keep-your-branch-up-to-date" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="keep-your-branch-up-to-date"><span class="header-section-number">6.3.4</span> 4. <strong>Keep your branch up-to-date</strong></h3>
 <p>If <code>main</code> has moved on while you’re coding:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout feature/login-page</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge main   <span class="co"># or git rebase main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout feature/login-page</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge main   <span class="co"># or git rebase main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This keeps your branch compatible with the latest <code>main</code>.</p>
 </section>
-<section id="summary" class="level3" data-number="6.2.5">
-<h3 data-number="6.2.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.2.5</span> Summary</h3>
+<section id="summary" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.3.5</span> Summary</h3>
 <ul>
 <li><strong>Don’t commit directly to <code>main</code>.</strong></li>
 <li>Each collaborator works in their own <strong>branch</strong>, pushes it to GitHub, and opens a <strong>Pull Request</strong>.</li>

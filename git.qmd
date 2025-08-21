@@ -657,6 +657,52 @@ git rm -r --cached .Rhistory .Rproj.user # `-r` is needed for a directory
 
 ```
 
+
+## Unstage and untrack
+
+* **unstage** = remove from the staging area (index), but keep the file under Git’s tracking.
+* **untrack** = stop Git from tracking the file altogether.
+
+### To **unstage** (but keep tracking):
+
+If you already ran `git add file.txt` and want to undo that:
+
+```bash
+git reset HEAD file.txt
+```
+
+Now `file.txt` is back in “modified” state but not staged.
+To unstage everything:
+
+```bash
+git reset HEAD
+```
+
+### To **untrack** (stop Git tracking the file):
+
+If a file is already committed to the repo but you want Git to forget it:
+
+```bash
+git rm --cached file.txt
+```
+
+* `--cached` removes it from the index (tracking) but leaves it in your working directory.
+* Next commit will record the removal.
+* If you want to untrack entire directories:
+
+```bash
+git rm -r --cached my_folder/
+```
+### Prevent tracking in the future
+
+Add the file or folder to `.gitignore` so Git won’t pick it up again:
+
+```
+# .gitignore
+file.txt
+my_folder/
+```
+
 ## Team Git workflow
 
 Avoid committing directly to `main`?

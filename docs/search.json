@@ -290,11 +290,21 @@
     ]
   },
   {
+    "objectID": "git.html#unstage-and-untrack",
+    "href": "git.html#unstage-and-untrack",
+    "title": "4  Use Git and GitHub",
+    "section": "6.2 Unstage and untrack",
+    "text": "6.2 Unstage and untrack\n\nunstage = remove from the staging area (index), but keep the file under Git’s tracking.\nuntrack = stop Git from tracking the file altogether.\n\n\n6.2.1 To unstage (but keep tracking):\nIf you already ran git add file.txt and want to undo that:\ngit reset HEAD file.txt\nNow file.txt is back in “modified” state but not staged. To unstage everything:\ngit reset HEAD\n\n\n6.2.2 To untrack (stop Git tracking the file):\nIf a file is already committed to the repo but you want Git to forget it:\ngit rm --cached file.txt\n\n--cached removes it from the index (tracking) but leaves it in your working directory.\nNext commit will record the removal.\nIf you want to untrack entire directories:\n\ngit rm -r --cached my_folder/\n\n\n6.2.3 Prevent tracking in the future\nAdd the file or folder to .gitignore so Git won’t pick it up again:\n# .gitignore\nfile.txt\nmy_folder/",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
     "objectID": "git.html#team-git-workflow",
     "href": "git.html#team-git-workflow",
     "title": "4  Use Git and GitHub",
-    "section": "6.2 Team Git workflow",
-    "text": "6.2 Team Git workflow\nAvoid committing directly to main?\n\n6.2.1 1. Clone the repo & stay off main\nEveryone starts from:\ngit clone https://github.com/org/project.git\ncd project\ngit checkout main\nBut nobody codes directly on main.\n\n\n6.2.2 2. Create feature branches\nWhen starting new work:\ngit checkout -b feature/login-page\n# do edits, commits...\ngit push origin feature/login-page\n\nEach branch is short-lived, focused on a feature, fix, or experiment.\nBranch names like feature/, bugfix/, hotfix/ make it clear what’s happening.\n\n\n\n6.2.3 3. Push branch to GitHub and open a Pull Request (PR)\nOn GitHub:\n\nOpen a PR from feature/login-page → main.\nTeammates can review code, request changes, and run tests before merging.\n\n\n\n6.2.4 4. Keep your branch up-to-date\nIf main has moved on while you’re coding:\ngit checkout main\ngit pull origin main\ngit checkout feature/login-page\ngit merge main   # or git rebase main\nThis keeps your branch compatible with the latest main.\n\n\n6.2.5 Summary\n\nDon’t commit directly to main.\nEach collaborator works in their own branch, pushes it to GitHub, and opens a Pull Request.\nMerges into main only after review + tests pass.\n\nThis way, main always works, and the team avoids chaos.",
+    "section": "6.3 Team Git workflow",
+    "text": "6.3 Team Git workflow\nAvoid committing directly to main?\n\n6.3.1 1. Clone the repo & stay off main\nEveryone starts from:\ngit clone https://github.com/org/project.git\ncd project\ngit checkout main\nBut nobody codes directly on main.\n\n\n6.3.2 2. Create feature branches\nWhen starting new work:\ngit checkout -b feature/login-page\n# do edits, commits...\ngit push origin feature/login-page\n\nEach branch is short-lived, focused on a feature, fix, or experiment.\nBranch names like feature/, bugfix/, hotfix/ make it clear what’s happening.\n\n\n\n6.3.3 3. Push branch to GitHub and open a Pull Request (PR)\nOn GitHub:\n\nOpen a PR from feature/login-page → main.\nTeammates can review code, request changes, and run tests before merging.\n\n\n\n6.3.4 4. Keep your branch up-to-date\nIf main has moved on while you’re coding:\ngit checkout main\ngit pull origin main\ngit checkout feature/login-page\ngit merge main   # or git rebase main\nThis keeps your branch compatible with the latest main.\n\n\n6.3.5 Summary\n\nDon’t commit directly to main.\nEach collaborator works in their own branch, pushes it to GitHub, and opens a Pull Request.\nMerges into main only after review + tests pass.\n\nThis way, main always works, and the team avoids chaos.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
