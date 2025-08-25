@@ -70,7 +70,7 @@ The previous approach initializes a local Git repo by cloning a remote repo. You
     git add .  # may use git add --all
     git commit -m "first commit"
     git remote add origin https://github.com/ywanglab/homework.git #(change the remote repo path to your remote repo)
-    git push -u origin main 
+    git push -u origin main # only need to do this first time. Afterwards, only `git push`
     ```
 
     ::: callout-note
@@ -118,12 +118,11 @@ The previous approach initializes a local Git repo by cloning a remote repo. You
 7.  to get to a previous commit, use `git checkout seven_character_commit_hash`. To get back to main, use `git checkout main`.
 
 8.  Git commit \--amend
+     
+`commit --amend` is used to modify the most recent `commit`. It combines changes in the `staging environment` with the latest `commit`, and creates a new `commit`. This new `commit` replaces the latest `commit` entirely. Adding files with`--amend` works the same way as above. Just add them to the `staging environment` before committing.
 
-```         
-`commit --amend` is used to modify the most recent `commit`. It combines changes in the `staging environment` with the latest `commit`, and creates a new `commit`. This new `commit` replaces the latest `commit` entirely. Adding files with `--amend` works the same way as above. Just add them to the `staging environment` before committing.
+One of the simplest things you can do with `--amend` is to change a `commit` message with spelling errors.
 
-One of the simplest things you can do with `--amend` is to change a `commit` message with spelling errors.
-```
 
 9.  Git Revert HEAD:
 
@@ -266,7 +265,7 @@ Note the `--soft` option allows the changes in the working directory not affecte
 ```         
 ```
 
-## Contribute by forking a GitHub repo and commit to the forked repo and create a pull request
+## Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]@sec-bestworkflow )
 
 1.  after forking a (foreign) GitHub repo to your own GitHub account, `git clone` that repo under your account to your local repo.
 
@@ -322,7 +321,7 @@ git push origin
 * **`git fetch`** → downloads commits from the remote into your local refs (e.g. `origin/main`).
 * **`git merge`** → merges those new commits into your current branch.
 
-## 2. What does `--ff` mean?
+##  Git pull: What does `--ff` mean?
 
 * `--ff` = **fast-forward if possible**.
 * That means: if your branch has **no local commits** since it last matched the remote, Git will simply **move the branch pointer forward** to match the remote — no merge commit is created.
@@ -341,10 +340,6 @@ If you run `git pull --ff` and your branch is strictly behind `origin/main`, Git
 A---B---C   (origin/main, main)
 ```
 
----
-
-## 3. How is this different from the defaults?
-
 * `git pull` without flags:
 
   * May create a **merge commit** if histories diverged.
@@ -357,27 +352,12 @@ A---B---C   (origin/main, main)
   * Does a fast-forward **only**.
   * If not possible, it **aborts** with an error (no merge commit allowed).
 
-## 4. When to use it
-
 * `--ff` is safe if you don’t mind merge commits being created when necessary.
 * `--ff-only` is stricter (no merge bubbles, linear history).
 * Teams often configure one of these globally so `git pull` always behaves consistently.
 
-## 1) when there is a diverge 
+when there is a diverge 
 
-Recall the setup:
-
-```
-A──B──C     (origin/main)
-     \
-      D     (main)
-```
-* `C` and `D`  share a common ancestor `B`.
-So Git sees:
-* One branch has new work (`C`).
-* Another branch has different new work (`D`).
-* **D** is a **local commit** you made on `main` after you last pulled.
-* If you run `git pull --ff` (or `--ff-only`), **fast‑forward is NOT possible** because your branch has extra work (D).
 
   * `--ff-only` → **aborts** with an error.
   * `--ff` → falls back to a **merge**, creating a merge commit (see next section).
@@ -425,7 +405,7 @@ A──B──C──D'     (main)
 ```
 
 * Pros: **Linear history**, no merge commit.
-* Cons: **Rewrites** your local commits (new SHAs). If you had already pushed `D`, you’ll need `git push --force-with-lease`.
+* Cons: **Rewrites** your local commits (new SHAs). If you had already pushed `D`, you’ll need `git push --force-with-lease`, see below. 
 
 ## How to set opitons gloabally
 
@@ -447,7 +427,7 @@ A──B──C──D'     (main)
   ```
 
 
-# 1) Concrete example: what does “merge C with D to produce M” look like?
+# Concrete example: what does “merge C with D to produce M” look like?
 
 Assume the repo has one file, `README.md`.
 
@@ -505,31 +485,6 @@ A──B──C
 ```
 
 **M** has **two parents**: D and C. That’s a “merge commit”.
-
-## Option B: `git pull --rebase` (**replay** your work on top of remote)
-
-Git takes your local commit(s) and **replays** them atop `C`, producing a *new* commit `D'`:
-
-```
-A──B──C──D'    (main)
-```
-
-* ✅ Pros: **Linear history** (no merge commits), cleaner `git log`, bisect/blame often simpler.
-* ❗ Cons: **Rewrites** your local commit(s) (new SHAs).
-
-  * If you had already pushed `D`, you must **force-push** the rewritten branch (see below).
-
-### Which should you use?
-
-* Many teams prefer **`--rebase`** for a clean linear history (especially on feature branches).
-* If your team forbids history rewrites on shared branches, use **merge** (`git pull` or `git pull --ff`), or make sure you only rebase commits that haven’t been pushed/shared yet.
-
-> Tip to make rebase the default:
->
-> ```bash
-> git config --global pull.rebase true
-> git config --global rebase.autoStash true
-> ```
 
 
 # 3) What is `git push --force-with-lease` (and why it’s safer than `--force`)?
@@ -635,7 +590,7 @@ Dropped refs/stash@{0} (abc123def456...)
 $ git stash list
 # (no output — list is empty)
 ```
-*Summary of this session**
+**summary**
 
 * You edited files.
 * `git stash push` cleaned your working directory but saved changes.
@@ -643,9 +598,9 @@ $ git stash list
 
 ## Rebuild the index respecting `.gitignore`
 
-If you have modified `.gitignore` and you already pushed some files that you did not want to push,  to remove those files already pushed to Github, you need to remove them from the git index to untrach them. 
+If you have modified `.gitignore` and you already pushed some files that you did not want to push,  to remove those files already pushed to Github, you need to remove them from the git index to untrack them. 
 ```bash
-git rm -r --cached .
+git rm -r --cached .  #redo all the index
 git add .
 git commit -m "Reindex: drop ignored files from repo"
 git push origin <your-branch>
@@ -678,7 +633,7 @@ To unstage everything:
 git reset HEAD
 ```
 
-### To **untrack** (stop Git tracking the file):
+### To **unstage**:
 
 If a file is already committed to the repo but you want Git to forget it:
 
@@ -703,63 +658,106 @@ file.txt
 my_folder/
 ```
 
-## Team Git workflow
 
-Avoid committing directly to `main`?
+## Best workflow with GitHub from Colab (or a local device) {#sec-bestworkflow}
 
-### 1. **Clone the repo & stay off `main`**
+**Pre-req**: Local repo is a clone of the GitHub repo with aligned HEAD
 
-Everyone starts from:
+1. Keep sync with the upstream original owner repo. On GitHub, in the forked repo (under your account), Click on "Sync fork". 
+2. Open (or create) a notebook from G-drive to work with in Colab. 
 
+2. Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook from the project directory). 
+
+3. In a termnal of Colab (or a terminal in VSC in a local device)
+  * `git pull` or `git pull --ff` or (safer method: `git pull --ff-only`)
+  
+If permission denied on G-drive, run this first then repeat git pull. 
 ```bash
-git clone https://github.com/org/project.git
-cd project
-git checkout main
+chmod +x .git/hooks/*
 ```
 
-But nobody codes directly on `main`.
+3. After editing, and before finish
+```bash
+git status
+git add  files-to-commit
+git commit -m "commit message"
+git push  # this will push the files-to-commit to your fork/main
+```
+## Team Github workflow
 
-### 2. **Create feature branches**
+## Initial setup
+1. Fork and Clone
 
-When starting new work:
+* **Fork**: You click "Fork" on GitHub → it creates a **copy** of the repo under *your GitHub account*. Navigate to `https://github.com/ywanglab/STAT4160`, then click on "Fork".
+* **Clone**: You download a local copy of *your fork* to your computer. (only do this for the first time)
+
+So after forking, you typically do (only for the first time)
 
 ```bash
-git checkout -b feature/login-page
-# do edits, commits...
-git push origin feature/login-page
+git clone https://github.com/YOUR-USERNAME/REPO-NAME.git #REPO-NAME should be STAT4160
+cd REPO-NAME   # the REPO-NAME should be STAT4160, cd to the current working directory  
 ```
+2. Add the original repo as "upstream"
 
-* Each branch is **short-lived**, focused on a feature, fix, or experiment.
-* Branch names like `feature/`, `bugfix/`, `hotfix/` make it clear what’s happening.
-
-### 3. **Push branch to GitHub and open a Pull Request (PR)**
-
-On GitHub:
-
-* Open a **PR from `feature/login-page` → `main`**.
-* Teammates can review code, request changes, and run tests before merging.
-
-### 4. **Keep your branch up-to-date**
-
-If `main` has moved on while you’re coding:
+Your fork is linked to your GitHub account (the “origin”). To stay in sync with the original project, add a remote for the source repository:
 
 ```bash
-git checkout main
-git pull origin main
-git checkout feature/login-page
-git merge main   # or git rebase main
+git remote add upstream https://github.com/ywanglab/STAT4160
 ```
 
-This keeps your branch compatible with the latest `main`.
+Check remotes:
+
+```bash
+git remote -v
+# origin    https://github.com/YOUR-USERNAME/REPO-NAME.git (push/pull)
+# upstream  https://github.com/ORIGINAL-OWNER/REPO-NAME.git (pull only)
+```
+3. Create a feature branch in your fork
+
+Never work directly on `main`. Instead create a new branch:
+
+```bash
+git checkout -b feature/my-contribution  # eg: homework/your_initial
+# edit files...
+
+# after you done your edit, push changes to origin/main
+
+git add files-to-commit  # git add filename (or directoryname) use `.` rarely as it will add all files in the git directory. 
+git commit -m "Fix bug in utils"
+git push -u origin feature/my-contribution  #git push by default push changes to origin/main
+```
+4. Open a Pull Request (PR) (only do this for the contribution you want to make, such as homework)
+
+1. Go to your fork on GitHub (`https://github.com/YOUR-USERNAME/REPO-NAME`).
+2. GitHub will show a banner: “You recently pushed to `feature/my-contribution`. Do you want to open a Pull Request?”
+3. Click it → select **base repository = (upstream) original owner repo**, **compare = your branch**.
+
+Note: `head repository` → your fork (e.g. YOUR-USERNAME/REPO-NAME) and branch (feature/...) that contains your changes.
+
+4. Write a good description and submit the PR.
+
+Now the maintainers of the original repo will review it. If approved, they’ll merge it.
+
+## Keep your fork in sync
+Before making new contributions, update your `fork/main` with the latest `main` from upstream:
+
+Option A) Do it on GitHub: If  GitHub shows something like "This branch is 1 commit behind", 
+"Sync Fork". 
+
+Option B): do it via terminal: 
+
+```bash
+git checkout main   # checkout main
+git pull upstream main        # pull from the upstream original repo
+git push origin main          # update your fork on GitHub
+```
+
+Then branch off `main` again for your next feature.
 
 
-### Summary
 
-* **Don’t commit directly to `main`.**
-* Each collaborator works in their own **branch**, pushes it to GitHub, and opens a **Pull Request**.
-* Merges into `main` only after **review + tests pass**.
 
-This way, `main` always works, and the team avoids chaos.
+
 
 
 

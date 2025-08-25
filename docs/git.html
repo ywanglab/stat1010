@@ -229,26 +229,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#create-branch" id="toc-create-branch" class="nav-link" data-scroll-target="#create-branch"><span class="header-section-number">4.6</span> Create branch</a></li>
   <li><a href="#merge-branch-to-main-branch" id="toc-merge-branch-to-main-branch" class="nav-link" data-scroll-target="#merge-branch-to-main-branch"><span class="header-section-number">4.7</span> Merge branch to main branch</a></li>
   <li><a href="#handle-large-files-150mb-on-github" id="toc-handle-large-files-150mb-on-github" class="nav-link" data-scroll-target="#handle-large-files-150mb-on-github"><span class="header-section-number">4.8</span> Handle large files (&gt;= 150Mb) on GitHub</a></li>
-  <li><a href="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" id="toc-contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="nav-link" data-scroll-target="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</a></li>
+  <li><a href="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow" id="toc-contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow" class="nav-link" data-scroll-target="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]<span>Section&nbsp;6.3</span> )</a></li>
   <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project"><span class="header-section-number">4.10</span> Project</a></li>
   <li><a href="#more-on-git" id="toc-more-on-git" class="nav-link" data-scroll-target="#more-on-git"><span class="header-section-number">4.11</span> More on git</a></li>
-  <li><a href="#what-does---ff-mean" id="toc-what-does---ff-mean" class="nav-link" data-scroll-target="#what-does---ff-mean"><span class="header-section-number">4.12</span> 2. What does <code>--ff</code> mean?</a></li>
-  <li><a href="#how-is-this-different-from-the-defaults" id="toc-how-is-this-different-from-the-defaults" class="nav-link" data-scroll-target="#how-is-this-different-from-the-defaults"><span class="header-section-number">4.13</span> 3. How is this different from the defaults?</a></li>
-  <li><a href="#when-to-use-it" id="toc-when-to-use-it" class="nav-link" data-scroll-target="#when-to-use-it"><span class="header-section-number">4.14</span> 4. When to use it</a></li>
-  <li><a href="#when-there-is-a-diverge" id="toc-when-there-is-a-diverge" class="nav-link" data-scroll-target="#when-there-is-a-diverge"><span class="header-section-number">4.15</span> 1) when there is a diverge</a>
+  <li><a href="#git-pull-what-does---ff-mean" id="toc-git-pull-what-does---ff-mean" class="nav-link" data-scroll-target="#git-pull-what-does---ff-mean"><span class="header-section-number">4.12</span> Git pull: What does <code>--ff</code> mean?</a>
   <ul class="collapse">
-  <li><a href="#git-pull-or-git-pull---ff-merge-fallback" id="toc-git-pull-or-git-pull---ff-merge-fallback" class="nav-link" data-scroll-target="#git-pull-or-git-pull---ff-merge-fallback"><span class="header-section-number">4.15.1</span> <code>git pull</code> or <code>git pull --ff</code> (merge fallback)</a></li>
-  <li><a href="#option-2-git-pull---rebase-replay-your-work-on-top-of-remote" id="toc-option-2-git-pull---rebase-replay-your-work-on-top-of-remote" class="nav-link" data-scroll-target="#option-2-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">4.15.2</span> Option 2: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</a></li>
+  <li><a href="#git-pull-or-git-pull---ff-merge-fallback" id="toc-git-pull-or-git-pull---ff-merge-fallback" class="nav-link" data-scroll-target="#git-pull-or-git-pull---ff-merge-fallback"><span class="header-section-number">4.12.1</span> <code>git pull</code> or <code>git pull --ff</code> (merge fallback)</a></li>
+  <li><a href="#option-2-git-pull---rebase-replay-your-work-on-top-of-remote" id="toc-option-2-git-pull---rebase-replay-your-work-on-top-of-remote" class="nav-link" data-scroll-target="#option-2-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">4.12.2</span> Option 2: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</a></li>
   </ul></li>
-  <li><a href="#how-to-set-opitons-gloabally" id="toc-how-to-set-opitons-gloabally" class="nav-link" data-scroll-target="#how-to-set-opitons-gloabally"><span class="header-section-number">4.16</span> How to set opitons gloabally</a></li>
-  <li><a href="#concrete-example-what-does-merge-c-with-d-to-produce-m-look-like" id="toc-concrete-example-what-does-merge-c-with-d-to-produce-m-look-like" class="nav-link" data-scroll-target="#concrete-example-what-does-merge-c-with-d-to-produce-m-look-like"><span class="header-section-number">5</span> 1) Concrete example: what does “merge C with D to produce M” look like?</a>
+  <li><a href="#how-to-set-opitons-gloabally" id="toc-how-to-set-opitons-gloabally" class="nav-link" data-scroll-target="#how-to-set-opitons-gloabally"><span class="header-section-number">4.13</span> How to set opitons gloabally</a></li>
+  <li><a href="#concrete-example-what-does-merge-c-with-d-to-produce-m-look-like" id="toc-concrete-example-what-does-merge-c-with-d-to-produce-m-look-like" class="nav-link" data-scroll-target="#concrete-example-what-does-merge-c-with-d-to-produce-m-look-like"><span class="header-section-number">5</span> Concrete example: what does “merge C with D to produce M” look like?</a>
   <ul class="collapse">
   <li><a href="#commits-and-changes" id="toc-commits-and-changes" class="nav-link" data-scroll-target="#commits-and-changes"><span class="header-section-number">5.0.1</span> Commits and changes</a></li>
   <li><a href="#you-run-git-pull-merge-strategy-or-git-merge-originmain" id="toc-you-run-git-pull-merge-strategy-or-git-merge-originmain" class="nav-link" data-scroll-target="#you-run-git-pull-merge-strategy-or-git-merge-originmain"><span class="header-section-number">5.0.2</span> You run: <code>git pull</code> (merge strategy) or <code>git merge origin/main</code></a></li>
-  <li><a href="#option-b-git-pull---rebase-replay-your-work-on-top-of-remote" id="toc-option-b-git-pull---rebase-replay-your-work-on-top-of-remote" class="nav-link" data-scroll-target="#option-b-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">5.1</span> Option B: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</a>
-  <ul class="collapse">
-  <li><a href="#which-should-you-use" id="toc-which-should-you-use" class="nav-link" data-scroll-target="#which-should-you-use"><span class="header-section-number">5.1.1</span> Which should you use?</a></li>
-  </ul></li>
   </ul></li>
   <li><a href="#what-is-git-push---force-with-lease-and-why-its-safer-than---force" id="toc-what-is-git-push---force-with-lease-and-why-its-safer-than---force" class="nav-link" data-scroll-target="#what-is-git-push---force-with-lease-and-why-its-safer-than---force"><span class="header-section-number">6</span> 3) What is <code>git push --force-with-lease</code> (and why it’s safer than <code>--force</code>)?</a>
   <ul class="collapse">
@@ -258,17 +251,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#unstage-and-untrack" id="toc-unstage-and-untrack" class="nav-link" data-scroll-target="#unstage-and-untrack"><span class="header-section-number">6.2</span> Unstage and untrack</a>
   <ul class="collapse">
   <li><a href="#to-unstage-but-keep-tracking" id="toc-to-unstage-but-keep-tracking" class="nav-link" data-scroll-target="#to-unstage-but-keep-tracking"><span class="header-section-number">6.2.1</span> To <strong>unstage</strong> (but keep tracking):</a></li>
-  <li><a href="#to-untrack-stop-git-tracking-the-file" id="toc-to-untrack-stop-git-tracking-the-file" class="nav-link" data-scroll-target="#to-untrack-stop-git-tracking-the-file"><span class="header-section-number">6.2.2</span> To <strong>untrack</strong> (stop Git tracking the file):</a></li>
+  <li><a href="#to-unstage" id="toc-to-unstage" class="nav-link" data-scroll-target="#to-unstage"><span class="header-section-number">6.2.2</span> To <strong>unstage</strong>:</a></li>
   <li><a href="#prevent-tracking-in-the-future" id="toc-prevent-tracking-in-the-future" class="nav-link" data-scroll-target="#prevent-tracking-in-the-future"><span class="header-section-number">6.2.3</span> Prevent tracking in the future</a></li>
   </ul></li>
-  <li><a href="#team-git-workflow" id="toc-team-git-workflow" class="nav-link" data-scroll-target="#team-git-workflow"><span class="header-section-number">6.3</span> Team Git workflow</a>
-  <ul class="collapse">
-  <li><a href="#clone-the-repo-stay-off-main" id="toc-clone-the-repo-stay-off-main" class="nav-link" data-scroll-target="#clone-the-repo-stay-off-main"><span class="header-section-number">6.3.1</span> 1. <strong>Clone the repo &amp; stay off <code>main</code></strong></a></li>
-  <li><a href="#create-feature-branches" id="toc-create-feature-branches" class="nav-link" data-scroll-target="#create-feature-branches"><span class="header-section-number">6.3.2</span> 2. <strong>Create feature branches</strong></a></li>
-  <li><a href="#push-branch-to-github-and-open-a-pull-request-pr" id="toc-push-branch-to-github-and-open-a-pull-request-pr" class="nav-link" data-scroll-target="#push-branch-to-github-and-open-a-pull-request-pr"><span class="header-section-number">6.3.3</span> 3. <strong>Push branch to GitHub and open a Pull Request (PR)</strong></a></li>
-  <li><a href="#keep-your-branch-up-to-date" id="toc-keep-your-branch-up-to-date" class="nav-link" data-scroll-target="#keep-your-branch-up-to-date"><span class="header-section-number">6.3.4</span> 4. <strong>Keep your branch up-to-date</strong></a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.3.5</span> Summary</a></li>
-  </ul></li>
+  <li><a href="#sec-bestworkflow" id="toc-sec-bestworkflow" class="nav-link" data-scroll-target="#sec-bestworkflow"><span class="header-section-number">6.3</span> Best workflow with GitHub from Colab (or a local device)</a></li>
+  <li><a href="#team-github-workflow" id="toc-team-github-workflow" class="nav-link" data-scroll-target="#team-github-workflow"><span class="header-section-number">6.4</span> Team Github workflow</a></li>
+  <li><a href="#initial-setup" id="toc-initial-setup" class="nav-link" data-scroll-target="#initial-setup"><span class="header-section-number">6.5</span> Initial setup</a></li>
+  <li><a href="#keep-your-fork-in-sync" id="toc-keep-your-fork-in-sync" class="nav-link" data-scroll-target="#keep-your-fork-in-sync"><span class="header-section-number">6.6</span> Keep your fork in sync</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -359,7 +348,7 @@ git branch -M main #rename the branch name to main
 git add .  # may use git add --all
 git commit -m "first commit"
 git remote add origin https://github.com/ywanglab/homework.git #(change the remote repo path to your remote repo)
-git push -u origin main </code></pre>
+git push -u origin main # only need to do this first time. Afterwards, only `git push`</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -402,9 +391,8 @@ git push -u origin main</code></pre></li>
 <li><p>to get to a previous commit, use <code>git checkout seven_character_commit_hash</code>. To get back to main, use <code>git checkout main</code>.</p></li>
 <li><p>Git commit --amend</p></li>
 </ol>
-<pre><code>`commit --amend` is used to modify the most recent `commit`. It combines changes in the `staging environment` with the latest `commit`, and creates a new `commit`. This new `commit` replaces the latest `commit` entirely. Adding files with&nbsp;`--amend`&nbsp;works the same way as above. Just add them to the&nbsp;`staging environment`&nbsp;before committing.
-
-One of the simplest things you can do with&nbsp;`--amend`&nbsp;is to change a&nbsp;`commit`&nbsp;message with spelling errors.</code></pre>
+<p><code>commit --amend</code> is used to modify the most recent <code>commit</code>. It combines changes in the <code>staging environment</code> with the latest <code>commit</code>, and creates a new <code>commit</code>. This new <code>commit</code> replaces the latest <code>commit</code> entirely. Adding files with<code>--amend</code> works the same way as above. Just add them to the <code>staging environment</code> before committing.</p>
+<p>One of the simplest things you can do with <code>--amend</code> is to change a <code>commit</code> message with spelling errors.</p>
 <ol start="9" type="1">
 <li><p>Git Revert HEAD:</p>
 <p><code>revert</code> is the command we use when we want to take a previous commit and add it as a new commit, keeping the log intact. Revert the latest <code>commit</code> using git <code>revert HEAD</code> (<code>revert</code> the latest change, and then <code>commit</code>), adding the option <code>--no-edit</code> to skip the commit message editor (getting the default <code>revert</code> message):</p>
@@ -527,8 +515,8 @@ git push</code></pre>
 </div>
 <pre><code></code></pre>
 </section>
-<section id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request</h2>
+<section id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]<a href="#sec-bestworkflow" class="quarto-xref"><span>Section&nbsp;6.3</span></a> )</h2>
 <ol type="1">
 <li><p>after forking a (foreign) GitHub repo to your own GitHub account, <code>git clone</code> that repo under your account to your local repo.</p></li>
 <li><p>make changes in your local directory.</p></li>
@@ -573,8 +561,8 @@ git push origin</code></pre>
 <li><strong><code>git merge</code></strong> → merges those new commits into your current branch.</li>
 </ul>
 </section>
-<section id="what-does---ff-mean" class="level2" data-number="4.12">
-<h2 data-number="4.12" class="anchored" data-anchor-id="what-does---ff-mean"><span class="header-section-number">4.12</span> 2. What does <code>--ff</code> mean?</h2>
+<section id="git-pull-what-does---ff-mean" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="git-pull-what-does---ff-mean"><span class="header-section-number">4.12</span> Git pull: What does <code>--ff</code> mean?</h2>
 <ul>
 <li><code>--ff</code> = <strong>fast-forward if possible</strong>.</li>
 <li>That means: if your branch has <strong>no local commits</strong> since it last matched the remote, Git will simply <strong>move the branch pointer forward</strong> to match the remote — no merge commit is created.</li>
@@ -585,10 +573,6 @@ git push origin</code></pre>
 A---B   (main)</code></pre>
 <p>If you run <code>git pull --ff</code> and your branch is strictly behind <code>origin/main</code>, Git just slides <code>main</code> forward:</p>
 <pre><code>A---B---C   (origin/main, main)</code></pre>
-<hr>
-</section>
-<section id="how-is-this-different-from-the-defaults" class="level2" data-number="4.13">
-<h2 data-number="4.13" class="anchored" data-anchor-id="how-is-this-different-from-the-defaults"><span class="header-section-number">4.13</span> 3. How is this different from the defaults?</h2>
 <ul>
 <li><p><code>git pull</code> without flags:</p>
 <ul>
@@ -604,35 +588,17 @@ A---B   (main)</code></pre>
 <li>Does a fast-forward <strong>only</strong>.</li>
 <li>If not possible, it <strong>aborts</strong> with an error (no merge commit allowed).</li>
 </ul></li>
+<li><p><code>--ff</code> is safe if you don’t mind merge commits being created when necessary.</p></li>
+<li><p><code>--ff-only</code> is stricter (no merge bubbles, linear history).</p></li>
+<li><p>Teams often configure one of these globally so <code>git pull</code> always behaves consistently.</p></li>
 </ul>
-</section>
-<section id="when-to-use-it" class="level2" data-number="4.14">
-<h2 data-number="4.14" class="anchored" data-anchor-id="when-to-use-it"><span class="header-section-number">4.14</span> 4. When to use it</h2>
-<ul>
-<li><code>--ff</code> is safe if you don’t mind merge commits being created when necessary.</li>
-<li><code>--ff-only</code> is stricter (no merge bubbles, linear history).</li>
-<li>Teams often configure one of these globally so <code>git pull</code> always behaves consistently.</li>
-</ul>
-</section>
-<section id="when-there-is-a-diverge" class="level2" data-number="4.15">
-<h2 data-number="4.15" class="anchored" data-anchor-id="when-there-is-a-diverge"><span class="header-section-number">4.15</span> 1) when there is a diverge</h2>
-<p>Recall the setup:</p>
-<pre><code>A──B──C     (origin/main)
-     \
-      D     (main)</code></pre>
-<ul>
-<li><p><code>C</code> and <code>D</code> share a common ancestor <code>B</code>. So Git sees:</p></li>
-<li><p>One branch has new work (<code>C</code>).</p></li>
-<li><p>Another branch has different new work (<code>D</code>).</p></li>
-<li><p><strong>D</strong> is a <strong>local commit</strong> you made on <code>main</code> after you last pulled.</p></li>
-<li><p>If you run <code>git pull --ff</code> (or <code>--ff-only</code>), <strong>fast‑forward is NOT possible</strong> because your branch has extra work (D).</p>
+<p>when there is a diverge</p>
 <ul>
 <li><code>--ff-only</code> → <strong>aborts</strong> with an error.</li>
 <li><code>--ff</code> → falls back to a <strong>merge</strong>, creating a merge commit (see next section).</li>
-</ul></li>
 </ul>
-<section id="git-pull-or-git-pull---ff-merge-fallback" class="level3" data-number="4.15.1">
-<h3 data-number="4.15.1" class="anchored" data-anchor-id="git-pull-or-git-pull---ff-merge-fallback"><span class="header-section-number">4.15.1</span> <code>git pull</code> or <code>git pull --ff</code> (merge fallback)</h3>
+<section id="git-pull-or-git-pull---ff-merge-fallback" class="level3" data-number="4.12.1">
+<h3 data-number="4.12.1" class="anchored" data-anchor-id="git-pull-or-git-pull---ff-merge-fallback"><span class="header-section-number">4.12.1</span> <code>git pull</code> or <code>git pull --ff</code> (merge fallback)</h3>
 <ul>
 <li>Git fetches <code>origin/main</code> at <code>C</code></li>
 <li>Git merges <code>C</code> into your local <code>main</code> with <code>D</code>, producing <strong>M</strong>:</li>
@@ -659,8 +625,8 @@ A──B──C
 <li>Cons: Adds <strong>merge commits</strong>; history can get “braided”.</li>
 </ul>
 </section>
-<section id="option-2-git-pull---rebase-replay-your-work-on-top-of-remote" class="level3" data-number="4.15.2">
-<h3 data-number="4.15.2" class="anchored" data-anchor-id="option-2-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">4.15.2</span> Option 2: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</h3>
+<section id="option-2-git-pull---rebase-replay-your-work-on-top-of-remote" class="level3" data-number="4.12.2">
+<h3 data-number="4.12.2" class="anchored" data-anchor-id="option-2-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">4.12.2</span> Option 2: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</h3>
 <ul>
 <li><p>Git rewrites your local commits onto the fetched remote tip:</p>
 <ul>
@@ -672,24 +638,24 @@ A──B──C
       rebased (new) commit</code></pre>
 <ul>
 <li>Pros: <strong>Linear history</strong>, no merge commit.</li>
-<li>Cons: <strong>Rewrites</strong> your local commits (new SHAs). If you had already pushed <code>D</code>, you’ll need <code>git push --force-with-lease</code>.</li>
+<li>Cons: <strong>Rewrites</strong> your local commits (new SHAs). If you had already pushed <code>D</code>, you’ll need <code>git push --force-with-lease</code>, see below.</li>
 </ul>
 </section>
 </section>
-<section id="how-to-set-opitons-gloabally" class="level2" data-number="4.16">
-<h2 data-number="4.16" class="anchored" data-anchor-id="how-to-set-opitons-gloabally"><span class="header-section-number">4.16</span> How to set opitons gloabally</h2>
+<section id="how-to-set-opitons-gloabally" class="level2" data-number="4.13">
+<h2 data-number="4.13" class="anchored" data-anchor-id="how-to-set-opitons-gloabally"><span class="header-section-number">4.13</span> How to set opitons gloabally</h2>
 <ul>
 <li><p><strong>Team prefers linear history</strong> → <code>git pull --rebase</code> (and set it as default)</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase true</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> rebase.autoStash true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase true</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> rebase.autoStash true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Keep exact history / avoid rewrite</strong> → <code>git pull --ff</code> (merge when needed)</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Never auto-merge; be explicit</strong> → <code>git pull --ff-only</code></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.ff only</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.ff only</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="concrete-example-what-does-merge-c-with-d-to-produce-m-look-like" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> 1) Concrete example: what does “merge C with D to produce M” look like?</h1>
+<h1 data-number="5"><span class="header-section-number">5</span> Concrete example: what does “merge C with D to produce M” look like?</h1>
 <p>Assume the repo has one file, <code>README.md</code>.</p>
 <section id="commits-and-changes" class="level3" data-number="5.0.1">
 <h3 data-number="5.0.1" class="anchored" data-anchor-id="commits-and-changes"><span class="header-section-number">5.0.1</span> Commits and changes</h3>
@@ -724,30 +690,6 @@ Remote line</code></pre>
       D─M      (main)</code></pre>
 <p><strong>M</strong> has <strong>two parents</strong>: D and C. That’s a “merge commit”.</p>
 </section>
-<section id="option-b-git-pull---rebase-replay-your-work-on-top-of-remote" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="option-b-git-pull---rebase-replay-your-work-on-top-of-remote"><span class="header-section-number">5.1</span> Option B: <code>git pull --rebase</code> (<strong>replay</strong> your work on top of remote)</h2>
-<p>Git takes your local commit(s) and <strong>replays</strong> them atop <code>C</code>, producing a <em>new</em> commit <code>D'</code>:</p>
-<pre><code>A──B──C──D'    (main)</code></pre>
-<ul>
-<li><p>✅ Pros: <strong>Linear history</strong> (no merge commits), cleaner <code>git log</code>, bisect/blame often simpler.</p></li>
-<li><p>❗ Cons: <strong>Rewrites</strong> your local commit(s) (new SHAs).</p>
-<ul>
-<li>If you had already pushed <code>D</code>, you must <strong>force-push</strong> the rewritten branch (see below).</li>
-</ul></li>
-</ul>
-<section id="which-should-you-use" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="which-should-you-use"><span class="header-section-number">5.1.1</span> Which should you use?</h3>
-<ul>
-<li>Many teams prefer <strong><code>--rebase</code></strong> for a clean linear history (especially on feature branches).</li>
-<li>If your team forbids history rewrites on shared branches, use <strong>merge</strong> (<code>git pull</code> or <code>git pull --ff</code>), or make sure you only rebase commits that haven’t been pushed/shared yet.</li>
-</ul>
-<blockquote class="blockquote">
-<p>Tip to make rebase the default:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase true</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> rebase.autoStash true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</blockquote>
-</section>
-</section>
 </section>
 <section id="what-is-git-push---force-with-lease-and-why-its-safer-than---force" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> 3) What is <code>git push --force-with-lease</code> (and why it’s safer than <code>--force</code>)?</h1>
@@ -762,76 +704,76 @@ Remote line</code></pre>
 </ul>
 <section id="typical-rebase-push-flow" class="level3" data-number="6.0.1">
 <h3 data-number="6.0.1" class="anchored" data-anchor-id="typical-rebase-push-flow"><span class="header-section-number">6.0.1</span> Typical rebase + push flow</h3>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update local view of remote</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Rebase your local work onto the remote tip</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase origin/main   <span class="co"># resolve conflicts if any; git rebase --continue</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Safely update the remote branch</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update local view of remote</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Rebase your local work onto the remote tip</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase origin/main   <span class="co"># resolve conflicts if any; git rebase --continue</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Safely update the remote branch</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="example-workflow-with-git-stash" class="level3" data-number="6.0.2">
 <h3 data-number="6.0.2" class="anchored" data-anchor-id="example-workflow-with-git-stash"><span class="header-section-number">6.0.2</span> Example workflow with <code>git stash</code></h3>
 <section id="check-repo-status" class="level4" data-number="6.0.2.1">
 <h4 data-number="6.0.2.1" class="anchored" data-anchor-id="check-repo-status"><span class="header-section-number">6.0.2.1</span> 1. Check repo status</h4>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Your</span> branch is up to date with <span class="st">'origin/main'</span>.</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Your</span> branch is up to date with <span class="st">'origin/main'</span>.</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">"git add &lt;file&gt;..."</span> to update what will be committed<span class="kw">)</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You’ve made some edits but don’t want to commit yet.</p>
 </section>
 <section id="stash-your-changes" class="level4" data-number="6.0.2.2">
 <h4 data-number="6.0.2.2" class="anchored" data-anchor-id="stash-your-changes"><span class="header-section-number">6.0.2.2</span> 2. Stash your changes</h4>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash push <span class="at">-m</span> <span class="st">"WIP: refactor utils"</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Saved</span> working directory and index state WIP on main: 1a2b3c4 Add logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash push <span class="at">-m</span> <span class="st">"WIP: refactor utils"</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Saved</span> working directory and index state WIP on main: 1a2b3c4 Add logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now the working directory is clean.</p>
 </section>
 <section id="verify-with-status" class="level4" data-number="6.0.2.3">
 <h4 data-number="6.0.2.3" class="anchored" data-anchor-id="verify-with-status"><span class="header-section-number">6.0.2.3</span> 3. Verify with <code>status</code></h4>
-<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> to commit, working tree clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch main</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nothing</span> to commit, working tree clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The changes are hidden away.</p>
 </section>
 <section id="list-stashes" class="level4" data-number="6.0.2.4">
 <h4 data-number="6.0.2.4" class="anchored" data-anchor-id="list-stashes"><span class="header-section-number">6.0.2.4</span> 4. List stashes</h4>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash list</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="ex">stash@{0}:</span> On main: WIP: refactor utils</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash list</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">stash@{0}:</span> On main: WIP: refactor utils</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Your stash is safely stored.</p>
 </section>
 <section id="switch-branch-pull-or-do-other-work" class="level4" data-number="6.0.2.5">
 <h4 data-number="6.0.2.5" class="anchored" data-anchor-id="switch-branch-pull-or-do-other-work"><span class="header-section-number">6.0.2.5</span> 5. Switch branch, pull, or do other work</h4>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git switch feature-branch</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Switched</span> to branch <span class="st">'feature-branch'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git switch feature-branch</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Switched</span> to branch <span class="st">'feature-branch'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="apply-the-stash-back" class="level4" data-number="6.0.2.6">
 <h4 data-number="6.0.2.6" class="anchored" data-anchor-id="apply-the-stash-back"><span class="header-section-number">6.0.2.6</span> 6. Apply the stash back</h4>
-<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash apply stash@{0}</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch feature-branch</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash apply stash@{0}</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch feature-branch</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Changes are back, but the stash still exists in the list.</p>
 </section>
 <section id="or-use-pop-to-apply-and-remove" class="level4" data-number="6.0.2.7">
 <h4 data-number="6.0.2.7" class="anchored" data-anchor-id="or-use-pop-to-apply-and-remove"><span class="header-section-number">6.0.2.7</span> 7. Or use <code>pop</code> to apply <em>and remove</em></h4>
-<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash pop</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch feature-branch</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Dropped</span> refs/stash@{0} <span class="er">(</span><span class="ex">abc123def456...</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash pop</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch feature-branch</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> not staged for commit:</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   app.py</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">modified:</span>   utils.py</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Dropped</span> refs/stash@{0} <span class="er">(</span><span class="ex">abc123def456...</span><span class="kw">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="confirm-stash-list-is-empty" class="level4" data-number="6.0.2.8">
 <h4 data-number="6.0.2.8" class="anchored" data-anchor-id="confirm-stash-list-is-empty"><span class="header-section-number">6.0.2.8</span> 8. Confirm stash list is empty</h4>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash list</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (no output — list is empty)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>*Summary of this session**</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git stash list</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (no output — list is empty)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>summary</strong></p>
 <ul>
 <li>You edited files.</li>
 <li><code>git stash push</code> cleaned your working directory but saved changes.</li>
@@ -841,11 +783,11 @@ Remote line</code></pre>
 </section>
 <section id="rebuild-the-index-respecting-.gitignore" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="rebuild-the-index-respecting-.gitignore"><span class="header-section-number">6.1</span> Rebuild the index respecting <code>.gitignore</code></h2>
-<p>If you have modified <code>.gitignore</code> and you already pushed some files that you did not want to push, to remove those files already pushed to Github, you need to remove them from the git index to untrach them.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-r</span> <span class="at">--cached</span> .</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Reindex: drop ignored files from repo"</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin <span class="op">&lt;</span>your-branch<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you have modified <code>.gitignore</code> and you already pushed some files that you did not want to push, to remove those files already pushed to Github, you need to remove them from the git index to untrack them.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-r</span> <span class="at">--cached</span> .  <span class="co">#redo all the index</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Reindex: drop ignored files from repo"</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin <span class="op">&lt;</span>your-branch<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to remove specific folder or files:</p>
 <pre><code>git rm -r --cached .Rhistory .Rproj.user # `-r` is needed for a directory 
 </code></pre>
@@ -859,20 +801,20 @@ Remote line</code></pre>
 <section id="to-unstage-but-keep-tracking" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="to-unstage-but-keep-tracking"><span class="header-section-number">6.2.1</span> To <strong>unstage</strong> (but keep tracking):</h3>
 <p>If you already ran <code>git add file.txt</code> and want to undo that:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD file.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD file.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now <code>file.txt</code> is back in “modified” state but not staged. To unstage everything:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="to-untrack-stop-git-tracking-the-file" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="to-untrack-stop-git-tracking-the-file"><span class="header-section-number">6.2.2</span> To <strong>untrack</strong> (stop Git tracking the file):</h3>
+<section id="to-unstage" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="to-unstage"><span class="header-section-number">6.2.2</span> To <strong>unstage</strong>:</h3>
 <p>If a file is already committed to the repo but you want Git to forget it:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> file.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> file.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>--cached</code> removes it from the index (tracking) but leaves it in your working directory.</li>
 <li>Next commit will record the removal.</li>
 <li>If you want to untrack entire directories:</li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-r</span> <span class="at">--cached</span> my_folder/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-r</span> <span class="at">--cached</span> my_folder/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="prevent-tracking-in-the-future" class="level3" data-number="6.2.3">
 <h3 data-number="6.2.3" class="anchored" data-anchor-id="prevent-tracking-in-the-future"><span class="header-section-number">6.2.3</span> Prevent tracking in the future</h3>
@@ -882,56 +824,87 @@ file.txt
 my_folder/</code></pre>
 </section>
 </section>
-<section id="team-git-workflow" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="team-git-workflow"><span class="header-section-number">6.3</span> Team Git workflow</h2>
-<p>Avoid committing directly to <code>main</code>?</p>
-<section id="clone-the-repo-stay-off-main" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="clone-the-repo-stay-off-main"><span class="header-section-number">6.3.1</span> 1. <strong>Clone the repo &amp; stay off <code>main</code></strong></h3>
-<p>Everyone starts from:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/org/project.git</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> project</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>But nobody codes directly on <code>main</code>.</p>
-</section>
-<section id="create-feature-branches" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="create-feature-branches"><span class="header-section-number">6.3.2</span> 2. <strong>Create feature branches</strong></h3>
-<p>When starting new work:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/login-page</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># do edits, commits...</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin feature/login-page</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="sec-bestworkflow" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-bestworkflow"><span class="header-section-number">6.3</span> Best workflow with GitHub from Colab (or a local device)</h2>
+<p><strong>Pre-req</strong>: Local repo is a clone of the GitHub repo with aligned HEAD</p>
+<ol type="1">
+<li><p>Keep sync with the upstream original owner repo. On GitHub, in the forked repo (under your account), Click on “Sync fork”.</p></li>
+<li><p>Open (or create) a notebook from G-drive to work with in Colab.</p></li>
+<li><p>Then, mount the G-drive. If on a local device, use the same workflow (open or create a notebook from the project directory).</p></li>
+<li><p>In a termnal of Colab (or a terminal in VSC in a local device)</p></li>
+</ol>
 <ul>
-<li>Each branch is <strong>short-lived</strong>, focused on a feature, fix, or experiment.</li>
-<li>Branch names like <code>feature/</code>, <code>bugfix/</code>, <code>hotfix/</code> make it clear what’s happening.</li>
+<li><code>git pull</code> or <code>git pull --ff</code> or (safer method: <code>git pull --ff-only</code>)</li>
 </ul>
+<p>If permission denied on G-drive, run this first then repeat git pull.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x .git/hooks/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>After editing, and before finish</li>
+</ol>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add  files-to-commit</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"commit message"</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push  <span class="co"># this will push the files-to-commit to your fork/main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="push-branch-to-github-and-open-a-pull-request-pr" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="push-branch-to-github-and-open-a-pull-request-pr"><span class="header-section-number">6.3.3</span> 3. <strong>Push branch to GitHub and open a Pull Request (PR)</strong></h3>
-<p>On GitHub:</p>
+<section id="team-github-workflow" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="team-github-workflow"><span class="header-section-number">6.4</span> Team Github workflow</h2>
+</section>
+<section id="initial-setup" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="initial-setup"><span class="header-section-number">6.5</span> Initial setup</h2>
+<ol type="1">
+<li>Fork and Clone</li>
+</ol>
 <ul>
-<li>Open a <strong>PR from <code>feature/login-page</code> → <code>main</code></strong>.</li>
-<li>Teammates can review code, request changes, and run tests before merging.</li>
+<li><strong>Fork</strong>: You click “Fork” on GitHub → it creates a <strong>copy</strong> of the repo under <em>your GitHub account</em>. Navigate to <code>https://github.com/ywanglab/STAT4160</code>, then click on “Fork”.</li>
+<li><strong>Clone</strong>: You download a local copy of <em>your fork</em> to your computer. (only do this for the first time)</li>
 </ul>
+<p>So after forking, you typically do (only for the first time)</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/YOUR-USERNAME/REPO-NAME.git <span class="co">#REPO-NAME should be STAT4160</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> REPO-NAME   <span class="co"># the REPO-NAME should be STAT4160, cd to the current working directory  </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Add the original repo as “upstream”</li>
+</ol>
+<p>Your fork is linked to your GitHub account (the “origin”). To stay in sync with the original project, add a remote for the source repository:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add upstream https://github.com/ywanglab/STAT4160</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check remotes:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co"># origin    https://github.com/YOUR-USERNAME/REPO-NAME.git (push/pull)</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># upstream  https://github.com/ORIGINAL-OWNER/REPO-NAME.git (pull only)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Create a feature branch in your fork</li>
+</ol>
+<p>Never work directly on <code>main</code>. Instead create a new branch:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/my-contribution  <span class="co"># eg: homework/your_initial</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># edit files...</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co"># after you done your edit, push changes to origin/main</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add files-to-commit  <span class="co"># git add filename (or directoryname) use `.` rarely as it will add all files in the git directory. </span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Fix bug in utils"</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin feature/my-contribution  <span class="co">#git push by default push changes to origin/main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li><p>Open a Pull Request (PR) (only do this for the contribution you want to make, such as homework)</p></li>
+<li><p>Go to your fork on GitHub (<code>https://github.com/YOUR-USERNAME/REPO-NAME</code>).</p></li>
+<li><p>GitHub will show a banner: “You recently pushed to <code>feature/my-contribution</code>. Do you want to open a Pull Request?”</p></li>
+<li><p>Click it → select <strong>base repository = (upstream) original owner repo</strong>, <strong>compare = your branch</strong>.</p></li>
+</ol>
+<p>Note: <code>head repository</code> → your fork (e.g.&nbsp;YOUR-USERNAME/REPO-NAME) and branch (feature/…) that contains your changes.</p>
+<ol start="4" type="1">
+<li>Write a good description and submit the PR.</li>
+</ol>
+<p>Now the maintainers of the original repo will review it. If approved, they’ll merge it.</p>
 </section>
-<section id="keep-your-branch-up-to-date" class="level3" data-number="6.3.4">
-<h3 data-number="6.3.4" class="anchored" data-anchor-id="keep-your-branch-up-to-date"><span class="header-section-number">6.3.4</span> 4. <strong>Keep your branch up-to-date</strong></h3>
-<p>If <code>main</code> has moved on while you’re coding:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull origin main</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout feature/login-page</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge main   <span class="co"># or git rebase main</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This keeps your branch compatible with the latest <code>main</code>.</p>
-</section>
-<section id="summary" class="level3" data-number="6.3.5">
-<h3 data-number="6.3.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.3.5</span> Summary</h3>
-<ul>
-<li><strong>Don’t commit directly to <code>main</code>.</strong></li>
-<li>Each collaborator works in their own <strong>branch</strong>, pushes it to GitHub, and opens a <strong>Pull Request</strong>.</li>
-<li>Merges into <code>main</code> only after <strong>review + tests pass</strong>.</li>
-</ul>
-<p>This way, <code>main</code> always works, and the team avoids chaos.</p>
+<section id="keep-your-fork-in-sync" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="keep-your-fork-in-sync"><span class="header-section-number">6.6</span> Keep your fork in sync</h2>
+<p>Before making new contributions, update your <code>fork/main</code> with the latest <code>main</code> from upstream:</p>
+<p>Option A) Do it on GitHub: If GitHub shows something like “This branch is 1 commit behind”, “Sync Fork”.</p>
+<p>Option B): do it via terminal:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main   <span class="co"># checkout main</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull upstream main        <span class="co"># pull from the upstream original repo</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main          <span class="co"># update your fork on GitHub</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then branch off <code>main</code> again for your next feature.</p>
 
 
-</section>
 </section>
 </section>
 
