@@ -754,15 +754,591 @@ git push origin main          # update your fork on GitHub
 
 Then branch off `main` again for your next feature.
 
+## Git FAQ
+
+0) Explain staging area, working area, working directory
+
+* **Working directory / working tree (aka “working area”)**: The files on your disk you edit.
+* **Staging area (index)**: The “snapshot-in-progress” you will commit next. You move changes here with `git add`.
+* **Local repository (`.git`)**: The database of commits/objects/refs. `git commit` writes a new commit to this store.
+* **HEAD**: A pointer to your current commit/branch.
+
+### Working directory (working tree) vs “actual files on disk”? Save vs commit? What are “index” and “working tree”?
+
+* **Working directory/working files / working tree**: the files on your disk under the repo. This *is* the “actual files on disk” for the project (both tracked and untracked). What `git status` calls "Changes not staged for commit" (for tracked edits) and "Untracked files". 
+* **Index (staging area)**: a binary file at `.git/index` that holds the **exact snapshot** you will commit next. You put changes into the index with `git add`. `Git status` calls "Changes to be cmmitted". 
+
+Compare the layers
+```
+git status                       # see working tree vs index vs HEAD
+git diff                         # working tree vs index: what you edited but haven't staged. 
+git diff --staged                # index vs HEAD: what's staged vs. last commit
+git log --oneline --graph --decorate --all   # visualize history (merge vs rebase)
+```
+Flow:
+```
+(edit & save) → working tree
+git add → index
+git commit → new commit from the index
+```
+
+* **Local repository**: all Git objects in `.git/` (commits, trees, blobs, refs).
+
+**Save vs commit**
+
+* **Save**: editor/OS action that writes a file to disk (affects working tree only).
+* **Commit**: Git action that records a snapshot of the **index** into the repository history (`.git/objects`) with a message and metadata.
+
+---
+
+### 1) After `git add`, how to undo (un‑add) a file or directory?
+
+Unstage (but keep your edits in the working tree):
+
+```bash
+# Preferred (Git 2.23+)
+git restore --staged <file-or-dir>
+
+# Older (still works)
+git reset HEAD <file-or-dir>
+
+# Unstage everything that’s currently staged
+git restore --staged .
+# or
+git reset  #eqiv to: git reset --mixed HEAD: reset the index to match the current HEAD (unstaging changes) but does not move HEAD
+```
+
+Partially unstage hunks:
+
+```bash
+git restore --staged -p <file>   # or: git reset -p <file>
+```
+
+If you accidentally started tracking something (e.g., should be ignored), remove it from the index only:
+
+```bash
+git rm --cached -r <path>   # leaves the file(s) on disk, stops tracking
+```
+
+### 2) After `git commit`, how to un‑commit?
+
+Undo the last commit locally (choose how much to keep):
+
+```bash
+git reset --soft HEAD~1   # keep changes staged
+git reset --mixed HEAD~1  # keep changes in working tree (unstaged) [default]
+git reset --hard HEAD~1   # discard the commit AND your local changes (danger!)
+```
+
+If the commit is **already pushed** (others may have pulled it), prefer:
+
+```bash
+git revert <commit-sha>   # makes a new commit that undoes the old one
+```
+
+Fix or edit the most recent commit without changing its parent:
+
+```bash
+git commit --amend
+```
+`git commit --amend` (more)
+
+Rewrites the **last** commit.
+
+* **Fix message only**:
+
+  ```bash
+  git commit --amend -m "Better message"
+  ```
+* **Add forgotten changes** (stage them first):
+
+  ```bash
+  git add <files>
+  git commit --amend --no-edit   # keep prior message
+  ```
+* **Change author/committer timestamp**:
+
+  ```bash
+  git commit --amend --no-edit --reset-author
+  ```
+
+Results in a **new commit SHA**. If the old commit was pushed, you’ll need:
+
+```bash
+git push --force-with-lease
+```
+
+If you *must* rewrite published history (e.g., after a local rebase), push safely:
+
+```bash
+git push --force-with-lease
+```
+
+---
+
+### 3) When `git push`, what conflicts can occur? How to fix them?
+
+A “push conflict” is usually a **non‑fast‑forward** rejection because the remote has new commits you don’t have.
+
+**Symptom**: `rejected] ... (fetch first)` or `non-fast-forward`.
+
+**Fix**:
+
+```bash
+git fetch origin
+# Option A: merge
+git merge origin/<branch>
+
+# Option B: rebase (keeps history linear)
+git rebase origin/<branch>
+
+# After Having Resolved any conflicts, then:
+git push
+```
+
+---
+
+### 4) When `git pull`, what conflicts can occur, and how to fix them?
+
+`git pull` = `fetch + merge` (by default) or `fetch + rebase` (with `--rebase`).
+Conflicts occur when both sides changed the same lines or one side edits a file the other deleted.
+
+**Merge flow (default pull):**
+
+```bash
+git pull
+# If conflicts:
+git status
+# open files, resolve <<<<<<< ======= >>>>>>> markers
+git add <resolved-file>...
+git commit           # completes the merge
+```
+
+**Rebase flow (`git pull --rebase`):**
+
+```bash
+git pull --rebase
+# If conflicts:
+git status
+# resolve, then:
+git add <resolved-file>...
+git rebase --continue
+# or:
+git rebase --abort    # to go back to the state right before rebase
+```
+Related:
+
+* `git rebase --continue` → after resolving a conflict, proceed to the next commit.
+* `git rebase --skip` → drop the problematic commit and continue.
+* `git rebase --quit` → stop the rebase *without resetting your current files/HEAD*; it just removes rebase state (rarely needed—`--abort` is the safe “put it back” button).
+
+Helpful:
+
+```bash
+git mergetool         # launch a diff/merge tool if configured
+```
+
+### 5) Why create a new branch instead of working on `main`?
+
+* Keep `main` clean, stable, and deployable.
+* Isolate work so you can open focused pull requests and get review.
+* Parallel development without stepping on each other.
+* Safer experiments; easy to abandon a branch if it doesn’t pan out.
+* Release/hotfix workflows (e.g., `release/*`, `hotfix/*`).
+* CI/policy gates per branch.
+
+---
+
+### 6) How `git stash` works and why we need it
+
+`git stash` saves your **uncommitted** changes (working tree and staged) into a stack entry, then reverts your tree to a clean state—handy when you must switch branches or pull/rebase but aren’t ready to commit.
+
+Common commands:
+
+```bash
+git stash push -m "wip: message"    # save staged + unstaged
+git stash push -u                    # include untracked files
+git stash push -a                    # include ignored files
+git stash list
+git stash show -p stash@{0}          # see what’s inside
+git stash apply stash@{0}            # apply, keep it on the stack
+git stash pop stash@{0}              # apply and remove from the stack
+git stash drop stash@{0}
+# Partial / path-specific:
+git stash -p                         # interactively stash hunks
+git stash push -- <path1> <path2>    # stash only these paths
+```
+
+---
+
+### 8) Difference between `git reset` and `git revert`
+
+* **`git reset`**: Moves a branch/HEAD to another commit (optionally touching index and working tree). It **rewrites history** for that branch.
+
+  * `--soft`: move HEAD only (keep index + working tree)
+  * `--mixed` (default): move HEAD + reset index (keep working tree)
+  * `--hard`: move HEAD + reset index + working tree (discard changes)
+  * Use for local surgery (e.g., uncommit/squash) before sharing.
+* **`git revert`**: Creates a **new commit** that undoes the changes from a prior commit. **Does not rewrite history**; safe on shared branches.
+
+Rule of thumb: **Use `revert` for public history, `reset` for local/private history.**
+
+---
+
+### 9) How to remove files that are already pushed? Explain `git rm --cached`
+
+If you only want Git to **stop tracking** the file(s) but keep them on disk:
+
+```bash
+git rm --cached -r <path>
+echo "<path>/" >> .gitignore
+git commit -m "Stop tracking <path>"
+git push
+```
+
+> `git rm --cached` removes from the **index** (stops tracking) but **does not delete** your local copy.
+
+If sensitive/big files are already in history and must be purged:
+
+* Use **git filter-repo** (recommended) or BFG:
+
+```bash
+# after installing git-filter-repo
+git filter-repo --path <path> --invert-paths
+git push --force-with-lease --all
+git push --force-with-lease --tags
+```
+
+* Rotate any exposed secrets and tell collaborators to re-clone or hard‑reset to the new history.
+
+---
+
+### 10) Difference between `git pull --rebase` and `git pull -ff`
+
+* **`git pull --rebase`**: Fetch, then reapply your local commits **on top of** the updated upstream. This rewrites your local commits for a cleaner, linear history. Configure permanently:
+
+  ```bash
+  git config --global pull.rebase true     # always rebase on pull
+  # or for one repo:
+  git config pull.rebase true
+  ```
+
+  * `-f` is a short flag for **fetch --force**, so `-ff` is basically “fetch with force (twice)””.
+ 
+* If you *don’t* use `--rebase`, then `git pull` merges by default.`--ff-only` keeps history clean by aborting instead of making a merge commit when a fast‑forward isn’t possible.
+
+---
+
+### 11) Explain `git rebase`
+
+**Rebase** “moves” your commits to a new base commit.
+
+Example: keep a feature branch up to date without merge commits:
+
+```bash
+git checkout feature
+git fetch origin
+git rebase origin/main   # replay feature’s commits on top of latest main
+# resolve conflicts per-commit:
+git add <resolved-file>...
+git rebase --continue
+# when done and if previously pushed:
+git push --force-with-lease
+```
+
+**Interactive rebase** to clean history (reorder/squash/edit/drop):
+
+```bash
+git rebase -i HEAD~5
+# pick | reword | squash | fixup | edit | drop
+# tip: use autosquash:
+git commit --fixup <sha>
+git rebase -i --autosquash origin/main
+```
+
+Advanced: move a range of commits to a different base:
+
+```bash
+git rebase --onto <new-base> <old-base> <branch>
+```
+
+**Guidelines**
+
+* Don’t rebase commits others are already depending on (unless your team agrees and you use `--force-with-lease`).
+* Test after rebases; conflicts are resolved commit‑by‑commit.
+
+---
+
+## 4) Difference between `git rebase` and `git merge`
+
+**Goal (both):** bring changes from one line of history into another.
+
+### Merge
+
+* Creates a **merge commit** that has two parents; preserves true history.
+* Doesn’t rewrite existing commits.
+* Safer on shared branches; good for “what actually happened.”
+
+```
+# Before
+main:    A---B---C
+             \
+feature:       D---E
+
+# Merge feature -> main
+main:    A---B---C---M
+                 /   \
+feature:        D-----E
+```
+
+### Rebase
+
+* **Rewrites** your commits to appear on top of a new base (new SHAs).
+* Produces a **linear** history (no merge commit).
+* Avoid rebasing commits others already pulled (or force-push with care).
+
+```
+# Rebase feature onto latest main
+main:    A---B---C
+                 \
+feature:          D'--E'    (D and E replayed; new SHAs)
+```
+
+**Rule of thumb:** merge for public/shared history; rebase to keep your feature branch tidy before sharing.
+
+### On which branch do `merge` and `rebase` happen?
+
+* **`git merge other-branch`** merges *other-branch* **into the branch you currently have checked out** (the “current branch”). If you want to merge into some *target* branch, you must first switch to it:
+
+  ```bash
+  git switch target
+  git merge other
+  ```
+
+* **`git rebase <upstream>`** rewrites the **current branch** so its commits replay on top of `<upstream>`:
+
+  ```bash
+  git switch feature
+  git rebase origin/main
+  ```
+
+  Advanced: you *can* rebase a branch without checking it out:
+
+  ```bash
+  git rebase origin/main feature   # rewrites 'feature'
+  ```
+
+  But conceptually, rebase always **moves one branch’s commits onto a new base**.
+
+---
+
+## Quick reference (handy snippets)
+
+```bash
+# Unstage everything
+git restore --staged .
+
+# Uncommit but keep edits
+git reset --mixed HEAD~1
+
+# Undo a pushed commit safely
+git revert <sha>
+
+# Resolve pull with rebase and conflicts
+git pull --rebase
+# ...resolve...
+git rebase --continue
+
+# Stop tracking a file/folder (keep it locally)
+git rm --cached -r <path> && echo "<path>/" >> .gitignore
+
+# Fast‑forward only pull (abort if divergence)
+git pull --ff-only
+```
+
+
+---
+
+## 1) Index vs. working files (aka working tree)
+
+**Working files / working tree**
+
+* The actual files on disk that you edit and save in your editor.
+* Can include both **tracked** and **untracked** files.
+* What `git status` calls “Changes not staged for commit” (for tracked edits) and “Untracked files”.
+
+**Index / staging area**
+
+* A snapshot Git keeps (in `.git/index`) of **exactly what will be committed next**.
+* You put changes into the index with `git add`.
+* What `git status` calls “Changes to be committed”.
+
+**Compare the layers**
+
+```bash
+git diff             # working tree  vs index   (what you edited but haven't staged)
+git diff --staged    # index         vs HEAD    (what's staged vs last commit)
+```
+
+Flow:
+
+```
+(edit & save) → working tree
+git add → index
+git commit → new commit from the index
+```
+
+---
 
 
 
+## 3) “I saved a file on one branch, then checked out a new branch and edited it again. What version do I have on disk?”
 
+It depends on whether your first edits were **committed** and whether switching branches would **overwrite** those edits.
 
+### Cases
 
+1. **You did NOT commit, and the switch would overwrite your changes**
+   Git **blocks** the switch:
 
+   ```
+   error: Your local changes to the following files would be overwritten by checkout:
+     path/to/file
+   ```
 
+   Fix: commit, **stash**, or discard those changes first.
 
+2. **You did NOT commit, and the switch does NOT overwrite your changes**
+   Git **allows** the switch and carries your uncommitted edits into the new branch.
+   On disk you see **your latest saved content** (not the branch’s clean version). The changes now show as “modified” on the new branch. If you commit now, the commit lands on the **new branch**.
 
+3. **You DID commit on the first branch**
+   When you switch, Git rewrites your working tree to match the target branch’s snapshot. You’ll see the target branch’s version of the file on disk.
+
+4. **Untracked files**
+   Untracked files follow you across branches. If an untracked path would conflict with a tracked file in the target branch, Git blocks the switch unless you stash with `-u` or clean with `git clean -fd` (dangerous).
+
+### Tips
+
+* To keep branch changes separate, either commit/stash before switching or use **separate work trees**:
+
+  ```bash
+  git worktree add ../repo-main main
+  git worktree add ../repo-feature feature
+  ```
+* To forcibly see a file as it exists on another branch (without switching):
+
+  ```bash
+  git show other-branch:path/to/file > path/to/file   # overwrites file on disk
+  # or, with restore (safer semantics):
+  git restore --source other-branch -- path/to/file
+  ```
+
+---
+
+## 4) Suggested team workflow (you maintain `main`, teammates contribute)
+
+Below is a light‑weight, reliable **feature‑branch + PR** flow (GitHub/GitLab/Bitbucket compatible).
+
+### Repository / policy (one‑time setup)
+
+* **Protect `main`**: disallow direct pushes, require PRs, require at least 1 review, require CI to pass, and (optionally) **Require linear history**.
+* Prefer **“Squash and merge”** or **“Rebase and merge”** on PRs to keep `main` tidy.
+* Add CODEOWNERS (optional) so certain paths require your review.
+* Encourage small, focused PRs.
+
+### Personal Git config (everyone)
+
+```bash
+git config --global pull.rebase true     # rebase on pull; cleaner history
+git config --global fetch.prune true     # remove deleted remote branches on fetch
+git config --global rerere.enabled true  # remember conflict resolutions (handy)
+```
+
+### Contributor workflow (feature branch)
+
+```bash
+# 1) Sync and branch off up-to-date main
+git switch main
+git fetch origin
+git pull --ff-only       # keep local main as a clean fast-forward
+git switch -c feature/short-desc
+
+# 2) Develop
+# ...edit, test, commit in small logical chunks...
+git add -p
+git commit -m "feat: short message"
+
+# 3) Keep branch current (periodically)
+git fetch origin
+git rebase origin/main   # replay your commits on latest main
+# resolve conflicts → git add ... → git rebase --continue
+
+# 4) Publish and open PR
+git push -u origin feature/short-desc
+# (Open PR, link issue, ensure CI passes, request review)
+
+# 5) Address review
+# Use fixup commits for clean history:
+git commit --fixup <sha-to-fix>
+git rebase -i --autosquash origin/main
+git push --force-with-lease
+```
+
+### Maintainer (you) merging PRs
+
+* Ensure tests pass, reviews done.
+* Choose **Squash & Merge** (one clean commit on `main`) or **Rebase & Merge** (preserve individual commits but linear).
+* After merge:
+
+  ```bash
+  # Keep your local main clean and current
+  git switch main
+  git pull --ff-only
+  ```
+* Optionally tag releases:
+
+  ```bash
+  git tag -a v1.2.3 -m "Release 1.2.3"
+  git push origin v1.2.3
+  ```
+
+### Hotfixes
+
+* Branch from `main`: `git switch -c hotfix/issue-123`
+* Patch, test, PR, merge → tag a patch release.
+
+### Common “gotchas” and fixes
+
+* **Push rejected (non‑fast‑forward)**: `git fetch origin && git rebase origin/main` (then resolve & push).
+* **Rebased your feature and need to update PR**: `git push --force-with-lease`.
+* **Can’t switch branches due to local edits**: commit, `git stash` (use `-u` to include untracked), or discard.
+
+---
+
+### Quick reference of commands mentioned
+
+```bash
+# See differences between layers
+git status
+git diff
+git diff --staged
+
+# Stage/unstage in parts (hunks)
+git add -p
+git restore --staged -p <file>
+
+# Stash changes
+git stash push -m "wip"        # tracked files
+git stash push -u -m "wip"     # include untracked
+git stash list
+git stash show -p stash@{0}
+git stash pop                  # apply & drop top entry
+
+# Safe push after history rewrite
+git push --force-with-lease
+```
+
+If you want, tell me which platform you host on (GitHub/GitLab/etc.) and whether you prefer “squash” or “rebase” merges—I can give you a one‑page checklist of exact settings and the minimal command set your team should follow.
 
 

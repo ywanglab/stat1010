@@ -258,6 +258,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#team-github-workflow" id="toc-team-github-workflow" class="nav-link" data-scroll-target="#team-github-workflow"><span class="header-section-number">6.4</span> Team Github workflow</a></li>
   <li><a href="#initial-setup" id="toc-initial-setup" class="nav-link" data-scroll-target="#initial-setup"><span class="header-section-number">6.5</span> Initial setup</a></li>
   <li><a href="#keep-your-fork-in-sync" id="toc-keep-your-fork-in-sync" class="nav-link" data-scroll-target="#keep-your-fork-in-sync"><span class="header-section-number">6.6</span> Keep your fork in sync</a></li>
+  <li><a href="#git-faq" id="toc-git-faq" class="nav-link" data-scroll-target="#git-faq"><span class="header-section-number">6.7</span> Git FAQ</a>
+  <ul class="collapse">
+  <li><a href="#working-directory-working-tree-vs-actual-files-on-disk-save-vs-commit-what-are-index-and-working-tree" id="toc-working-directory-working-tree-vs-actual-files-on-disk-save-vs-commit-what-are-index-and-working-tree" class="nav-link" data-scroll-target="#working-directory-working-tree-vs-actual-files-on-disk-save-vs-commit-what-are-index-and-working-tree"><span class="header-section-number">6.7.1</span> Working directory (working tree) vs “actual files on disk”? Save vs commit? What are “index” and “working tree”?</a></li>
+  <li><a href="#after-git-add-how-to-undo-unadd-a-file-or-directory" id="toc-after-git-add-how-to-undo-unadd-a-file-or-directory" class="nav-link" data-scroll-target="#after-git-add-how-to-undo-unadd-a-file-or-directory"><span class="header-section-number">6.7.2</span> 1) After <code>git add</code>, how to undo (un‑add) a file or directory?</a></li>
+  <li><a href="#after-git-commit-how-to-uncommit" id="toc-after-git-commit-how-to-uncommit" class="nav-link" data-scroll-target="#after-git-commit-how-to-uncommit"><span class="header-section-number">6.7.3</span> 2) After <code>git commit</code>, how to un‑commit?</a></li>
+  <li><a href="#when-git-push-what-conflicts-can-occur-how-to-fix-them" id="toc-when-git-push-what-conflicts-can-occur-how-to-fix-them" class="nav-link" data-scroll-target="#when-git-push-what-conflicts-can-occur-how-to-fix-them"><span class="header-section-number">6.7.4</span> 3) When <code>git push</code>, what conflicts can occur? How to fix them?</a></li>
+  <li><a href="#when-git-pull-what-conflicts-can-occur-and-how-to-fix-them" id="toc-when-git-pull-what-conflicts-can-occur-and-how-to-fix-them" class="nav-link" data-scroll-target="#when-git-pull-what-conflicts-can-occur-and-how-to-fix-them"><span class="header-section-number">6.7.5</span> 4) When <code>git pull</code>, what conflicts can occur, and how to fix them?</a></li>
+  <li><a href="#why-create-a-new-branch-instead-of-working-on-main" id="toc-why-create-a-new-branch-instead-of-working-on-main" class="nav-link" data-scroll-target="#why-create-a-new-branch-instead-of-working-on-main"><span class="header-section-number">6.7.6</span> 5) Why create a new branch instead of working on <code>main</code>?</a></li>
+  <li><a href="#how-git-stash-works-and-why-we-need-it" id="toc-how-git-stash-works-and-why-we-need-it" class="nav-link" data-scroll-target="#how-git-stash-works-and-why-we-need-it"><span class="header-section-number">6.7.7</span> 6) How <code>git stash</code> works and why we need it</a></li>
+  <li><a href="#difference-between-git-reset-and-git-revert" id="toc-difference-between-git-reset-and-git-revert" class="nav-link" data-scroll-target="#difference-between-git-reset-and-git-revert"><span class="header-section-number">6.7.8</span> 8) Difference between <code>git reset</code> and <code>git revert</code></a></li>
+  <li><a href="#how-to-remove-files-that-are-already-pushed-explain-git-rm---cached" id="toc-how-to-remove-files-that-are-already-pushed-explain-git-rm---cached" class="nav-link" data-scroll-target="#how-to-remove-files-that-are-already-pushed-explain-git-rm---cached"><span class="header-section-number">6.7.9</span> 9) How to remove files that are already pushed? Explain <code>git rm --cached</code></a></li>
+  <li><a href="#difference-between-git-pull---rebase-and-git-pull--ff" id="toc-difference-between-git-pull---rebase-and-git-pull--ff" class="nav-link" data-scroll-target="#difference-between-git-pull---rebase-and-git-pull--ff"><span class="header-section-number">6.7.10</span> 10) Difference between <code>git pull --rebase</code> and <code>git pull -ff</code></a></li>
+  <li><a href="#explain-git-rebase" id="toc-explain-git-rebase" class="nav-link" data-scroll-target="#explain-git-rebase"><span class="header-section-number">6.7.11</span> 11) Explain <code>git rebase</code></a></li>
+  </ul></li>
+  <li><a href="#difference-between-git-rebase-and-git-merge" id="toc-difference-between-git-rebase-and-git-merge" class="nav-link" data-scroll-target="#difference-between-git-rebase-and-git-merge"><span class="header-section-number">6.8</span> 4) Difference between <code>git rebase</code> and <code>git merge</code></a>
+  <ul class="collapse">
+  <li><a href="#merge" id="toc-merge" class="nav-link" data-scroll-target="#merge"><span class="header-section-number">6.8.1</span> Merge</a></li>
+  <li><a href="#rebase" id="toc-rebase" class="nav-link" data-scroll-target="#rebase"><span class="header-section-number">6.8.2</span> Rebase</a></li>
+  <li><a href="#on-which-branch-do-merge-and-rebase-happen" id="toc-on-which-branch-do-merge-and-rebase-happen" class="nav-link" data-scroll-target="#on-which-branch-do-merge-and-rebase-happen"><span class="header-section-number">6.8.3</span> On which branch do <code>merge</code> and <code>rebase</code> happen?</a></li>
+  </ul></li>
+  <li><a href="#quick-reference-handy-snippets" id="toc-quick-reference-handy-snippets" class="nav-link" data-scroll-target="#quick-reference-handy-snippets"><span class="header-section-number">6.9</span> Quick reference (handy snippets)</a></li>
+  <li><a href="#index-vs.-working-files-aka-working-tree" id="toc-index-vs.-working-files-aka-working-tree" class="nav-link" data-scroll-target="#index-vs.-working-files-aka-working-tree"><span class="header-section-number">6.10</span> 1) Index vs.&nbsp;working files (aka working tree)</a></li>
+  <li><a href="#i-saved-a-file-on-one-branch-then-checked-out-a-new-branch-and-edited-it-again.-what-version-do-i-have-on-disk" id="toc-i-saved-a-file-on-one-branch-then-checked-out-a-new-branch-and-edited-it-again.-what-version-do-i-have-on-disk" class="nav-link" data-scroll-target="#i-saved-a-file-on-one-branch-then-checked-out-a-new-branch-and-edited-it-again.-what-version-do-i-have-on-disk"><span class="header-section-number">6.11</span> 3) “I saved a file on one branch, then checked out a new branch and edited it again. What version do I have on disk?”</a>
+  <ul class="collapse">
+  <li><a href="#cases" id="toc-cases" class="nav-link" data-scroll-target="#cases"><span class="header-section-number">6.11.1</span> Cases</a></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="header-section-number">6.11.2</span> Tips</a></li>
+  </ul></li>
+  <li><a href="#suggested-team-workflow-you-maintain-main-teammates-contribute" id="toc-suggested-team-workflow-you-maintain-main-teammates-contribute" class="nav-link" data-scroll-target="#suggested-team-workflow-you-maintain-main-teammates-contribute"><span class="header-section-number">6.12</span> 4) Suggested team workflow (you maintain <code>main</code>, teammates contribute)</a>
+  <ul class="collapse">
+  <li><a href="#repository-policy-onetime-setup" id="toc-repository-policy-onetime-setup" class="nav-link" data-scroll-target="#repository-policy-onetime-setup"><span class="header-section-number">6.12.1</span> Repository / policy (one‑time setup)</a></li>
+  <li><a href="#personal-git-config-everyone" id="toc-personal-git-config-everyone" class="nav-link" data-scroll-target="#personal-git-config-everyone"><span class="header-section-number">6.12.2</span> Personal Git config (everyone)</a></li>
+  <li><a href="#contributor-workflow-feature-branch" id="toc-contributor-workflow-feature-branch" class="nav-link" data-scroll-target="#contributor-workflow-feature-branch"><span class="header-section-number">6.12.3</span> Contributor workflow (feature branch)</a></li>
+  <li><a href="#maintainer-you-merging-prs" id="toc-maintainer-you-merging-prs" class="nav-link" data-scroll-target="#maintainer-you-merging-prs"><span class="header-section-number">6.12.4</span> Maintainer (you) merging PRs</a></li>
+  <li><a href="#hotfixes" id="toc-hotfixes" class="nav-link" data-scroll-target="#hotfixes"><span class="header-section-number">6.12.5</span> Hotfixes</a></li>
+  <li><a href="#common-gotchas-and-fixes" id="toc-common-gotchas-and-fixes" class="nav-link" data-scroll-target="#common-gotchas-and-fixes"><span class="header-section-number">6.12.6</span> Common “gotchas” and fixes</a></li>
+  <li><a href="#quick-reference-of-commands-mentioned" id="toc-quick-reference-of-commands-mentioned" class="nav-link" data-scroll-target="#quick-reference-of-commands-mentioned"><span class="header-section-number">6.12.7</span> Quick reference of commands mentioned</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -903,8 +940,465 @@ my_folder/</code></pre>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull upstream main        <span class="co"># pull from the upstream original repo</span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main          <span class="co"># update your fork on GitHub</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then branch off <code>main</code> again for your next feature.</p>
+</section>
+<section id="git-faq" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="git-faq"><span class="header-section-number">6.7</span> Git FAQ</h2>
+<ol start="0" type="1">
+<li>Explain staging area, working area, working directory</li>
+</ol>
+<ul>
+<li><strong>Working directory / working tree (aka “working area”)</strong>: The files on your disk you edit.</li>
+<li><strong>Staging area (index)</strong>: The “snapshot-in-progress” you will commit next. You move changes here with <code>git add</code>.</li>
+<li><strong>Local repository (<code>.git</code>)</strong>: The database of commits/objects/refs. <code>git commit</code> writes a new commit to this store.</li>
+<li><strong>HEAD</strong>: A pointer to your current commit/branch.</li>
+</ul>
+<section id="working-directory-working-tree-vs-actual-files-on-disk-save-vs-commit-what-are-index-and-working-tree" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="working-directory-working-tree-vs-actual-files-on-disk-save-vs-commit-what-are-index-and-working-tree"><span class="header-section-number">6.7.1</span> Working directory (working tree) vs “actual files on disk”? Save vs commit? What are “index” and “working tree”?</h3>
+<ul>
+<li><strong>Working directory/working files / working tree</strong>: the files on your disk under the repo. This <em>is</em> the “actual files on disk” for the project (both tracked and untracked). What <code>git status</code> calls “Changes not staged for commit” (for tracked edits) and “Untracked files”.</li>
+<li><strong>Index (staging area)</strong>: a binary file at <code>.git/index</code> that holds the <strong>exact snapshot</strong> you will commit next. You put changes into the index with <code>git add</code>. <code>Git status</code> calls “Changes to be cmmitted”.</li>
+</ul>
+<p>Compare the layers</p>
+<pre><code>git status                       # see working tree vs index vs HEAD
+git diff                         # working tree vs index: what you edited but haven't staged. 
+git diff --staged                # index vs HEAD: what's staged vs. last commit
+git log --oneline --graph --decorate --all   # visualize history (merge vs rebase)</code></pre>
+<p>Flow:</p>
+<pre><code>(edit &amp; save) → working tree
+git add → index
+git commit → new commit from the index</code></pre>
+<ul>
+<li><strong>Local repository</strong>: all Git objects in <code>.git/</code> (commits, trees, blobs, refs).</li>
+</ul>
+<p><strong>Save vs commit</strong></p>
+<ul>
+<li><strong>Save</strong>: editor/OS action that writes a file to disk (affects working tree only).</li>
+<li><strong>Commit</strong>: Git action that records a snapshot of the <strong>index</strong> into the repository history (<code>.git/objects</code>) with a message and metadata.</li>
+</ul>
+<hr>
+</section>
+<section id="after-git-add-how-to-undo-unadd-a-file-or-directory" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="after-git-add-how-to-undo-unadd-a-file-or-directory"><span class="header-section-number">6.7.2</span> 1) After <code>git add</code>, how to undo (un‑add) a file or directory?</h3>
+<p>Unstage (but keep your edits in the working tree):</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preferred (Git 2.23+)</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> <span class="op">&lt;</span>file-or-dir<span class="op">&gt;</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Older (still works)</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD <span class="op">&lt;</span>file-or-dir<span class="op">&gt;</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Unstage everything that’s currently staged</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> .</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset  <span class="co">#eqiv to: git reset --mixed HEAD: reset the index to match the current HEAD (unstaging changes) but does not move HEAD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Partially unstage hunks:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> <span class="at">-p</span> <span class="op">&lt;</span>file<span class="op">&gt;</span>   # or: git reset <span class="at">-p</span> <span class="op">&lt;</span>file<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you accidentally started tracking something (e.g., should be ignored), remove it from the index only:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> <span class="at">-r</span> <span class="op">&lt;</span>path<span class="op">&gt;</span>   # leaves the file<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">on</span> disk, stops tracking</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="after-git-commit-how-to-uncommit" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="after-git-commit-how-to-uncommit"><span class="header-section-number">6.7.3</span> 2) After <code>git commit</code>, how to un‑commit?</h3>
+<p>Undo the last commit locally (choose how much to keep):</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1   <span class="co"># keep changes staged</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--mixed</span> HEAD~1  <span class="co"># keep changes in working tree (unstaged) [default]</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1   <span class="co"># discard the commit AND your local changes (danger!)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the commit is <strong>already pushed</strong> (others may have pulled it), prefer:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert <span class="op">&lt;</span>commit-sha<span class="op">&gt;</span>   # makes a new commit that undoes the old one</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Fix or edit the most recent commit without changing its parent:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>git commit --amend</code> (more)</p>
+<p>Rewrites the <strong>last</strong> commit.</p>
+<ul>
+<li><p><strong>Fix message only</strong>:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">-m</span> <span class="st">"Better message"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Add forgotten changes</strong> (stage them first):</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>files<span class="op">&gt;</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">--no-edit</span>   <span class="co"># keep prior message</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Change author/committer timestamp</strong>:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span> <span class="at">--no-edit</span> <span class="at">--reset-author</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>Results in a <strong>new commit SHA</strong>. If the old commit was pushed, you’ll need:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you <em>must</em> rewrite published history (e.g., after a local rebase), push safely:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="when-git-push-what-conflicts-can-occur-how-to-fix-them" class="level3" data-number="6.7.4">
+<h3 data-number="6.7.4" class="anchored" data-anchor-id="when-git-push-what-conflicts-can-occur-how-to-fix-them"><span class="header-section-number">6.7.4</span> 3) When <code>git push</code>, what conflicts can occur? How to fix them?</h3>
+<p>A “push conflict” is usually a <strong>non‑fast‑forward</strong> rejection because the remote has new commits you don’t have.</p>
+<p><strong>Symptom</strong>: <code>rejected] ... (fetch first)</code> or <code>non-fast-forward</code>.</p>
+<p><strong>Fix</strong>:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Option A: merge</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge origin/<span class="op">&lt;</span>branch<span class="op">&gt;</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Option B: rebase (keeps history linear)</span></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase origin/<span class="op">&lt;</span>branch<span class="op">&gt;</span></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="co"># After Having Resolved any conflicts, then:</span></span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="when-git-pull-what-conflicts-can-occur-and-how-to-fix-them" class="level3" data-number="6.7.5">
+<h3 data-number="6.7.5" class="anchored" data-anchor-id="when-git-pull-what-conflicts-can-occur-and-how-to-fix-them"><span class="header-section-number">6.7.5</span> 4) When <code>git pull</code>, what conflicts can occur, and how to fix them?</h3>
+<p><code>git pull</code> = <code>fetch + merge</code> (by default) or <code>fetch + rebase</code> (with <code>--rebase</code>). Conflicts occur when both sides changed the same lines or one side edits a file the other deleted.</p>
+<p><strong>Merge flow (default pull):</strong></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If conflicts:</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># open files, resolve &lt;&lt;&lt;&lt;&lt;&lt;&lt; ======= &gt;&gt;&gt;&gt;&gt;&gt;&gt; markers</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>resolved-file<span class="op">&gt;</span>...</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit           <span class="co"># completes the merge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Rebase flow (<code>git pull --rebase</code>):</strong></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--rebase</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If conflicts:</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># resolve, then:</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>resolved-file<span class="op">&gt;</span>...</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--continue</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="co"># or:</span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--abort</span>    <span class="co"># to go back to the state right before rebase</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Related:</p>
+<ul>
+<li><code>git rebase --continue</code> → after resolving a conflict, proceed to the next commit.</li>
+<li><code>git rebase --skip</code> → drop the problematic commit and continue.</li>
+<li><code>git rebase --quit</code> → stop the rebase <em>without resetting your current files/HEAD</em>; it just removes rebase state (rarely needed—<code>--abort</code> is the safe “put it back” button).</li>
+</ul>
+<p>Helpful:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> mergetool         <span class="co"># launch a diff/merge tool if configured</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="why-create-a-new-branch-instead-of-working-on-main" class="level3" data-number="6.7.6">
+<h3 data-number="6.7.6" class="anchored" data-anchor-id="why-create-a-new-branch-instead-of-working-on-main"><span class="header-section-number">6.7.6</span> 5) Why create a new branch instead of working on <code>main</code>?</h3>
+<ul>
+<li>Keep <code>main</code> clean, stable, and deployable.</li>
+<li>Isolate work so you can open focused pull requests and get review.</li>
+<li>Parallel development without stepping on each other.</li>
+<li>Safer experiments; easy to abandon a branch if it doesn’t pan out.</li>
+<li>Release/hotfix workflows (e.g., <code>release/*</code>, <code>hotfix/*</code>).</li>
+<li>CI/policy gates per branch.</li>
+</ul>
+<hr>
+</section>
+<section id="how-git-stash-works-and-why-we-need-it" class="level3" data-number="6.7.7">
+<h3 data-number="6.7.7" class="anchored" data-anchor-id="how-git-stash-works-and-why-we-need-it"><span class="header-section-number">6.7.7</span> 6) How <code>git stash</code> works and why we need it</h3>
+<p><code>git stash</code> saves your <strong>uncommitted</strong> changes (working tree and staged) into a stack entry, then reverts your tree to a clean state—handy when you must switch branches or pull/rebase but aren’t ready to commit.</p>
+<p>Common commands:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">-m</span> <span class="st">"wip: message"</span>    <span class="co"># save staged + unstaged</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">-u</span>                    <span class="co"># include untracked files</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">-a</span>                    <span class="co"># include ignored files</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash list</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash show <span class="at">-p</span> stash@{0}          <span class="co"># see what’s inside</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash apply stash@{0}            <span class="co"># apply, keep it on the stack</span></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash pop stash@{0}              <span class="co"># apply and remove from the stack</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash drop stash@{0}</span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Partial / path-specific:</span></span>
+<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash <span class="at">-p</span>                         <span class="co"># interactively stash hunks</span></span>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">--</span> <span class="op">&lt;</span>path1<span class="op">&gt;</span> <span class="op">&lt;</span>path2<span class="op">&gt;</span>    # stash only these paths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="difference-between-git-reset-and-git-revert" class="level3" data-number="6.7.8">
+<h3 data-number="6.7.8" class="anchored" data-anchor-id="difference-between-git-reset-and-git-revert"><span class="header-section-number">6.7.8</span> 8) Difference between <code>git reset</code> and <code>git revert</code></h3>
+<ul>
+<li><p><strong><code>git reset</code></strong>: Moves a branch/HEAD to another commit (optionally touching index and working tree). It <strong>rewrites history</strong> for that branch.</p>
+<ul>
+<li><code>--soft</code>: move HEAD only (keep index + working tree)</li>
+<li><code>--mixed</code> (default): move HEAD + reset index (keep working tree)</li>
+<li><code>--hard</code>: move HEAD + reset index + working tree (discard changes)</li>
+<li>Use for local surgery (e.g., uncommit/squash) before sharing.</li>
+</ul></li>
+<li><p><strong><code>git revert</code></strong>: Creates a <strong>new commit</strong> that undoes the changes from a prior commit. <strong>Does not rewrite history</strong>; safe on shared branches.</p></li>
+</ul>
+<p>Rule of thumb: <strong>Use <code>revert</code> for public history, <code>reset</code> for local/private history.</strong></p>
+<hr>
+</section>
+<section id="how-to-remove-files-that-are-already-pushed-explain-git-rm---cached" class="level3" data-number="6.7.9">
+<h3 data-number="6.7.9" class="anchored" data-anchor-id="how-to-remove-files-that-are-already-pushed-explain-git-rm---cached"><span class="header-section-number">6.7.9</span> 9) How to remove files that are already pushed? Explain <code>git rm --cached</code></h3>
+<p>If you only want Git to <strong>stop tracking</strong> the file(s) but keep them on disk:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> <span class="at">-r</span> <span class="op">&lt;</span>path<span class="op">&gt;</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"&lt;path&gt;/"</span> <span class="op">&gt;&gt;</span> .gitignore</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Stop tracking &lt;path&gt;"</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p><code>git rm --cached</code> removes from the <strong>index</strong> (stops tracking) but <strong>does not delete</strong> your local copy.</p>
+</blockquote>
+<p>If sensitive/big files are already in history and must be purged:</p>
+<ul>
+<li>Use <strong>git filter-repo</strong> (recommended) or BFG:</li>
+</ul>
+<div class="sourceCode" id="cb71"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># after installing git-filter-repo</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> filter-repo <span class="at">--path</span> <span class="op">&lt;</span>path<span class="op">&gt;</span> --invert-paths</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span> <span class="at">--all</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span> <span class="at">--tags</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Rotate any exposed secrets and tell collaborators to re-clone or hard‑reset to the new history.</li>
+</ul>
+<hr>
+</section>
+<section id="difference-between-git-pull---rebase-and-git-pull--ff" class="level3" data-number="6.7.10">
+<h3 data-number="6.7.10" class="anchored" data-anchor-id="difference-between-git-pull---rebase-and-git-pull--ff"><span class="header-section-number">6.7.10</span> 10) Difference between <code>git pull --rebase</code> and <code>git pull -ff</code></h3>
+<ul>
+<li><p><strong><code>git pull --rebase</code></strong>: Fetch, then reapply your local commits <strong>on top of</strong> the updated upstream. This rewrites your local commits for a cleaner, linear history. Configure permanently:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase true     <span class="co"># always rebase on pull</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or for one repo:</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config pull.rebase true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>-f</code> is a short flag for <strong>fetch –force</strong>, so <code>-ff</code> is basically “fetch with force (twice)””.</li>
+</ul></li>
+<li><p>If you <em>don’t</em> use <code>--rebase</code>, then <code>git pull</code> merges by default.<code>--ff-only</code> keeps history clean by aborting instead of making a merge commit when a fast‑forward isn’t possible.</p></li>
+</ul>
+<hr>
+</section>
+<section id="explain-git-rebase" class="level3" data-number="6.7.11">
+<h3 data-number="6.7.11" class="anchored" data-anchor-id="explain-git-rebase"><span class="header-section-number">6.7.11</span> 11) Explain <code>git rebase</code></h3>
+<p><strong>Rebase</strong> “moves” your commits to a new base commit.</p>
+<p>Example: keep a feature branch up to date without merge commits:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout feature</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase origin/main   <span class="co"># replay feature’s commits on top of latest main</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="co"># resolve conflicts per-commit:</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>resolved-file<span class="op">&gt;</span>...</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--continue</span></span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="co"># when done and if previously pushed:</span></span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Interactive rebase</strong> to clean history (reorder/squash/edit/drop):</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">-i</span> HEAD~5</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pick | reword | squash | fixup | edit | drop</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># tip: use autosquash:</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--fixup</span> <span class="op">&lt;</span>sha<span class="op">&gt;</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">-i</span> <span class="at">--autosquash</span> origin/main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Advanced: move a range of commits to a different base:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--onto</span> <span class="op">&lt;</span>new-base<span class="op">&gt;</span> <span class="op">&lt;</span>old-base<span class="op">&gt;</span> <span class="op">&lt;</span>branch<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Guidelines</strong></p>
+<ul>
+<li>Don’t rebase commits others are already depending on (unless your team agrees and you use <code>--force-with-lease</code>).</li>
+<li>Test after rebases; conflicts are resolved commit‑by‑commit.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="difference-between-git-rebase-and-git-merge" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="difference-between-git-rebase-and-git-merge"><span class="header-section-number">6.8</span> 4) Difference between <code>git rebase</code> and <code>git merge</code></h2>
+<p><strong>Goal (both):</strong> bring changes from one line of history into another.</p>
+<section id="merge" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="merge"><span class="header-section-number">6.8.1</span> Merge</h3>
+<ul>
+<li>Creates a <strong>merge commit</strong> that has two parents; preserves true history.</li>
+<li>Doesn’t rewrite existing commits.</li>
+<li>Safer on shared branches; good for “what actually happened.”</li>
+</ul>
+<pre><code># Before
+main:    A---B---C
+             \
+feature:       D---E
+
+# Merge feature -&gt; main
+main:    A---B---C---M
+                 /   \
+feature:        D-----E</code></pre>
+</section>
+<section id="rebase" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="rebase"><span class="header-section-number">6.8.2</span> Rebase</h3>
+<ul>
+<li><strong>Rewrites</strong> your commits to appear on top of a new base (new SHAs).</li>
+<li>Produces a <strong>linear</strong> history (no merge commit).</li>
+<li>Avoid rebasing commits others already pulled (or force-push with care).</li>
+</ul>
+<pre><code># Rebase feature onto latest main
+main:    A---B---C
+                 \
+feature:          D'--E'    (D and E replayed; new SHAs)</code></pre>
+<p><strong>Rule of thumb:</strong> merge for public/shared history; rebase to keep your feature branch tidy before sharing.</p>
+</section>
+<section id="on-which-branch-do-merge-and-rebase-happen" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="on-which-branch-do-merge-and-rebase-happen"><span class="header-section-number">6.8.3</span> On which branch do <code>merge</code> and <code>rebase</code> happen?</h3>
+<ul>
+<li><p><strong><code>git merge other-branch</code></strong> merges <em>other-branch</em> <strong>into the branch you currently have checked out</strong> (the “current branch”). If you want to merge into some <em>target</em> branch, you must first switch to it:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch target</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge other</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong><code>git rebase &lt;upstream&gt;</code></strong> rewrites the <strong>current branch</strong> so its commits replay on top of <code>&lt;upstream&gt;</code>:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch feature</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase origin/main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Advanced: you <em>can</em> rebase a branch without checking it out:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase origin/main feature   <span class="co"># rewrites 'feature'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But conceptually, rebase always <strong>moves one branch’s commits onto a new base</strong>.</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="quick-reference-handy-snippets" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="quick-reference-handy-snippets"><span class="header-section-number">6.9</span> Quick reference (handy snippets)</h2>
+<div class="sourceCode" id="cb81"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unstage everything</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> .</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncommit but keep edits</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--mixed</span> HEAD~1</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Undo a pushed commit safely</span></span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert <span class="op">&lt;</span>sha<span class="op">&gt;</span></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Resolve pull with rebase and conflicts</span></span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--rebase</span></span>
+<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ...resolve...</span></span>
+<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--continue</span></span>
+<span id="cb81-14"><a href="#cb81-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-15"><a href="#cb81-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Stop tracking a file/folder (keep it locally)</span></span>
+<span id="cb81-16"><a href="#cb81-16" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> <span class="at">-r</span> <span class="op">&lt;</span>path<span class="op">&gt;</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"&lt;path&gt;/"</span> <span class="op">&gt;&gt;</span> .gitignore</span>
+<span id="cb81-17"><a href="#cb81-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-18"><a href="#cb81-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Fast‑forward only pull (abort if divergence)</span></span>
+<span id="cb81-19"><a href="#cb81-19" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--ff-only</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="index-vs.-working-files-aka-working-tree" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="index-vs.-working-files-aka-working-tree"><span class="header-section-number">6.10</span> 1) Index vs.&nbsp;working files (aka working tree)</h2>
+<p><strong>Working files / working tree</strong></p>
+<ul>
+<li>The actual files on disk that you edit and save in your editor.</li>
+<li>Can include both <strong>tracked</strong> and <strong>untracked</strong> files.</li>
+<li>What <code>git status</code> calls “Changes not staged for commit” (for tracked edits) and “Untracked files”.</li>
+</ul>
+<p><strong>Index / staging area</strong></p>
+<ul>
+<li>A snapshot Git keeps (in <code>.git/index</code>) of <strong>exactly what will be committed next</strong>.</li>
+<li>You put changes into the index with <code>git add</code>.</li>
+<li>What <code>git status</code> calls “Changes to be committed”.</li>
+</ul>
+<p><strong>Compare the layers</strong></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff             <span class="co"># working tree  vs index   (what you edited but haven't staged)</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--staged</span>    <span class="co"># index         vs HEAD    (what's staged vs last commit)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Flow:</p>
+<pre><code>(edit &amp; save) → working tree
+git add → index
+git commit → new commit from the index</code></pre>
+<hr>
+</section>
+<section id="i-saved-a-file-on-one-branch-then-checked-out-a-new-branch-and-edited-it-again.-what-version-do-i-have-on-disk" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="i-saved-a-file-on-one-branch-then-checked-out-a-new-branch-and-edited-it-again.-what-version-do-i-have-on-disk"><span class="header-section-number">6.11</span> 3) “I saved a file on one branch, then checked out a new branch and edited it again. What version do I have on disk?”</h2>
+<p>It depends on whether your first edits were <strong>committed</strong> and whether switching branches would <strong>overwrite</strong> those edits.</p>
+<section id="cases" class="level3" data-number="6.11.1">
+<h3 data-number="6.11.1" class="anchored" data-anchor-id="cases"><span class="header-section-number">6.11.1</span> Cases</h3>
+<ol type="1">
+<li><p><strong>You did NOT commit, and the switch would overwrite your changes</strong> Git <strong>blocks</strong> the switch:</p>
+<pre><code>error: Your local changes to the following files would be overwritten by checkout:
+  path/to/file</code></pre>
+<p>Fix: commit, <strong>stash</strong>, or discard those changes first.</p></li>
+<li><p><strong>You did NOT commit, and the switch does NOT overwrite your changes</strong> Git <strong>allows</strong> the switch and carries your uncommitted edits into the new branch. On disk you see <strong>your latest saved content</strong> (not the branch’s clean version). The changes now show as “modified” on the new branch. If you commit now, the commit lands on the <strong>new branch</strong>.</p></li>
+<li><p><strong>You DID commit on the first branch</strong> When you switch, Git rewrites your working tree to match the target branch’s snapshot. You’ll see the target branch’s version of the file on disk.</p></li>
+<li><p><strong>Untracked files</strong> Untracked files follow you across branches. If an untracked path would conflict with a tracked file in the target branch, Git blocks the switch unless you stash with <code>-u</code> or clean with <code>git clean -fd</code> (dangerous).</p></li>
+</ol>
+</section>
+<section id="tips" class="level3" data-number="6.11.2">
+<h3 data-number="6.11.2" class="anchored" data-anchor-id="tips"><span class="header-section-number">6.11.2</span> Tips</h3>
+<ul>
+<li><p>To keep branch changes separate, either commit/stash before switching or use <strong>separate work trees</strong>:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add ../repo-main main</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add ../repo-feature feature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>To forcibly see a file as it exists on another branch (without switching):</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> show other-branch:path/to/file <span class="op">&gt;</span> path/to/file   <span class="co"># overwrites file on disk</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or, with restore (safer semantics):</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--source</span> other-branch <span class="at">--</span> path/to/file</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="suggested-team-workflow-you-maintain-main-teammates-contribute" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="suggested-team-workflow-you-maintain-main-teammates-contribute"><span class="header-section-number">6.12</span> 4) Suggested team workflow (you maintain <code>main</code>, teammates contribute)</h2>
+<p>Below is a light‑weight, reliable <strong>feature‑branch + PR</strong> flow (GitHub/GitLab/Bitbucket compatible).</p>
+<section id="repository-policy-onetime-setup" class="level3" data-number="6.12.1">
+<h3 data-number="6.12.1" class="anchored" data-anchor-id="repository-policy-onetime-setup"><span class="header-section-number">6.12.1</span> Repository / policy (one‑time setup)</h3>
+<ul>
+<li><strong>Protect <code>main</code></strong>: disallow direct pushes, require PRs, require at least 1 review, require CI to pass, and (optionally) <strong>Require linear history</strong>.</li>
+<li>Prefer <strong>“Squash and merge”</strong> or <strong>“Rebase and merge”</strong> on PRs to keep <code>main</code> tidy.</li>
+<li>Add CODEOWNERS (optional) so certain paths require your review.</li>
+<li>Encourage small, focused PRs.</li>
+</ul>
+</section>
+<section id="personal-git-config-everyone" class="level3" data-number="6.12.2">
+<h3 data-number="6.12.2" class="anchored" data-anchor-id="personal-git-config-everyone"><span class="header-section-number">6.12.2</span> Personal Git config (everyone)</h3>
+<div class="sourceCode" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase true     <span class="co"># rebase on pull; cleaner history</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> fetch.prune true     <span class="co"># remove deleted remote branches on fetch</span></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> rerere.enabled true  <span class="co"># remember conflict resolutions (handy)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="contributor-workflow-feature-branch" class="level3" data-number="6.12.3">
+<h3 data-number="6.12.3" class="anchored" data-anchor-id="contributor-workflow-feature-branch"><span class="header-section-number">6.12.3</span> Contributor workflow (feature branch)</h3>
+<div class="sourceCode" id="cb88"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Sync and branch off up-to-date main</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--ff-only</span>       <span class="co"># keep local main as a clean fast-forward</span></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> feature/short-desc</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Develop</span></span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ...edit, test, commit in small logical chunks...</span></span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-p</span></span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat: short message"</span></span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Keep branch current (periodically)</span></span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> fetch origin</span>
+<span id="cb88-14"><a href="#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase origin/main   <span class="co"># replay your commits on latest main</span></span>
+<span id="cb88-15"><a href="#cb88-15" aria-hidden="true" tabindex="-1"></a><span class="co"># resolve conflicts → git add ... → git rebase --continue</span></span>
+<span id="cb88-16"><a href="#cb88-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-17"><a href="#cb88-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Publish and open PR</span></span>
+<span id="cb88-18"><a href="#cb88-18" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin feature/short-desc</span>
+<span id="cb88-19"><a href="#cb88-19" aria-hidden="true" tabindex="-1"></a><span class="co"># (Open PR, link issue, ensure CI passes, request review)</span></span>
+<span id="cb88-20"><a href="#cb88-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-21"><a href="#cb88-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 5) Address review</span></span>
+<span id="cb88-22"><a href="#cb88-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Use fixup commits for clean history:</span></span>
+<span id="cb88-23"><a href="#cb88-23" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--fixup</span> <span class="op">&lt;</span>sha-to-fix<span class="op">&gt;</span></span>
+<span id="cb88-24"><a href="#cb88-24" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">-i</span> <span class="at">--autosquash</span> origin/main</span>
+<span id="cb88-25"><a href="#cb88-25" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="maintainer-you-merging-prs" class="level3" data-number="6.12.4">
+<h3 data-number="6.12.4" class="anchored" data-anchor-id="maintainer-you-merging-prs"><span class="header-section-number">6.12.4</span> Maintainer (you) merging PRs</h3>
+<ul>
+<li><p>Ensure tests pass, reviews done.</p></li>
+<li><p>Choose <strong>Squash &amp; Merge</strong> (one clean commit on <code>main</code>) or <strong>Rebase &amp; Merge</strong> (preserve individual commits but linear).</p></li>
+<li><p>After merge:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep your local main clean and current</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--ff-only</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Optionally tag releases:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v1.2.3 <span class="at">-m</span> <span class="st">"Release 1.2.3"</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin v1.2.3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="hotfixes" class="level3" data-number="6.12.5">
+<h3 data-number="6.12.5" class="anchored" data-anchor-id="hotfixes"><span class="header-section-number">6.12.5</span> Hotfixes</h3>
+<ul>
+<li>Branch from <code>main</code>: <code>git switch -c hotfix/issue-123</code></li>
+<li>Patch, test, PR, merge → tag a patch release.</li>
+</ul>
+</section>
+<section id="common-gotchas-and-fixes" class="level3" data-number="6.12.6">
+<h3 data-number="6.12.6" class="anchored" data-anchor-id="common-gotchas-and-fixes"><span class="header-section-number">6.12.6</span> Common “gotchas” and fixes</h3>
+<ul>
+<li><strong>Push rejected (non‑fast‑forward)</strong>: <code>git fetch origin &amp;&amp; git rebase origin/main</code> (then resolve &amp; push).</li>
+<li><strong>Rebased your feature and need to update PR</strong>: <code>git push --force-with-lease</code>.</li>
+<li><strong>Can’t switch branches due to local edits</strong>: commit, <code>git stash</code> (use <code>-u</code> to include untracked), or discard.</li>
+</ul>
+<hr>
+</section>
+<section id="quick-reference-of-commands-mentioned" class="level3" data-number="6.12.7">
+<h3 data-number="6.12.7" class="anchored" data-anchor-id="quick-reference-of-commands-mentioned"><span class="header-section-number">6.12.7</span> Quick reference of commands mentioned</h3>
+<div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See differences between layers</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--staged</span></span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Stage/unstage in parts (hunks)</span></span>
+<span id="cb91-7"><a href="#cb91-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-p</span></span>
+<span id="cb91-8"><a href="#cb91-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> <span class="at">-p</span> <span class="op">&lt;</span>file<span class="op">&gt;</span></span>
+<span id="cb91-9"><a href="#cb91-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-10"><a href="#cb91-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Stash changes</span></span>
+<span id="cb91-11"><a href="#cb91-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">-m</span> <span class="st">"wip"</span>        <span class="co"># tracked files</span></span>
+<span id="cb91-12"><a href="#cb91-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">-u</span> <span class="at">-m</span> <span class="st">"wip"</span>     <span class="co"># include untracked</span></span>
+<span id="cb91-13"><a href="#cb91-13" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash list</span>
+<span id="cb91-14"><a href="#cb91-14" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash show <span class="at">-p</span> stash@{0}</span>
+<span id="cb91-15"><a href="#cb91-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash pop                  <span class="co"># apply &amp; drop top entry</span></span>
+<span id="cb91-16"><a href="#cb91-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-17"><a href="#cb91-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Safe push after history rewrite</span></span>
+<span id="cb91-18"><a href="#cb91-18" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you want, tell me which platform you host on (GitHub/GitLab/etc.) and whether you prefer “squash” or “rebase” merges—I can give you a one‑page checklist of exact settings and the minimal command set your team should follow.</p>
 
 
+</section>
 </section>
 </section>
 
