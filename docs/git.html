@@ -295,6 +295,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#common-gotchas-and-fixes" id="toc-common-gotchas-and-fixes" class="nav-link" data-scroll-target="#common-gotchas-and-fixes"><span class="header-section-number">6.12.6</span> Common “gotchas” and fixes</a></li>
   <li><a href="#quick-reference-of-commands-mentioned" id="toc-quick-reference-of-commands-mentioned" class="nav-link" data-scroll-target="#quick-reference-of-commands-mentioned"><span class="header-section-number">6.12.7</span> Quick reference of commands mentioned</a></li>
   </ul></li>
+  <li><a href="#how-to-fix-conflict-when-switching-branches" id="toc-how-to-fix-conflict-when-switching-branches" class="nav-link" data-scroll-target="#how-to-fix-conflict-when-switching-branches"><span class="header-section-number">6.13</span> How to fix conflict when switching branches</a></li>
+  <li><a href="#when-conflict-occurs-using-git-pull-and-how-to-resolve-it" id="toc-when-conflict-occurs-using-git-pull-and-how-to-resolve-it" class="nav-link" data-scroll-target="#when-conflict-occurs-using-git-pull-and-how-to-resolve-it"><span class="header-section-number">6.14</span> When conflict occurs using git pull and how to resolve it</a></li>
+  <li><a href="#conflicts-occur-when-git-push-and-how-to-resolve" id="toc-conflicts-occur-when-git-push-and-how-to-resolve" class="nav-link" data-scroll-target="#conflicts-occur-when-git-push-and-how-to-resolve"><span class="header-section-number">6.15</span> Conflicts occur when git push and how to resolve</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1395,10 +1398,125 @@ git commit → new commit from the index</code></pre>
 <span id="cb91-16"><a href="#cb91-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb91-17"><a href="#cb91-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Safe push after history rewrite</span></span>
 <span id="cb91-18"><a href="#cb91-18" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If you want, tell me which platform you host on (GitHub/GitLab/etc.) and whether you prefer “squash” or “rebase” merges—I can give you a one‑page checklist of exact settings and the minimal command set your team should follow.</p>
-
-
 </section>
+</section>
+<section id="how-to-fix-conflict-when-switching-branches" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="how-to-fix-conflict-when-switching-branches"><span class="header-section-number">6.13</span> How to fix conflict when switching branches</h2>
+<p>Conflicts occurs when two branches have different versions (commit HEADs) of a file, and you then edit one version of that file on one branch without commiting it, and then you try to switch to another branch. Git will block you switching. When both branches point to the same version, then no conflicts arises and the change in one branch follow you to a new branch.</p>
+<p>Conflicts typically occrurs when 1) same hunk edited differnetly in both branches (overlapping lines). Git typically will merge differnces of two different lines. 2) delete/modfify: one side deleted a file, the other edited it. 3) rename/rename to diffent names.</p>
+<p>Fix options: * Keep your WIP for later</p>
+<pre><code>git stash push -m "WIP" # Git saves the changes on the branch where you made changes (but not committed) on top of whatever commit your HEAD currently points to. 
+git checkout main #switch to a different branch 
+git stash pop  # apply the changes and delete the stash on main. You can do this on any branch. git stash is like a clipboard, it is global to the entire repo. </code></pre>
+<ul>
+<li>or commit your WIP on the current branch (where you made the change), then switch</li>
+</ul>
+<pre><code>git add -A
+git commit -m "WIP"
+git checkout main #switch
+</code></pre>
+<ul>
+<li>or discard WIP (dangerous), put files back to the last commit</li>
+</ul>
+<pre><code>git restore notes.txt # perform on the branch where you made the change. 
+git checkout main
+</code></pre>
+<p><strong>Rule of thumb</strong></p>
+<p>Stash: Do it on the branch where your changes currently live, but you can apply later anywhere.</p>
+<p>Restore: Do it on the branch where you want to discard/reset changes (usually the branch you’re already on).</p>
+<section id="when-git-cannot-auto-merge-how-to-resolve-a-conflict" class="level4" data-number="6.13.0.1">
+<h4 data-number="6.13.0.1" class="anchored" data-anchor-id="when-git-cannot-auto-merge-how-to-resolve-a-conflict"><span class="header-section-number">6.13.0.1</span> When Git cannot auto-merge, how to resolve a conflict</h4>
+<p>Open the file → delete conflict markers → keep desired content-&gt;Save</p>
+<p>git add <file> to mark resolved.</file></p>
+<p>git commit or git stash drop (mark it resolved witout commit, and drop the stash if no longer need it)</p>
+</section>
+</section>
+<section id="when-conflict-occurs-using-git-pull-and-how-to-resolve-it" class="level2" data-number="6.14">
+<h2 data-number="6.14" class="anchored" data-anchor-id="when-conflict-occurs-using-git-pull-and-how-to-resolve-it"><span class="header-section-number">6.14</span> When conflict occurs using git pull and how to resolve it</h2>
+<p>This is when remote repo and local repo diverges. (remote repo and local repo share a common ancetor, but each has new commits. ) If a conflict occurs, git pull will not make a merge commit but will merge all files without conflicts.</p>
+<p>If using <strong>Merge flow</strong></p>
+<pre><code>git pull # (fetch+merge: fetch updating the index of origin/main, always successful. merge all non-conflict files)
+# if conflicts:
+# 1) edit files to remove &lt;&lt;&lt;&lt;&lt;&lt;&lt; ======= &gt;&gt;&gt;&gt;&gt;&gt; markers
+git add &lt;files&gt;
+git commit        # completes the merge commit
+# or bail out:
+git merge --abort # moving back to where it was before git merge (the updated remote index kept)
+</code></pre>
+<p>If using <strong>Rebase flow</strong>:</p>
+<pre><code>git pull --rebase
+# if conflicts:
+# 1) fix files
+git add &lt;files&gt;
+git rebase --continue
+
+git push --force-with-lease # only needed if your rebase rewrote history(commits) already on remote 
+# or bail out:
+git rebase --abort
+</code></pre>
+<p>If <strong>Parking your work</strong></p>
+<pre><code>git stash -u      # include untracked. -a (aka --all) including ignored. 
+# ... switch branches / pull ...
+git stash pop     # reapply; resolve if conflicts</code></pre>
+</section>
+<section id="conflicts-occur-when-git-push-and-how-to-resolve" class="level2" data-number="6.15">
+<h2 data-number="6.15" class="anchored" data-anchor-id="conflicts-occur-when-git-push-and-how-to-resolve"><span class="header-section-number">6.15</span> Conflicts occur when git push and how to resolve</h2>
+<p>The conflicts may occur due to several situations:</p>
+<ol type="1">
+<li>Non-fast-forward push (someone pushed before you) <strong>Fix A: Merge approach (simple)</strong></li>
+</ol>
+<pre><code>git pull             # resolve conflicts if prompted
+git push
+</code></pre>
+<p><strong>Fix B: rebase apprach (cleaner history)</strong></p>
+<pre><code>git fetch
+git rebase origin/main
+# if conflicts: edit files → git add &lt;files&gt; → git rebase --continue (repeat)
+git push
+</code></pre>
+<ol start="2" type="1">
+<li>Push rejected after you rewrote history (by amend/rebase) What is rewriting history? an operation changes the existing commit ID (SHA)</li>
+</ol>
+<ul>
+<li>git commit –amend</li>
+<li>git rebase</li>
+<li>git reset –hard <older> followed by further commits.</older></li>
+<li>History-editing toosl (git filter-repo, etc)</li>
+</ul>
+<p>A typical way to use git commit –amend are: 1. add a missing file</p>
+<pre><code>git add missing.file
+git commit --amend --no-edit</code></pre>
+<ol start="2" type="1">
+<li>edit commit message</li>
+</ol>
+<pre><code>git commit --amend -m "new message"</code></pre>
+<pre><code># You amend or rebase (history changes)
+git commit --amend --no-edit  #--no-edit: keep the same commit history
+git push
+# ! [rejected] (non-fast-forward)
+</code></pre>
+<p>Then</p>
+<pre><code>git push --force-with-lease
+</code></pre>
+<ol start="3" type="1">
+<li>No upsteam branch</li>
+</ol>
+<pre><code>git push -u origin feature/api #simply use -u to create the new branch
+</code></pre>
+<ol start="4" type="1">
+<li>rejectd because the branch is a protected branch. Create PR.</li>
+</ol>
+<ol start="5" type="1">
+<li>largile/file type blocked (server or hooks) Fix: Use Git LFS:</li>
+</ol>
+<pre><code>git lfs install
+git lfs track "*.mp4"
+git add .gitattributes bigvideo.mp4
+git git commit -m "Track with LFS"
+git push
+</code></pre>
+
+
 </section>
 </section>
 

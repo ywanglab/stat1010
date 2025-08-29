@@ -1339,6 +1339,154 @@ git stash pop                  # apply & drop top entry
 git push --force-with-lease
 ```
 
-If you want, tell me which platform you host on (GitHub/GitLab/etc.) and whether you prefer “squash” or “rebase” merges—I can give you a one‑page checklist of exact settings and the minimal command set your team should follow.
+## How to fix conflict when switching branches
+Conflicts occurs when two branches have different versions (commit HEADs) of a file, and you then edit one version of that file on one branch without commiting it, and then you try to switch to another branch. Git will block you switching. When both branches point to the same version, then no conflicts arises and the change in one branch follow you to a new branch. 
 
+Conflicts typically occrurs when
+1) same hunk edited differnetly in both branches (overlapping lines). Git typically will merge differnces of two different lines. 
+2) delete/modfify: one side deleted a file, the other edited it. 
+3) rename/rename to diffent names.
+
+Fix options:
+* Keep your WIP for later
+```
+git stash push -m "WIP" # Git saves the changes on the branch where you made changes (but not committed) on top of whatever commit your HEAD currently points to. 
+git checkout main #switch to a different branch 
+git stash pop  # apply the changes and delete the stash on main. You can do this on any branch. git stash is like a clipboard, it is global to the entire repo. 
+```
+
+* or commit your WIP on the current branch (where you made the change), then switch 
+```
+git add -A
+git commit -m "WIP"
+git checkout main #switch
+
+```
+* or discard WIP (dangerous), put files back to the last commit
+```
+git restore notes.txt # perform on the branch where you made the change. 
+git checkout main
+
+```
+**Rule of thumb**
+
+Stash: Do it on the branch where your changes currently live, but you can apply later anywhere.
+
+Restore: Do it on the branch where you want to discard/reset changes (usually the branch you’re already on).
+
+#### When Git cannot auto-merge, how to resolve a conflict
+
+Open the file → delete conflict markers → keep desired content->Save
+
+git add <file> to mark resolved.
+
+git commit  or git stash drop (mark it resolved witout commit, and drop the stash if no longer need it)
+
+## When conflict occurs using git pull and how to resolve it
+
+This is when remote repo and local repo diverges. (remote repo and local repo share a common ancetor, but each has new commits. ) If a conflict occurs, git pull will not make a merge commit but will merge all files without conflicts. 
+
+If using **Merge flow**
+```
+git pull # (fetch+merge: fetch updating the index of origin/main, always successful. merge all non-conflict files)
+# if conflicts:
+# 1) edit files to remove <<<<<<< ======= >>>>>> markers
+git add <files>
+git commit        # completes the merge commit
+# or bail out:
+git merge --abort # moving back to where it was before git merge (the updated remote index kept)
+
+```
+
+If using **Rebase flow**: 
+```
+git pull --rebase
+# if conflicts:
+# 1) fix files
+git add <files>
+git rebase --continue
+
+git push --force-with-lease # only needed if your rebase rewrote history(commits) already on remote 
+# or bail out:
+git rebase --abort
+
+```
+
+If **Parking your work**
+```
+git stash -u      # include untracked. -a (aka --all) including ignored. 
+# ... switch branches / pull ...
+git stash pop     # reapply; resolve if conflicts
+```
+
+## Conflicts occur when git push and how to resolve 
+The conflicts may occur due to several situations:
+
+1) Non-fast-forward push (someone pushed before you)
+**Fix A: Merge approach (simple)**
+```
+git pull             # resolve conflicts if prompted
+git push
+
+```
+**Fix B: rebase apprach (cleaner history)**
+```
+git fetch
+git rebase origin/main
+# if conflicts: edit files → git add <files> → git rebase --continue (repeat)
+git push
+
+```
+
+2) Push rejected after you rewrote history (by amend/rebase)
+What is rewriting history? an operation changes the existing commit ID (SHA)
+* git commit --amend
+* git rebase
+* git reset --hard <older> followed by further commits. 
+* History-editing toosl (git filter-repo, etc)
+
+A typical way to use git commit --amend are:
+1. add a missing file
+```
+git add missing.file
+git commit --amend --no-edit
+```
+2. edit commit message
+```
+git commit --amend -m "new message"
+```
+
+```
+# You amend or rebase (history changes)
+git commit --amend --no-edit  #--no-edit: keep the same commit history
+git push
+# ! [rejected] (non-fast-forward)
+
+```
+Then
+```
+git push --force-with-lease
+
+```
+
+
+
+3) No upsteam branch
+```
+git push -u origin feature/api #simply use -u to create the new branch
+
+```
+
+4) rejectd because the branch is a protected branch. Create PR. 
+
+5. largile/file type blocked (server or hooks)
+Fix: Use Git LFS:
+```
+git lfs install
+git lfs track "*.mp4"
+git add .gitattributes bigvideo.mp4
+git git commit -m "Track with LFS"
+git push
+
+```
 
