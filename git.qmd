@@ -1490,3 +1490,34 @@ git push
 
 ```
 
+## Git merge a branch
+
+
+* Whole branch → git merge feature-x
+
+* One commit → git cherry-pick <sha>
+
+* One file/dir → git restore --source feature-x -- <path>
+
+* Single-commit result → git merge --squash feature-x # only contents from feature-x, no merge commit history. 
+
+In-merge resolution → --ours/--theirs (per-file) or -X ours/theirs (strategy)
+
+```
+# keep your current branch’s version for that file
+git checkout --ours  path/to/file
+
+# keep the merging branch’s version for that file
+git checkout --theirs path/to/file
+
+git add path/to/file
+
+```
+```
+# prefer current branch on conflicts
+git merge -X ours feature-x
+
+# prefer the other branch on conflicts
+git merge -X theirs feature-x
+
+```

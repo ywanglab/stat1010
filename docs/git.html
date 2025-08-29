@@ -298,6 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#how-to-fix-conflict-when-switching-branches" id="toc-how-to-fix-conflict-when-switching-branches" class="nav-link" data-scroll-target="#how-to-fix-conflict-when-switching-branches"><span class="header-section-number">6.13</span> How to fix conflict when switching branches</a></li>
   <li><a href="#when-conflict-occurs-using-git-pull-and-how-to-resolve-it" id="toc-when-conflict-occurs-using-git-pull-and-how-to-resolve-it" class="nav-link" data-scroll-target="#when-conflict-occurs-using-git-pull-and-how-to-resolve-it"><span class="header-section-number">6.14</span> When conflict occurs using git pull and how to resolve it</a></li>
   <li><a href="#conflicts-occur-when-git-push-and-how-to-resolve" id="toc-conflicts-occur-when-git-push-and-how-to-resolve" class="nav-link" data-scroll-target="#conflicts-occur-when-git-push-and-how-to-resolve"><span class="header-section-number">6.15</span> Conflicts occur when git push and how to resolve</a></li>
+  <li><a href="#git-merge-a-branch" id="toc-git-merge-a-branch" class="nav-link" data-scroll-target="#git-merge-a-branch"><span class="header-section-number">6.16</span> Git merge a branch</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1514,6 +1515,30 @@ git lfs track "*.mp4"
 git add .gitattributes bigvideo.mp4
 git git commit -m "Track with LFS"
 git push
+</code></pre>
+</section>
+<section id="git-merge-a-branch" class="level2" data-number="6.16">
+<h2 data-number="6.16" class="anchored" data-anchor-id="git-merge-a-branch"><span class="header-section-number">6.16</span> Git merge a branch</h2>
+<ul>
+<li><p>Whole branch → git merge feature-x</p></li>
+<li><p>One commit → git cherry-pick <sha></sha></p></li>
+<li><p>One file/dir → git restore –source feature-x – <path></path></p></li>
+<li><p>Single-commit result → git merge –squash feature-x # only contents from feature-x, no merge commit history.</p></li>
+</ul>
+<p>In-merge resolution → –ours/–theirs (per-file) or -X ours/theirs (strategy)</p>
+<pre><code># keep your current branch’s version for that file
+git checkout --ours  path/to/file
+
+# keep the merging branch’s version for that file
+git checkout --theirs path/to/file
+
+git add path/to/file
+</code></pre>
+<pre><code># prefer current branch on conflicts
+git merge -X ours feature-x
+
+# prefer the other branch on conflicts
+git merge -X theirs feature-x
 </code></pre>
 
 

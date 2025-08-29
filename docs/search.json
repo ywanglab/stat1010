@@ -350,6 +350,16 @@
     ]
   },
   {
+    "objectID": "git.html#git-merge-a-branch",
+    "href": "git.html#git-merge-a-branch",
+    "title": "4  Use Git and GitHub",
+    "section": "6.16 Git merge a branch",
+    "text": "6.16 Git merge a branch\n\nWhole branch → git merge feature-x\nOne commit → git cherry-pick \nOne file/dir → git restore –source feature-x – \nSingle-commit result → git merge –squash feature-x # only contents from feature-x, no merge commit history.\n\nIn-merge resolution → –ours/–theirs (per-file) or -X ours/theirs (strategy)\n# keep your current branch’s version for that file\ngit checkout --ours  path/to/file\n\n# keep the merging branch’s version for that file\ngit checkout --theirs path/to/file\n\ngit add path/to/file\n\n# prefer current branch on conflicts\ngit merge -X ours feature-x\n\n# prefer the other branch on conflicts\ngit merge -X theirs feature-x",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
     "objectID": "0_markdown.html",
     "href": "0_markdown.html",
     "title": "5  My Jupyter Notebook",
