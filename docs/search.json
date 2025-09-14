@@ -64,7 +64,7 @@
     "href": "git.html",
     "title": "4  Use Git and GitHub",
     "section": "",
-    "text": "5 Concrete example: what does “merge C with D to produce M” look like?\nAssume the repo has one file, README.md.\nWhen you rebase local commits that were already pushed, your local branch history no longer matches the remote’s. A normal git push will be rejected. You need to overwrite the remote branch tip—i.e., a force push.",
+    "text": "4.1 Download Git",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
@@ -73,8 +73,8 @@
     "objectID": "git.html#download-git",
     "href": "git.html#download-git",
     "title": "4  Use Git and GitHub",
-    "section": "4.1 Download Git",
-    "text": "4.1 Download Git\n\nGo to the website https://git-scm.com/downloads, select an appropriate operating system, select “Click here to download”\nRun the downloaded setup file with a name such as Git-2.42.0.2-64-bit.exe, and accept all default options.",
+    "section": "",
+    "text": "Go to the website https://git-scm.com/downloads, select an appropriate operating system, select “Click here to download”\nRun the downloaded setup file with a name such as Git-2.42.0.2-64-bit.exe, and accept all default options.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
@@ -153,8 +153,8 @@
     "objectID": "git.html#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow",
     "href": "git.html#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow",
     "title": "4  Use Git and GitHub",
-    "section": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]Section 6.3 )",
-    "text": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]Section 6.3 )\n\nafter forking a (foreign) GitHub repo to your own GitHub account, git clone that repo under your account to your local repo.\nmake changes in your local directory.\nSubmitting your changes for review\n\nCommit your changes locally. Once you are ready to submit your changes, run these commands in your terminal:\ngit add -A                            # Stages all changes, short for --all \ngit commit -m '[your commit message]' # Makes a git commit\nMake a pull request. (A pull request is a proposal to change) A GitHub pull request allows the owner of the forked upstream repo to review and make comments on your changes you proposed. Once approved, the upstream owner can merge your changes. Run:\ngit push origin # Push current branch to the same branch on GitHub\n\nThen go to your remote forked repo in your account on the GitHub site and click Contribute,and then Open pull request, this will take you to the upstream repo. In the form, leave a message explaining the change, and Create pull request. Do not select Close pull request unless you want to cancel the pull request.",
+    "section": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]Section 6.3 )",
+    "text": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]Section 6.3 )\n\nafter forking a (foreign) GitHub repo to your own GitHub account, git clone that repo under your account to your local repo.\nmake changes in your local directory.\nSubmitting your changes for review\n\nCommit your changes locally. Once you are ready to submit your changes, run these commands in your terminal:\ngit add -A                            # Stages all changes, short for --all \ngit commit -m '[your commit message]' # Makes a git commit\nMake a pull request. (A pull request is a proposal to change) A GitHub pull request allows the owner of the forked upstream repo to review and make comments on your changes you proposed. Once approved, the upstream owner can merge your changes. Run:\ngit push origin # Push current branch to the same branch on GitHub\n\nThen go to your remote forked repo in your account on the GitHub site and click Contribute,and then Open pull request, this will take you to the upstream repo. In the form, leave a message explaining the change, and Create pull request. Do not select Close pull request unless you want to cancel the pull request.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
@@ -377,6 +377,46 @@
     "text": "I will use some assignments from https://cognitiveclass.ai.\n\nBrowser Course & Projects. Search for Python for Data Science. Enroll Now the class, and Go to the Course, and Start the Course.\nComplete the following assignments from Modules 1-4 and Part of Module 5. Excluding the API section in Module 5.\n\n\n\n\n\n\n\n\nModule\nContents\nSuggested Deadlines\n\n\n\n\nModule 1\nPython Basics\n10/09/2023\n\n\nModule 2\nPython Data Structures\n10/09/2023\n\n\nModule 3\nPython Prrogramming Fundamentals\n10/09/2023\n\n\nModule 4\nWorking with Data in Python\n10/16/2023\n\n\nModule 5\nWorking with Numpy Arrays (Excluding Simple APIs)\n10/16/2023\n\n\nFinal Exam\nOptional\n\n\n\n\nComplete all Practice Questions, Review Questions and Labs. After your completing all the assignments, click on Progress, print the page (in PDF or hard copy), and send it to me. The page should show your username on the top right corner.\nEnroll in the course Data Anlaysis with Python.\nComplete the following assignments.\n\n\n\nModule\nContents\nSuggested Deadlines\n\n\n\n\nModule 1\nIntroduction\n10/23/2023\n\n\nModule 2\nData Wrangling\n10/30/2023\n\n\nModule 3\nExploratory Data Analysis\n11/06/2023\n\n\n\nEnroll in the course Data Visualization with Python.\nComplete the following assignments.\n\n\n\nModule\nContents\nSuggested Deadlines\n\n\n\n\nModule 1\nIntroduction to Visualization\n11/13/2023\n\n\nModule 2\nBasic Visualization Tools\n11/20/2023\n\n\nModule 3\nSpecialized Visualization Tools\n11/27/2023\n\n\nModule 4\nAdvanced Visualizaiton Tools (Optional)",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Homework Assignments</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#resolve-a-file-conflict-after-git-pull",
+    "href": "git.html#resolve-a-file-conflict-after-git-pull",
+    "title": "4  Use Git and GitHub",
+    "section": "6.17 resolve a file conflict after git pull:",
+    "text": "6.17 resolve a file conflict after git pull:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#see-whats-conflicted",
+    "href": "git.html#see-whats-conflicted",
+    "title": "4  Use Git and GitHub",
+    "section": "6.18 1) See what’s conflicted",
+    "text": "6.18 1) See what’s conflicted\ngit status\ngit diff --name-only --diff-filter=U   # lists just unmerged files",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#open-the-conflicted-file-and-resolve",
+    "href": "git.html#open-the-conflicted-file-and-resolve",
+    "title": "4  Use Git and GitHub",
+    "section": "6.19 2) Open the conflicted file and resolve",
+    "text": "6.19 2) Open the conflicted file and resolve\nYou’ll see markers like:\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n# your local version\n=======\n# incoming version (from remote)\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main\nEdit the file so it has the content you want, delete the conflict markers (&lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, &gt;&gt;&gt;&gt;&gt;&gt;&gt;), and save.\n\nWith vim (side-by-side):\nvim -d path/to/file\nor open normally:\nvim path/to/file",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#mark-it-resolved-and-continue",
+    "href": "git.html#mark-it-resolved-and-continue",
+    "title": "4  Use Git and GitHub",
+    "section": "6.20 3) Mark it resolved and continue",
+    "text": "6.20 3) Mark it resolved and continue\ngit add path/to/file\nNow finish the operation depending on what pull was doing:\n\nIf it was a merge (default git pull):\ngit commit   # completes the merge (pre-filled message)\nIf it was a rebase (git pull --rebase or configured):\ngit rebase --continue\n(If you decide to bail out)\ngit merge --abort      # during a merge\ngit rebase --abort     # during a rebase\n\n\n\n6.20.1 Fast shortcuts (use with care)\n\nKeep your version entirely:\ngit checkout --ours path/to/file    # during merge\ngit add path/to/file\nTake the remote version entirely:\ngit checkout --theirs path/to/file  # during merge\ngit add path/to/file\n\n\nNote: In a rebase, “ours/theirs” feel inverted (because your commits are being replayed). If unsure, inspect with git show :1:path/to/file :2:path/to/file :3:path/to/file or just open the file and edit manually.\n\n\n\n\n6.20.2 Sanity checks\ngit status                 # no more “both modified”\ngit diff --check           # finds leftover conflict markers\nThat’s it: resolve → git add → finish (git commit or git rebase --continue).\n\n\n6.20.3 B) Abort the in-progress operation, then pull clean\nIf you don’t want to resolve right now:\ngit merge --abort    # if a merge was in progress (ignore if says none)\ngit rebase --abort   # if a rebase was in progress\nNow choose:\n\nKeep your local edits but update from remote:\ngit stash -u\ngit pull --rebase\ngit stash pop      # resolve any conflicts, then: git add ...; git rebase --continue\nDiscard local edits and match remote exactly (DANGEROUS)\ngit fetch origin\ngit reset --hard origin/$(git branch --show-current)\n# now pull will be clean",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
   }
 ]

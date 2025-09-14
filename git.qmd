@@ -1521,3 +1521,123 @@ git merge -X ours feature-x
 git merge -X theirs feature-x
 
 ```
+
+## resolve a file conflict after `git pull`:
+
+## 1) See what’s conflicted
+
+```bash
+git status
+git diff --name-only --diff-filter=U   # lists just unmerged files
+```
+
+## 2) Open the conflicted file and resolve
+
+You’ll see markers like:
+
+```
+<<<<<<< HEAD
+# your local version
+=======
+# incoming version (from remote)
+>>>>>>> origin/main
+```
+
+Edit the file so it has the content you want, **delete the conflict markers** (`<<<<<<<`, `=======`, `>>>>>>>`), and save.
+
+* With vim (side-by-side):
+
+  ```bash
+  vim -d path/to/file
+  ```
+
+  or open normally:
+
+  ```bash
+  vim path/to/file
+  ```
+
+## 3) Mark it resolved and continue
+
+```bash
+git add path/to/file
+```
+
+Now finish the operation depending on what `pull` was doing:
+
+* **If it was a merge** (default `git pull`):
+
+  ```bash
+  git commit   # completes the merge (pre-filled message)
+  ```
+* **If it was a rebase** (`git pull --rebase` or configured):
+
+  ```bash
+  git rebase --continue
+  ```
+* (If you decide to bail out)
+
+  ```bash
+  git merge --abort      # during a merge
+  git rebase --abort     # during a rebase
+  ```
+
+---
+
+### Fast shortcuts (use with care)
+
+* **Keep your version entirely**:
+
+  ```bash
+  git checkout --ours path/to/file    # during merge
+  git add path/to/file
+  ```
+* **Take the remote version entirely**:
+
+  ```bash
+  git checkout --theirs path/to/file  # during merge
+  git add path/to/file
+  ```
+
+> Note: In a **rebase**, “ours/theirs” feel inverted (because your commits are being replayed). If unsure, inspect with `git show :1:path/to/file :2:path/to/file :3:path/to/file` or just open the file and edit manually.
+
+---
+
+### Sanity checks
+
+```bash
+git status                 # no more “both modified”
+git diff --check           # finds leftover conflict markers
+```
+
+That’s it: resolve → `git add` → finish (`git commit` or `git rebase --continue`).
+
+
+
+### B) Abort the in-progress operation, then pull clean
+
+If you don’t want to resolve right now:
+
+```bash
+git merge --abort    # if a merge was in progress (ignore if says none)
+git rebase --abort   # if a rebase was in progress
+```
+
+Now choose:
+
+* **Keep your local edits but update from remote**:
+
+  ```bash
+  git stash -u
+  git pull --rebase
+  git stash pop      # resolve any conflicts, then: git add ...; git rebase --continue
+  ```
+* **Discard local edits and match remote exactly (DANGEROUS)**
+
+  ```bash
+  git fetch origin
+  git reset --hard origin/$(git branch --show-current)
+  # now pull will be clean
+  ```
+
+
