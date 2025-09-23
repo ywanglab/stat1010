@@ -1640,4 +1640,133 @@ Now choose:
   # now pull will be clean
   ```
 
+## Steps to fix conflict:
+1. Make a quick safety back branch (optional)
+`git branch backup`
+2. Fetch latest from origin
+`git fetch origin`
+3. See the divergence (Optional)
+`git rev-list --left-right --count @{u}...HEAD 
+  # output like: "3 2" means: 3 commits behind, 2 commits ahead (diverged)
+
+
+* **`git rev-list`**
+  Lists commit objects in reverse chronological order.
+
+* **`--left-right`**
+  When comparing two commit ranges, marks commits as:
+
+  * `<` (left side) if reachable from the first commit set
+  * `>` (right side) if reachable from the second commit set
+
+* **`--count`**
+  Instead of listing commit hashes, just show how many commits are on each side.
+
+* **`@{u}`**
+  Shorthand for “upstream” of the current branch (usually `origin/main` or `origin/<branch>`).
+
+* **`...` (triple-dot)**
+  Symmetric difference: `A...B` means “commits reachable from A or B but not both.”
+  So `@{u}...HEAD` means “commits that are either only in upstream or only in HEAD (local branch), but not in both.”
+
+So the full command counts how many unique commits are on:
+
+* the **left** (`@{u}` = upstream),
+* the **right** (`HEAD` = your local branch),
+  in their symmetric difference.
+
+Example output
+
+```bash
+$ git rev-list --left-right --count @{u}...HEAD
+3       2
+```
+
+Interpretation:
+
+* `3`: commits upstream has that your local branch does not (you’re **behind** by 3).
+* `2`: commits your local branch has that upstream does not (you’re **ahead** by 2).
+
+So your branch has diverged: upstream got 3 new commits, and you added 2 different ones.
+
+
+
+---
+
+## Option A: Rebase (keeps linear history)
+
+This replays your local commits on top of the remote branch.
+
+```bash
+# Rebase your current branch onto its upstream
+git rebase @{u}
+# If conflicts appear: fix files, then:
+git add <fixed-files>
+git rebase --continue
+# If it gets messy:
+git rebase --abort   # to go back to before the rebase
+```
+
+When done, push (may require `--force-with-lease` because history changed):
+
+```bash
+git push --force-with-lease
+```
+
+Make this your default pull behavior (repo-local):
+
+```bash
+git config pull.rebase true
+# or globally:
+git config --global pull.rebase true
+```
+
+---
+
+## Option B: Merge (creates a merge commit)
+
+This preserves both histories and adds a merge commit.
+
+```bash
+git merge @{u}  #if no conflic files, then this should fix the problem already. 
+# If conflicts appear: fix files, then:
+git add <fixed-files>
+git commit   # completes the merge
+git push
+```
+
+Make this your default pull behavior (repo-local):
+
+```bash
+git config pull.rebase false
+# or globally:
+git config --global pull.rebase false
+```
+
+---
+
+## Option C: Fast-forward only (fail if divergence exists)
+
+Useful when you **never** want merges/rebases via `pull`:
+
+```bash
+git pull --ff-only
+# or set as default
+git config pull.ff only
+# (global)
+git config --global pull.ff only
+```
+
+
+
+## “I just want to discard my local commits and match remote”
+
+**Warning:** This throws away your local commits on this branch.
+
+```bash
+git reset --hard @{u}
+```
+
+
+
 

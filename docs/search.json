@@ -64,7 +64,7 @@
     "href": "git.html",
     "title": "4  Use Git and GitHub",
     "section": "",
-    "text": "4.1 Download Git",
+    "text": "5 Concrete example: what does “merge C with D to produce M” look like?\nAssume the repo has one file, README.md.\nWhen you rebase local commits that were already pushed, your local branch history no longer matches the remote’s. A normal git push will be rejected. You need to overwrite the remote branch tip—i.e., a force push.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
@@ -73,8 +73,8 @@
     "objectID": "git.html#download-git",
     "href": "git.html#download-git",
     "title": "4  Use Git and GitHub",
-    "section": "",
-    "text": "Go to the website https://git-scm.com/downloads, select an appropriate operating system, select “Click here to download”\nRun the downloaded setup file with a name such as Git-2.42.0.2-64-bit.exe, and accept all default options.",
+    "section": "4.1 Download Git",
+    "text": "4.1 Download Git\n\nGo to the website https://git-scm.com/downloads, select an appropriate operating system, select “Click here to download”\nRun the downloaded setup file with a name such as Git-2.42.0.2-64-bit.exe, and accept all default options.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
@@ -153,8 +153,8 @@
     "objectID": "git.html#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow",
     "href": "git.html#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow",
     "title": "4  Use Git and GitHub",
-    "section": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]Section 6.3 )",
-    "text": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]Section 6.3 )\n\nafter forking a (foreign) GitHub repo to your own GitHub account, git clone that repo under your account to your local repo.\nmake changes in your local directory.\nSubmitting your changes for review\n\nCommit your changes locally. Once you are ready to submit your changes, run these commands in your terminal:\ngit add -A                            # Stages all changes, short for --all \ngit commit -m '[your commit message]' # Makes a git commit\nMake a pull request. (A pull request is a proposal to change) A GitHub pull request allows the owner of the forked upstream repo to review and make comments on your changes you proposed. Once approved, the upstream owner can merge your changes. Run:\ngit push origin # Push current branch to the same branch on GitHub\n\nThen go to your remote forked repo in your account on the GitHub site and click Contribute,and then Open pull request, this will take you to the upstream repo. In the form, leave a message explaining the change, and Create pull request. Do not select Close pull request unless you want to cancel the pull request.",
+    "section": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]Section 6.3 )",
+    "text": "4.9 Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]Section 6.3 )\n\nafter forking a (foreign) GitHub repo to your own GitHub account, git clone that repo under your account to your local repo.\nmake changes in your local directory.\nSubmitting your changes for review\n\nCommit your changes locally. Once you are ready to submit your changes, run these commands in your terminal:\ngit add -A                            # Stages all changes, short for --all \ngit commit -m '[your commit message]' # Makes a git commit\nMake a pull request. (A pull request is a proposal to change) A GitHub pull request allows the owner of the forked upstream repo to review and make comments on your changes you proposed. Once approved, the upstream owner can merge your changes. Run:\ngit push origin # Push current branch to the same branch on GitHub\n\nThen go to your remote forked repo in your account on the GitHub site and click Contribute,and then Open pull request, this will take you to the upstream repo. In the form, leave a message explaining the change, and Create pull request. Do not select Close pull request unless you want to cancel the pull request.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
@@ -360,26 +360,6 @@
     ]
   },
   {
-    "objectID": "0_markdown.html",
-    "href": "0_markdown.html",
-    "title": "5  My Jupyter Notebook",
-    "section": "",
-    "text": "Yi Wang (boldfaced using ** **)\nEducator AUM\nThe following line is italicized using * *\nI am interest in data science because it is a discipline that I feel love with.\n\n5.0.1 Perform addtion\n\n# code block\n1+1\n\n2\n\n\n\n\n5.0.2 Horizontal Rule\nThree or more\nfirst rule using ***\n\nusing dashes —\n\nUsing (underscores) ___\n\n\n\n5.0.3 Bulet list\nusing *\n\nBird\nFrog\nCat\nDog\n\n\n\n5.0.4 Numbered list\nusing 1. item (there is a space between 1. and item)\n\nApple\nPear\nPeach\n\n\n\n5.0.5 Tables\n\n\n\nleft-aligned\ncentered\nright-aligned\n\n\n\n\n1/2/2020\nMary\nApple\n\n\n1/3\nJohnason\nTomato\n\n\n\n\n\n5.0.6 Hyperlinks\nClick here to access my github account.\n\n\n5.0.7 Images\n\n\n\nA computer monitor\n\n\n\n\n5.0.8 Code/Syntax highlighting\ns = \"Python syntax highlighting\"\nprint s\n\n\n5.0.9 Blocked quotes\nusing &gt;\n\nBlockquotes are very handy in email to emulate reply text.\n\n\nThis line is part of the same quote.\n\n\n\n5.0.10 Strikethrough\nusing ~~ before and after a phrase\nstrikethrough this",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>My Jupyter Notebook</span>"
-    ]
-  },
-  {
-    "objectID": "assignment.html",
-    "href": "assignment.html",
-    "title": "6  Homework Assignments",
-    "section": "",
-    "text": "I will use some assignments from https://cognitiveclass.ai.\n\nBrowser Course & Projects. Search for Python for Data Science. Enroll Now the class, and Go to the Course, and Start the Course.\nComplete the following assignments from Modules 1-4 and Part of Module 5. Excluding the API section in Module 5.\n\n\n\n\n\n\n\n\nModule\nContents\nSuggested Deadlines\n\n\n\n\nModule 1\nPython Basics\n10/09/2023\n\n\nModule 2\nPython Data Structures\n10/09/2023\n\n\nModule 3\nPython Prrogramming Fundamentals\n10/09/2023\n\n\nModule 4\nWorking with Data in Python\n10/16/2023\n\n\nModule 5\nWorking with Numpy Arrays (Excluding Simple APIs)\n10/16/2023\n\n\nFinal Exam\nOptional\n\n\n\n\nComplete all Practice Questions, Review Questions and Labs. After your completing all the assignments, click on Progress, print the page (in PDF or hard copy), and send it to me. The page should show your username on the top right corner.\nEnroll in the course Data Anlaysis with Python.\nComplete the following assignments.\n\n\n\nModule\nContents\nSuggested Deadlines\n\n\n\n\nModule 1\nIntroduction\n10/23/2023\n\n\nModule 2\nData Wrangling\n10/30/2023\n\n\nModule 3\nExploratory Data Analysis\n11/06/2023\n\n\n\nEnroll in the course Data Visualization with Python.\nComplete the following assignments.\n\n\n\nModule\nContents\nSuggested Deadlines\n\n\n\n\nModule 1\nIntroduction to Visualization\n11/13/2023\n\n\nModule 2\nBasic Visualization Tools\n11/20/2023\n\n\nModule 3\nSpecialized Visualization Tools\n11/27/2023\n\n\nModule 4\nAdvanced Visualizaiton Tools (Optional)",
-    "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Homework Assignments</span>"
-    ]
-  },
-  {
     "objectID": "git.html#resolve-a-file-conflict-after-git-pull",
     "href": "git.html#resolve-a-file-conflict-after-git-pull",
     "title": "4  Use Git and GitHub",
@@ -417,6 +397,76 @@
     "text": "6.20 3) Mark it resolved and continue\ngit add path/to/file\nNow finish the operation depending on what pull was doing:\n\nIf it was a merge (default git pull):\ngit commit   # completes the merge (pre-filled message)\nIf it was a rebase (git pull --rebase or configured):\ngit rebase --continue\n(If you decide to bail out)\ngit merge --abort      # during a merge\ngit rebase --abort     # during a rebase\n\n\n\n6.20.1 Fast shortcuts (use with care)\n\nKeep your version entirely:\ngit checkout --ours path/to/file    # during merge\ngit add path/to/file\nTake the remote version entirely:\ngit checkout --theirs path/to/file  # during merge\ngit add path/to/file\n\n\nNote: In a rebase, “ours/theirs” feel inverted (because your commits are being replayed). If unsure, inspect with git show :1:path/to/file :2:path/to/file :3:path/to/file or just open the file and edit manually.\n\n\n\n\n6.20.2 Sanity checks\ngit status                 # no more “both modified”\ngit diff --check           # finds leftover conflict markers\nThat’s it: resolve → git add → finish (git commit or git rebase --continue).\n\n\n6.20.3 B) Abort the in-progress operation, then pull clean\nIf you don’t want to resolve right now:\ngit merge --abort    # if a merge was in progress (ignore if says none)\ngit rebase --abort   # if a rebase was in progress\nNow choose:\n\nKeep your local edits but update from remote:\ngit stash -u\ngit pull --rebase\ngit stash pop      # resolve any conflicts, then: git add ...; git rebase --continue\nDiscard local edits and match remote exactly (DANGEROUS)\ngit fetch origin\ngit reset --hard origin/$(git branch --show-current)\n# now pull will be clean",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#steps-to-fix-conflict",
+    "href": "git.html#steps-to-fix-conflict",
+    "title": "4  Use Git and GitHub",
+    "section": "6.21 Steps to fix conflict:",
+    "text": "6.21 Steps to fix conflict:\n\nMake a quick safety back branch (optional) git branch backup\nFetch latest from origin git fetch origin\nSee the divergence (Optional) `git rev-list –left-right –count (u?)…HEAD # output like: “3 2” means: 3 commits behind, 2 commits ahead (diverged)\n\n\ngit rev-list Lists commit objects in reverse chronological order.\n--left-right When comparing two commit ranges, marks commits as:\n\n&lt; (left side) if reachable from the first commit set\n&gt; (right side) if reachable from the second commit set\n\n--count Instead of listing commit hashes, just show how many commits are on each side.\n@{u} Shorthand for “upstream” of the current branch (usually origin/main or origin/&lt;branch&gt;).\n... (triple-dot) Symmetric difference: A...B means “commits reachable from A or B but not both.” So @{u}...HEAD means “commits that are either only in upstream or only in HEAD (local branch), but not in both.”\n\nSo the full command counts how many unique commits are on:\n\nthe left (@{u} = upstream),\nthe right (HEAD = your local branch), in their symmetric difference.\n\nExample output\n$ git rev-list --left-right --count @{u}...HEAD\n3       2\nInterpretation:\n\n3: commits upstream has that your local branch does not (you’re behind by 3).\n2: commits your local branch has that upstream does not (you’re ahead by 2).\n\nSo your branch has diverged: upstream got 3 new commits, and you added 2 different ones.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#option-a-rebase-keeps-linear-history",
+    "href": "git.html#option-a-rebase-keeps-linear-history",
+    "title": "4  Use Git and GitHub",
+    "section": "6.22 Option A: Rebase (keeps linear history)",
+    "text": "6.22 Option A: Rebase (keeps linear history)\nThis replays your local commits on top of the remote branch.\n# Rebase your current branch onto its upstream\ngit rebase @{u}\n# If conflicts appear: fix files, then:\ngit add &lt;fixed-files&gt;\ngit rebase --continue\n# If it gets messy:\ngit rebase --abort   # to go back to before the rebase\nWhen done, push (may require --force-with-lease because history changed):\ngit push --force-with-lease\nMake this your default pull behavior (repo-local):\ngit config pull.rebase true\n# or globally:\ngit config --global pull.rebase true",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#option-b-merge-creates-a-merge-commit",
+    "href": "git.html#option-b-merge-creates-a-merge-commit",
+    "title": "4  Use Git and GitHub",
+    "section": "6.23 Option B: Merge (creates a merge commit)",
+    "text": "6.23 Option B: Merge (creates a merge commit)\nThis preserves both histories and adds a merge commit.\ngit merge @{u}  #if no conflic files, then this should fix the problem already. \n# If conflicts appear: fix files, then:\ngit add &lt;fixed-files&gt;\ngit commit   # completes the merge\ngit push\nMake this your default pull behavior (repo-local):\ngit config pull.rebase false\n# or globally:\ngit config --global pull.rebase false",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#option-c-fast-forward-only-fail-if-divergence-exists",
+    "href": "git.html#option-c-fast-forward-only-fail-if-divergence-exists",
+    "title": "4  Use Git and GitHub",
+    "section": "6.24 Option C: Fast-forward only (fail if divergence exists)",
+    "text": "6.24 Option C: Fast-forward only (fail if divergence exists)\nUseful when you never want merges/rebases via pull:\ngit pull --ff-only\n# or set as default\ngit config pull.ff only\n# (global)\ngit config --global pull.ff only",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#i-just-want-to-discard-my-local-commits-and-match-remote",
+    "href": "git.html#i-just-want-to-discard-my-local-commits-and-match-remote",
+    "title": "4  Use Git and GitHub",
+    "section": "6.25 “I just want to discard my local commits and match remote”",
+    "text": "6.25 “I just want to discard my local commits and match remote”\nWarning: This throws away your local commits on this branch.\ngit reset --hard @{u}",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "0_markdown.html",
+    "href": "0_markdown.html",
+    "title": "5  My Jupyter Notebook",
+    "section": "",
+    "text": "Yi Wang (boldfaced using ** **)\nEducator AUM\nThe following line is italicized using * *\nI am interest in data science because it is a discipline that I feel love with.\n\n5.0.1 Perform addtion\n\n# code block\n1+1\n\n2\n\n\n\n\n5.0.2 Horizontal Rule\nThree or more\nfirst rule using ***\n\nusing dashes —\n\nUsing (underscores) ___\n\n\n\n5.0.3 Bulet list\nusing *\n\nBird\nFrog\nCat\nDog\n\n\n\n5.0.4 Numbered list\nusing 1. item (there is a space between 1. and item)\n\nApple\nPear\nPeach\n\n\n\n5.0.5 Tables\n\n\n\nleft-aligned\ncentered\nright-aligned\n\n\n\n\n1/2/2020\nMary\nApple\n\n\n1/3\nJohnason\nTomato\n\n\n\n\n\n5.0.6 Hyperlinks\nClick here to access my github account.\n\n\n5.0.7 Images\n\n\n\nA computer monitor\n\n\n\n\n5.0.8 Code/Syntax highlighting\ns = \"Python syntax highlighting\"\nprint s\n\n\n5.0.9 Blocked quotes\nusing &gt;\n\nBlockquotes are very handy in email to emulate reply text.\n\n\nThis line is part of the same quote.\n\n\n\n5.0.10 Strikethrough\nusing ~~ before and after a phrase\nstrikethrough this",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>My Jupyter Notebook</span>"
+    ]
+  },
+  {
+    "objectID": "assignment.html",
+    "href": "assignment.html",
+    "title": "6  Homework Assignments",
+    "section": "",
+    "text": "I will use some assignments from https://cognitiveclass.ai.\n\nBrowser Course & Projects. Search for Python for Data Science. Enroll Now the class, and Go to the Course, and Start the Course.\nComplete the following assignments from Modules 1-4 and Part of Module 5. Excluding the API section in Module 5.\n\n\n\n\n\n\n\n\nModule\nContents\nSuggested Deadlines\n\n\n\n\nModule 1\nPython Basics\n10/09/2023\n\n\nModule 2\nPython Data Structures\n10/09/2023\n\n\nModule 3\nPython Prrogramming Fundamentals\n10/09/2023\n\n\nModule 4\nWorking with Data in Python\n10/16/2023\n\n\nModule 5\nWorking with Numpy Arrays (Excluding Simple APIs)\n10/16/2023\n\n\nFinal Exam\nOptional\n\n\n\n\nComplete all Practice Questions, Review Questions and Labs. After your completing all the assignments, click on Progress, print the page (in PDF or hard copy), and send it to me. The page should show your username on the top right corner.\nEnroll in the course Data Anlaysis with Python.\nComplete the following assignments.\n\n\n\nModule\nContents\nSuggested Deadlines\n\n\n\n\nModule 1\nIntroduction\n10/23/2023\n\n\nModule 2\nData Wrangling\n10/30/2023\n\n\nModule 3\nExploratory Data Analysis\n11/06/2023\n\n\n\nEnroll in the course Data Visualization with Python.\nComplete the following assignments.\n\n\n\nModule\nContents\nSuggested Deadlines\n\n\n\n\nModule 1\nIntroduction to Visualization\n11/13/2023\n\n\nModule 2\nBasic Visualization Tools\n11/20/2023\n\n\nModule 3\nSpecialized Visualization Tools\n11/27/2023\n\n\nModule 4\nAdvanced Visualizaiton Tools (Optional)",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Homework Assignments</span>"
     ]
   }
 ]

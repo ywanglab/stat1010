@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.398">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Yi Wang">
 
-<title>4&nbsp; Use Git and GitHub – STAT 1010 Lecture Notes</title>
+<title>STAT 1010 Lecture Notes - 4&nbsp; Use Git and GitHub</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -97,7 +97,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -113,13 +112,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./git.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Use Git and GitHub</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -128,23 +127,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">STAT 1010 Lecture Notes</a> 
         <div class="sidebar-tools-main">
     <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="./STAT-1010-Lecture-Notes.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
+              <i class="bi bi-bi-file-pdf pe-1"></i>
             Download PDF
             </a>
           </li>
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="./STAT-1010-Lecture-Notes.docx">
-              <i class="bi bi-file-word pe-1"></i>
+              <i class="bi bi-bi-file-word pe-1"></i>
             Download Docx
             </a>
           </li>
@@ -211,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -230,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#create-branch" id="toc-create-branch" class="nav-link" data-scroll-target="#create-branch"><span class="header-section-number">4.6</span> Create branch</a></li>
   <li><a href="#merge-branch-to-main-branch" id="toc-merge-branch-to-main-branch" class="nav-link" data-scroll-target="#merge-branch-to-main-branch"><span class="header-section-number">4.7</span> Merge branch to main branch</a></li>
   <li><a href="#handle-large-files-150mb-on-github" id="toc-handle-large-files-150mb-on-github" class="nav-link" data-scroll-target="#handle-large-files-150mb-on-github"><span class="header-section-number">4.8</span> Handle large files (&gt;= 150Mb) on GitHub</a></li>
-  <li><a href="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow" id="toc-contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow" class="nav-link" data-scroll-target="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]<span>Section 6.3</span> )</a></li>
+  <li><a href="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow" id="toc-contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow" class="nav-link" data-scroll-target="#contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]<span>Section&nbsp;6.3</span> )</a></li>
   <li><a href="#project" id="toc-project" class="nav-link" data-scroll-target="#project"><span class="header-section-number">4.10</span> Project</a></li>
   <li><a href="#more-on-git" id="toc-more-on-git" class="nav-link" data-scroll-target="#more-on-git"><span class="header-section-number">4.11</span> More on git</a></li>
   <li><a href="#git-pull-what-does---ff-mean" id="toc-git-pull-what-does---ff-mean" class="nav-link" data-scroll-target="#git-pull-what-does---ff-mean"><span class="header-section-number">4.12</span> Git pull: What does <code>--ff</code> mean?</a>
@@ -309,6 +308,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sanity-checks" id="toc-sanity-checks" class="nav-link" data-scroll-target="#sanity-checks"><span class="header-section-number">6.20.2</span> Sanity checks</a></li>
   <li><a href="#b-abort-the-in-progress-operation-then-pull-clean" id="toc-b-abort-the-in-progress-operation-then-pull-clean" class="nav-link" data-scroll-target="#b-abort-the-in-progress-operation-then-pull-clean"><span class="header-section-number">6.20.3</span> B) Abort the in-progress operation, then pull clean</a></li>
   </ul></li>
+  <li><a href="#steps-to-fix-conflict" id="toc-steps-to-fix-conflict" class="nav-link" data-scroll-target="#steps-to-fix-conflict"><span class="header-section-number">6.21</span> Steps to fix conflict:</a></li>
+  <li><a href="#option-a-rebase-keeps-linear-history" id="toc-option-a-rebase-keeps-linear-history" class="nav-link" data-scroll-target="#option-a-rebase-keeps-linear-history"><span class="header-section-number">6.22</span> Option A: Rebase (keeps linear history)</a></li>
+  <li><a href="#option-b-merge-creates-a-merge-commit" id="toc-option-b-merge-creates-a-merge-commit" class="nav-link" data-scroll-target="#option-b-merge-creates-a-merge-commit"><span class="header-section-number">6.23</span> Option B: Merge (creates a merge commit)</a></li>
+  <li><a href="#option-c-fast-forward-only-fail-if-divergence-exists" id="toc-option-c-fast-forward-only-fail-if-divergence-exists" class="nav-link" data-scroll-target="#option-c-fast-forward-only-fail-if-divergence-exists"><span class="header-section-number">6.24</span> Option C: Fast-forward only (fail if divergence exists)</a></li>
+  <li><a href="#i-just-want-to-discard-my-local-commits-and-match-remote" id="toc-i-just-want-to-discard-my-local-commits-and-match-remote" class="nav-link" data-scroll-target="#i-just-want-to-discard-my-local-commits-and-match-remote"><span class="header-section-number">6.25</span> “I just want to discard my local commits and match remote”</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -567,7 +571,7 @@ git push</code></pre>
 <pre><code></code></pre>
 </section>
 <section id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]<a href="#sec-bestworkflow" class="quarto-xref"><span>Section 6.3</span></a> )</h2>
+<h2 data-number="4.9" class="anchored" data-anchor-id="contribute-by-forking-a-github-repo-and-commit-to-the-forked-repo-and-create-a-pull-request-refer-to-the-best-workflow-belowsec-bestworkflow"><span class="header-section-number">4.9</span> Contribute by forking a GitHub repo and commit to the forked repo and create a pull request (refer to [the best workflow below]<a href="#sec-bestworkflow" class="quarto-xref"><span>Section&nbsp;6.3</span></a> )</h2>
 <ol type="1">
 <li><p>after forking a (foreign) GitHub repo to your own GitHub account, <code>git clone</code> that repo under your account to your local repo.</p></li>
 <li><p>make changes in your local directory.</p></li>
@@ -1005,9 +1009,9 @@ git commit → new commit from the index</code></pre>
 <span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
 <span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset  <span class="co">#eqiv to: git reset --mixed HEAD: reset the index to match the current HEAD (unstaging changes) but does not move HEAD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Partially unstage hunks:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> <span class="at">-p</span> <span class="op">&lt;</span>file<span class="op">&gt;</span>   <span class="co"># or: git reset -p &lt;file&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> <span class="at">-p</span> <span class="op">&lt;</span>file<span class="op">&gt;</span>   # or: git reset <span class="at">-p</span> <span class="op">&lt;</span>file<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you accidentally started tracking something (e.g., should be ignored), remove it from the index only:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> <span class="at">-r</span> <span class="op">&lt;</span>path<span class="op">&gt;</span>   <span class="co"># leaves the file(s) on disk, stops tracking</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">--cached</span> <span class="at">-r</span> <span class="op">&lt;</span>path<span class="op">&gt;</span>   # leaves the file<span class="er">(</span><span class="ex">s</span><span class="kw">)</span> <span class="ex">on</span> disk, stops tracking</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="after-git-commit-how-to-uncommit" class="level3" data-number="6.7.3">
 <h3 data-number="6.7.3" class="anchored" data-anchor-id="after-git-commit-how-to-uncommit"><span class="header-section-number">6.7.3</span> 2) After <code>git commit</code>, how to un‑commit?</h3>
@@ -1016,7 +1020,7 @@ git commit → new commit from the index</code></pre>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--mixed</span> HEAD~1  <span class="co"># keep changes in working tree (unstaged) [default]</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1   <span class="co"># discard the commit AND your local changes (danger!)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If the commit is <strong>already pushed</strong> (others may have pulled it), prefer:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert <span class="op">&lt;</span>commit-sha<span class="op">&gt;</span>   <span class="co"># makes a new commit that undoes the old one</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert <span class="op">&lt;</span>commit-sha<span class="op">&gt;</span>   # makes a new commit that undoes the old one</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Fix or edit the most recent commit without changing its parent:</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--amend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>git commit --amend</code> (more)</p>
@@ -1106,7 +1110,7 @@ git commit → new commit from the index</code></pre>
 <span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash drop stash@{0}</span>
 <span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Partial / path-specific:</span></span>
 <span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash <span class="at">-p</span>                         <span class="co"># interactively stash hunks</span></span>
-<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">--</span> <span class="op">&lt;</span>path1<span class="op">&gt;</span> <span class="op">&lt;</span>path2<span class="op">&gt;</span>    <span class="co"># stash only these paths</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">--</span> <span class="op">&lt;</span>path1<span class="op">&gt;</span> <span class="op">&lt;</span>path2<span class="op">&gt;</span>    # stash only these paths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="difference-between-git-reset-and-git-revert" class="level3" data-number="6.7.8">
@@ -1626,9 +1630,89 @@ git merge -X theirs feature-x
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> origin/<span class="va">$(</span><span class="fu">git</span> branch <span class="at">--show-current</span><span class="va">)</span></span>
 <span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="co"># now pull will be clean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-
-
 </section>
+</section>
+<section id="steps-to-fix-conflict" class="level2" data-number="6.21">
+<h2 data-number="6.21" class="anchored" data-anchor-id="steps-to-fix-conflict"><span class="header-section-number">6.21</span> Steps to fix conflict:</h2>
+<ol type="1">
+<li>Make a quick safety back branch (optional) <code>git branch backup</code></li>
+<li>Fetch latest from origin <code>git fetch origin</code></li>
+<li>See the divergence (Optional) `git rev-list –left-right –count <span class="citation" data-cites="u">(<a href="references.html#ref-u" role="doc-biblioref"><strong>u?</strong></a>)</span>…HEAD # output like: “3 2” means: 3 commits behind, 2 commits ahead (diverged)</li>
+</ol>
+<ul>
+<li><p><strong><code>git rev-list</code></strong> Lists commit objects in reverse chronological order.</p></li>
+<li><p><strong><code>--left-right</code></strong> When comparing two commit ranges, marks commits as:</p>
+<ul>
+<li><code>&lt;</code> (left side) if reachable from the first commit set</li>
+<li><code>&gt;</code> (right side) if reachable from the second commit set</li>
+</ul></li>
+<li><p><strong><code>--count</code></strong> Instead of listing commit hashes, just show how many commits are on each side.</p></li>
+<li><p><strong><code>@{u}</code></strong> Shorthand for “upstream” of the current branch (usually <code>origin/main</code> or <code>origin/&lt;branch&gt;</code>).</p></li>
+<li><p><strong><code>...</code> (triple-dot)</strong> Symmetric difference: <code>A...B</code> means “commits reachable from A or B but not both.” So <code>@{u}...HEAD</code> means “commits that are either only in upstream or only in HEAD (local branch), but not in both.”</p></li>
+</ul>
+<p>So the full command counts how many unique commits are on:</p>
+<ul>
+<li>the <strong>left</strong> (<code>@{u}</code> = upstream),</li>
+<li>the <strong>right</strong> (<code>HEAD</code> = your local branch), in their symmetric difference.</li>
+</ul>
+<p>Example output</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git rev-list <span class="at">--left-right</span> <span class="at">--count</span> @{u}...HEAD</span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span>       2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Interpretation:</p>
+<ul>
+<li><code>3</code>: commits upstream has that your local branch does not (you’re <strong>behind</strong> by 3).</li>
+<li><code>2</code>: commits your local branch has that upstream does not (you’re <strong>ahead</strong> by 2).</li>
+</ul>
+<p>So your branch has diverged: upstream got 3 new commits, and you added 2 different ones.</p>
+<hr>
+</section>
+<section id="option-a-rebase-keeps-linear-history" class="level2" data-number="6.22">
+<h2 data-number="6.22" class="anchored" data-anchor-id="option-a-rebase-keeps-linear-history"><span class="header-section-number">6.22</span> Option A: Rebase (keeps linear history)</h2>
+<p>This replays your local commits on top of the remote branch.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rebase your current branch onto its upstream</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase @{u}</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="co"># If conflicts appear: fix files, then:</span></span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>fixed-files<span class="op">&gt;</span></span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--continue</span></span>
+<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If it gets messy:</span></span>
+<span id="cb123-7"><a href="#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase <span class="at">--abort</span>   <span class="co"># to go back to before the rebase</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When done, push (may require <code>--force-with-lease</code> because history changed):</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make this your default pull behavior (repo-local):</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config pull.rebase true</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or globally:</span></span>
+<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="option-b-merge-creates-a-merge-commit" class="level2" data-number="6.23">
+<h2 data-number="6.23" class="anchored" data-anchor-id="option-b-merge-creates-a-merge-commit"><span class="header-section-number">6.23</span> Option B: Merge (creates a merge commit)</h2>
+<p>This preserves both histories and adds a merge commit.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge @{u}  <span class="co">#if no conflic files, then this should fix the problem already. </span></span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If conflicts appear: fix files, then:</span></span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="op">&lt;</span>fixed-files<span class="op">&gt;</span></span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit   <span class="co"># completes the merge</span></span>
+<span id="cb126-5"><a href="#cb126-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make this your default pull behavior (repo-local):</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config pull.rebase false</span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or globally:</span></span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="option-c-fast-forward-only-fail-if-divergence-exists" class="level2" data-number="6.24">
+<h2 data-number="6.24" class="anchored" data-anchor-id="option-c-fast-forward-only-fail-if-divergence-exists"><span class="header-section-number">6.24</span> Option C: Fast-forward only (fail if divergence exists)</h2>
+<p>Useful when you <strong>never</strong> want merges/rebases via <code>pull</code>:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull <span class="at">--ff-only</span></span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or set as default</span></span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config pull.ff only</span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (global)</span></span>
+<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.ff only</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="i-just-want-to-discard-my-local-commits-and-match-remote" class="level2" data-number="6.25">
+<h2 data-number="6.25" class="anchored" data-anchor-id="i-just-want-to-discard-my-local-commits-and-match-remote"><span class="header-section-number">6.25</span> “I just want to discard my local commits and match remote”</h2>
+<p><strong>Warning:</strong> This throws away your local commits on this branch.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> @{u}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 </section>
 
@@ -1668,7 +1752,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1700,47 +1795,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1775,11 +1830,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1794,28 +1845,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
+        typesetMath(container);
         return container.innerHTML
       } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -1824,15 +1885,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
+      typesetMath(note);
+      return note.innerHTML;
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -2055,12 +2109,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./r_comp_env.html" class="pagination-link" aria-label="Setting-up R Studio Computing Environment">
+      <a href="./r_comp_env.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Setting-up R Studio Computing Environment</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./0_markdown.html" class="pagination-link" aria-label="My Jupyter Notebook">
+      <a href="./0_markdown.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">My Jupyter Notebook</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
