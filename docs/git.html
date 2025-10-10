@@ -313,7 +313,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#option-b-merge-creates-a-merge-commit" id="toc-option-b-merge-creates-a-merge-commit" class="nav-link" data-scroll-target="#option-b-merge-creates-a-merge-commit"><span class="header-section-number">6.23</span> Option B: Merge (creates a merge commit)</a></li>
   <li><a href="#option-c-fast-forward-only-fail-if-divergence-exists" id="toc-option-c-fast-forward-only-fail-if-divergence-exists" class="nav-link" data-scroll-target="#option-c-fast-forward-only-fail-if-divergence-exists"><span class="header-section-number">6.24</span> Option C: Fast-forward only (fail if divergence exists)</a></li>
   <li><a href="#i-just-want-to-discard-my-local-commits-and-match-remote" id="toc-i-just-want-to-discard-my-local-commits-and-match-remote" class="nav-link" data-scroll-target="#i-just-want-to-discard-my-local-commits-and-match-remote"><span class="header-section-number">6.25</span> “I just want to discard my local commits and match remote”</a></li>
+  <li><a href="#workfow-when-devloping-codes-on-a-local-computer" id="toc-workfow-when-devloping-codes-on-a-local-computer" class="nav-link" data-scroll-target="#workfow-when-devloping-codes-on-a-local-computer"><span class="header-section-number">6.26</span> Workfow when devloping codes on a local computer:</a>
+  <ul class="collapse">
+  <li><a href="#most-common-case-fast-forward" id="toc-most-common-case-fast-forward" class="nav-link" data-scroll-target="#most-common-case-fast-forward"><span class="header-section-number">6.26.1</span> most common case: fast-forward</a></li>
+  <li><a href="#if-main-and-dev-diverged" id="toc-if-main-and-dev-diverged" class="nav-link" data-scroll-target="#if-main-and-dev-diverged"><span class="header-section-number">6.26.2</span> If <code>main</code> and <code>dev</code> diverged</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes"><span class="header-section-number">6.26.3</span> Notes</a></li>
   </ul></li>
+  <li><a href="#git-add" id="toc-git-add" class="nav-link" data-scroll-target="#git-add"><span class="header-section-number">6.27</span> <code>git add</code></a>
+  <ul class="collapse">
+  <li><a href="#rebase-1" id="toc-rebase-1" class="nav-link" data-scroll-target="#rebase-1"><span class="header-section-number">6.27.1</span> rebase</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#git-stash--u--m-message-and-git-stash-pop" id="toc-git-stash--u--m-message-and-git-stash-pop" class="nav-link" data-scroll-target="#git-stash--u--m-message-and-git-stash-pop"><span class="header-section-number">7</span> 5) <code>git stash -u -m "message"</code> and <code>git stash pop</code></a>
+  <ul class="collapse">
+  <li><a href="#mental-model-the-three-trees" id="toc-mental-model-the-three-trees" class="nav-link" data-scroll-target="#mental-model-the-three-trees"><span class="header-section-number">7.1</span> Mental model (the “three trees”)</a></li>
+  <li><a href="#how-its-used" id="toc-how-its-used" class="nav-link" data-scroll-target="#how-its-used"><span class="header-section-number">7.2</span> How it’s used</a></li>
+  <li><a href="#diff-cheat-sheet" id="toc-diff-cheat-sheet" class="nav-link" data-scroll-target="#diff-cheat-sheet"><span class="header-section-number">7.3</span> Diff cheat-sheet</a></li>
+  <li><a href="#merges-conflicts" id="toc-merges-conflicts" class="nav-link" data-scroll-target="#merges-conflicts"><span class="header-section-number">7.4</span> Merges &amp; conflicts</a></li>
+  <li><a href="#partial-commits" id="toc-partial-commits" class="nav-link" data-scroll-target="#partial-commits"><span class="header-section-number">7.5</span> Partial commits</a></li>
+  <li><a href="#where-it-lives-advanced-bits" id="toc-where-it-lives-advanced-bits" class="nav-link" data-scroll-target="#where-it-lives-advanced-bits"><span class="header-section-number">7.6</span> Where it lives / advanced bits</a>
+  <ul class="collapse">
+  <li><a href="#explain-git-restore---staged-path-or-git-reset-path" id="toc-explain-git-restore---staged-path-or-git-reset-path" class="nav-link" data-scroll-target="#explain-git-restore---staged-path-or-git-reset-path"><span class="header-section-number">7.6.1</span> Explain <code>git restore --staged &lt;path&gt;</code> or <code>git reset &lt;path&gt;</code></a></li>
+  </ul></li>
+  <li><a href="#common-scenarios-exact-commands" id="toc-common-scenarios-exact-commands" class="nav-link" data-scroll-target="#common-scenarios-exact-commands"><span class="header-section-number">7.7</span> Common scenarios &amp; exact commands</a>
+  <ul class="collapse">
+  <li><a href="#i-ran-git-add--a-by-accident-and-staged-too-much" id="toc-i-ran-git-add--a-by-accident-and-staged-too-much" class="nav-link" data-scroll-target="#i-ran-git-add--a-by-accident-and-staged-too-much"><span class="header-section-number">7.7.1</span> 1) I ran <code>git add -A</code> by accident and staged too much</a></li>
+  <li><a href="#i-staged-a-deletion-but-i-want-the-file-back" id="toc-i-staged-a-deletion-but-i-want-the-file-back" class="nav-link" data-scroll-target="#i-staged-a-deletion-but-i-want-the-file-back"><span class="header-section-number">7.7.2</span> 2) I staged a deletion, but I want the file back</a></li>
+  <li><a href="#i-want-the-index-for-this-file-to-match-some-other-commit-not-head" id="toc-i-want-the-index-for-this-file-to-match-some-other-commit-not-head" class="nav-link" data-scroll-target="#i-want-the-index-for-this-file-to-match-some-other-commit-not-head"><span class="header-section-number">7.7.3</span> 3) I want the index for this file to match some other commit (not HEAD)</a></li>
+  <li><a href="#i-want-to-discard-both-staged-and-working-tree-changes-revert-file-fully" id="toc-i-want-to-discard-both-staged-and-working-tree-changes-revert-file-fully" class="nav-link" data-scroll-target="#i-want-to-discard-both-staged-and-working-tree-changes-revert-file-fully"><span class="header-section-number">7.7.4</span> 4) I want to discard <em>both</em> staged and working-tree changes (revert file fully)</a></li>
+  <li><a href="#interactive-unstage-by-hunks" id="toc-interactive-unstage-by-hunks" class="nav-link" data-scroll-target="#interactive-unstage-by-hunks"><span class="header-section-number">7.7.5</span> 5) Interactive unstage by hunks</a></li>
+  </ul></li>
+  <li><a href="#when-to-prefer-which" id="toc-when-to-prefer-which" class="nav-link" data-scroll-target="#when-to-prefer-which"><span class="header-section-number">7.8</span> When to prefer which</a></li>
+  <li><a href="#quick-reference-table" id="toc-quick-reference-table" class="nav-link" data-scroll-target="#quick-reference-table"><span class="header-section-number">7.9</span> Quick reference table</a></li>
+  </ul></li>
+  <li><a href="#hwo-to-go-back-to-a-previous-commit" id="toc-hwo-to-go-back-to-a-previous-commit" class="nav-link" data-scroll-target="#hwo-to-go-back-to-a-previous-commit"><span class="header-section-number">8</span> Hwo to go back to a previous commit?</a></li>
+  <li><a href="#just-look-around-at-an-old-commit-temporary" id="toc-just-look-around-at-an-old-commit-temporary" class="nav-link" data-scroll-target="#just-look-around-at-an-old-commit-temporary"><span class="header-section-number">9</span> 1) Just look around at an old commit (temporary)</a></li>
+  <li><a href="#make-a-new-branch-starting-from-that-commit" id="toc-make-a-new-branch-starting-from-that-commit" class="nav-link" data-scroll-target="#make-a-new-branch-starting-from-that-commit"><span class="header-section-number">10</span> 2) Make a new branch starting from that commit</a></li>
+  <li><a href="#restore-a-single-file-as-it-was-in-that-commit" id="toc-restore-a-single-file-as-it-was-in-that-commit" class="nav-link" data-scroll-target="#restore-a-single-file-as-it-was-in-that-commit"><span class="header-section-number">11</span> 3) Restore a single file as it was in that commit</a></li>
+  <li><a href="#move-the-current-branch-pointer-back-rewrite-history" id="toc-move-the-current-branch-pointer-back-rewrite-history" class="nav-link" data-scroll-target="#move-the-current-branch-pointer-back-rewrite-history"><span class="header-section-number">12</span> 4) Move the current branch pointer back (rewrite history)</a></li>
+  <li><a href="#undo-by-adding-inverse-commits-safe-for-shared-repos" id="toc-undo-by-adding-inverse-commits-safe-for-shared-repos" class="nav-link" data-scroll-target="#undo-by-adding-inverse-commits-safe-for-shared-repos"><span class="header-section-number">13</span> 5) “Undo” by adding inverse commits (safe for shared repos)</a></li>
   </ul>
 </nav>
     </div>
@@ -1711,9 +1749,299 @@ git merge -X theirs feature-x
 <h2 data-number="6.25" class="anchored" data-anchor-id="i-just-want-to-discard-my-local-commits-and-match-remote"><span class="header-section-number">6.25</span> “I just want to discard my local commits and match remote”</h2>
 <p><strong>Warning:</strong> This throws away your local commits on this branch.</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> @{u}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-
 </section>
+<section id="workfow-when-devloping-codes-on-a-local-computer" class="level2" data-number="6.26">
+<h2 data-number="6.26" class="anchored" data-anchor-id="workfow-when-devloping-codes-on-a-local-computer"><span class="header-section-number">6.26</span> Workfow when devloping codes on a local computer:</h2>
+<p>The codebase is in <code>main</code>, and revising code in branch <code>dev</code>. Then I make a commit on <code>dev</code>. Now we update <code>main</code> with the new commit of <code>dev</code>.</p>
+<section id="most-common-case-fast-forward" class="level3" data-number="6.26.1">
+<h3 data-number="6.26.1" class="anchored" data-anchor-id="most-common-case-fast-forward"><span class="header-section-number">6.26.1</span> most common case: fast-forward</h3>
+<p>If <code>main</code> hasn’t moved since you branched:</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status                         <span class="co"># make sure you’re clean; stash/commit if not</span></span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span> main..dev        <span class="co"># review what will come in</span></span>
+<span id="cb130-4"><a href="#cb130-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--ff-only</span> dev            <span class="co"># fast-forward main to dev’s commit(s)</span></span>
+<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a><span class="co">### optional: delete the feature branch</span></span>
+<span id="cb130-6"><a href="#cb130-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The workflow works when there is no diverge: <code>main</code> is ancestor of <code>dev</code></p>
+</section>
+<section id="if-main-and-dev-diverged" class="level3" data-number="6.26.2">
+<h3 data-number="6.26.2" class="anchored" data-anchor-id="if-main-and-dev-diverged"><span class="header-section-number">6.26.2</span> If <code>main</code> and <code>dev</code> diverged</h3>
+<p>You have two good choices:</p>
+<p><strong>A) Merge (keeps both histories)</strong></p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge dev                      <span class="co"># resolve conflicts if any</span></span>
+<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (edit files) -&gt; git add -A -&gt; git commit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>B) Rebase then fast-forward (linear history)</strong></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch dev</span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rebase main                    <span class="co"># replay dev on top of main; resolve conflicts</span></span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--ff-only</span> dev            <span class="co"># now a fast-forward</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="notes" class="level3" data-number="6.26.3">
+<h3 data-number="6.26.3" class="anchored" data-anchor-id="notes"><span class="header-section-number">6.26.3</span> Notes</h3>
+<ul>
+<li><p>If you truly want <code>main</code> to <strong>exactly match</strong> <code>dev</code> (and don’t care about preserving <code>main</code>’s extra commits), you can do:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> dev             <span class="co"># moves main pointer to dev (history rewrite)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Always make sure your working tree is clean first (<code>git status</code>). If not:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash <span class="at">-u</span> <span class="at">-m</span> <span class="st">"save work"</span>      <span class="co"># later: git stash pop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+</section>
+<section id="git-add" class="level2" data-number="6.27">
+<h2 data-number="6.27" class="anchored" data-anchor-id="git-add"><span class="header-section-number">6.27</span> <code>git add</code></h2>
+<pre><code>git add -A      # everything (adds/mods/deletes, whole repo)
+git add -u      # mods + deletes (tracked only, no new files. `-u`: update)
+git add .       # adds/mods here; ignore deletions outside and inside the current directory.
+git add -p      # interactive (hunks)</code></pre>
+<p>Other handy flags:</p>
+<ul>
+<li><p><code>--squash</code>: bring in all changes as <strong>one</strong> staged change (no merge commit, not a real merge).</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--squash</span> dev <span class="kw">&amp;&amp;</span> <span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Squash dev"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><code>--no-commit</code>: stage the merge result but stop before creating the merge commit (lets you review/tweak).</p></li>
+</ul>
+<section id="rebase-1" class="level3" data-number="6.27.1">
+<h3 data-number="6.27.1" class="anchored" data-anchor-id="rebase-1"><span class="header-section-number">6.27.1</span> rebase</h3>
+<p><code>rebase</code> rewrites the <strong>current</strong> branch’s commits to a new base. You rebase the branch that you want to “move”:</p>
+<pre class="text"><code>Before:
+main: A ── B ── C
+dev:        \── D ── E
+
+git switch dev
+git rebase main   # replay D,E on top of C
+
+After:
+main: A ── B ── C
+dev:             └─ D' ── E'</code></pre>
+<p>Now <code>main</code> can fast-forward to <code>dev</code>:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main</span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--ff-only</span> dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rebasing <code>main</code> onto <code>dev</code> would rewrite <code>main</code> (risky, especially if shared). Safer pattern: <strong>rebase the feature branch, not the trunk</strong>.</p>
+</section>
+</section>
+</section>
+<section id="git-stash--u--m-message-and-git-stash-pop" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> 5) <code>git stash -u -m "message"</code> and <code>git stash pop</code></h1>
+<ul>
+<li><p><code>git stash</code> saves your <strong>working tree</strong> (and by default the <strong>index</strong>) to a stack, and reverts your tree to a clean state.<code>stash</code> is repo-wide, nto tied to a branch.</p></li>
+<li><p>Flags:</p>
+<ul>
+<li><p><strong><code>-u</code> / <code>--include-untracked</code></strong>: also stash <strong>untracked</strong> files (but not ignored).</p></li>
+<li><p><strong><code>-m "message"</code></strong>: label the stash (nice when you have many).</p></li>
+<li><p>Modern syntax uses <code>stash push</code> (equivalent to plain <code>stash</code>):</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">-u</span> <span class="at">-m</span> <span class="st">"WIP parser refactor"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+<li><p><strong>Apply vs Pop</strong></p>
+<ul>
+<li><p><code>git stash apply [&lt;stash&gt;]</code>: apply changes <strong>but keep</strong> the stash in the stack.</p></li>
+<li><p><code>git stash pop [&lt;stash&gt;]</code>: apply changes <strong>and remove</strong> that stash entry if the apply succeeds.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash pop          <span class="co"># takes the latest stash, applies, then drops it</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>If there are <strong>conflicts</strong>, you’ll resolve them, then continue as usual. If a pop fails partway, the stash may <strong>not</strong> be dropped—check <code>git stash list</code>. <code>git stash apply</code> applies the selected stash onto whatever branch you are on when you run it.</p></li>
+</ul></li>
+<li><p>Useful extras:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash list                   <span class="co"># see stashes</span></span>
+<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash show <span class="at">-p</span> stash@{2}      <span class="co"># see what’s inside</span></span>
+<span id="cb141-3"><a href="#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash drop stash@{2}         <span class="co"># delete a specific stash</span></span>
+<span id="cb141-4"><a href="#cb141-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash clear                  <span class="co"># remove all stashes (careful!)</span></span>
+<span id="cb141-5"><a href="#cb141-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">--keep-index</span>      <span class="co"># stash only unstaged; keep staged work</span></span>
+<span id="cb141-6"><a href="#cb141-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash push <span class="at">-p</span>                <span class="co"># interactively choose hunks to stash</span></span>
+<span id="cb141-7"><a href="#cb141-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> stash branch fix-wip stash@{0}  <span class="co"># make a new branch from a stash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In Git, the <strong>index</strong> (aka the <strong>staging area</strong>) is the middle layer between your working directory and your last commit (<code>HEAD</code>). Think of it as your <strong>shopping cart</strong> for the next commit: whatever is in the index is exactly what <code>git commit</code> will record.</p></li>
+</ul>
+<section id="mental-model-the-three-trees" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="mental-model-the-three-trees"><span class="header-section-number">7.1</span> Mental model (the “three trees”)</h2>
+<ul>
+<li><strong>Working tree</strong>: files on disk you edit.</li>
+<li><strong>Index / Staging area</strong>: a snapshot you’re preparing.</li>
+<li><strong>HEAD</strong>: the last committed snapshot.</li>
+</ul>
+</section>
+<section id="how-its-used" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="how-its-used"><span class="header-section-number">7.2</span> How it’s used</h2>
+<ul>
+<li><code>git add &lt;path&gt;</code> → copies the file’s current content from working tree <strong>into the index</strong>.</li>
+<li><code>git commit</code> → writes a new commit <strong>from the index</strong> (not directly from your working files).</li>
+<li><code>git restore --staged &lt;path&gt;</code> or <code>git reset &lt;path&gt;</code> → remove/rewind paths <strong>from the index</strong> (without touching the working file).</li>
+<li><code>git rm</code> → removes a file from working tree <strong>and</strong> stages its deletion in the index.</li>
+</ul>
+</section>
+<section id="diff-cheat-sheet" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="diff-cheat-sheet"><span class="header-section-number">7.3</span> Diff cheat-sheet</h2>
+<ul>
+<li><code>git diff</code> → working tree <strong>vs</strong> index (what you changed but haven’t staged).</li>
+<li><code>git diff --staged</code> (or <code>--cached</code>) → index <strong>vs</strong> HEAD (what will be committed).</li>
+</ul>
+</section>
+<section id="merges-conflicts" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="merges-conflicts"><span class="header-section-number">7.4</span> Merges &amp; conflicts</h2>
+<p>During a merge/rebase, conflicts show up as <strong>unmerged entries</strong> in the index (with stages):</p>
+<ul>
+<li>stage 1 = base, 2 = “ours” (HEAD), 3 = “theirs”.</li>
+<li>See them: <code>git ls-files -u</code>.</li>
+<li>Resolve by editing files, then <code>git add</code> to update the index with your resolution.</li>
+</ul>
+</section>
+<section id="partial-commits" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="partial-commits"><span class="header-section-number">7.5</span> Partial commits</h2>
+<ul>
+<li><code>git add -p</code> lets you stage <strong>only some hunks</strong>, building a clean, focused commit from the index.</li>
+</ul>
+</section>
+<section id="where-it-lives-advanced-bits" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="where-it-lives-advanced-bits"><span class="header-section-number">7.6</span> Where it lives / advanced bits</h2>
+<ul>
+<li>It’s a binary file at <code>.git/index</code> caching file paths, blob IDs, and file stat info (for fast change detection).</li>
+<li>Power tools: <code>git update-index</code>, flags like <code>--assume-unchanged</code> / <code>--skip-worktree</code> (advanced, use sparingly).</li>
+</ul>
+<p><strong>Bottom line:</strong> The index is “what your next commit will be.” Use <code>add</code>/<code>restore</code>/<code>reset</code> to curate it; use <code>diff</code>/<code>diff --staged</code> to inspect it.</p>
+<section id="explain-git-restore---staged-path-or-git-reset-path" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="explain-git-restore---staged-path-or-git-reset-path"><span class="header-section-number">7.6.1</span> Explain <code>git restore --staged &lt;path&gt;</code> or <code>git reset &lt;path&gt;</code></h3>
+<p>Both commands are about the <strong>index (staging area)</strong> for the given <code>&lt;path&gt;</code>:</p>
+<ul>
+<li><p><strong><code>git restore --staged &lt;path&gt;</code></strong> Unstages <code>&lt;path&gt;</code> by resetting the <strong>index</strong> copy of that file to match <strong>HEAD</strong> (the last commit). ➜ <strong>HEAD: unchanged</strong>, <strong>index: reset to HEAD</strong>, <strong>working tree: untouched</strong>.</p></li>
+<li><p><strong><code>git reset &lt;path&gt;</code></strong> (shorthand for <code>git reset --mixed HEAD -- &lt;path&gt;</code>) Does the <strong>same thing</strong> as above: reset the <strong>index</strong> entry for <code>&lt;path&gt;</code> to match <strong>HEAD</strong>; leave your working file alone. ➜ Same effects as <code>restore --staged</code>.</p></li>
+</ul>
+<p>Think of both as: “I staged something by mistake; put the staged version back to what’s in the last commit, but don’t touch my edits on disk.”</p>
+<hr>
+</section>
+</section>
+<section id="common-scenarios-exact-commands" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="common-scenarios-exact-commands"><span class="header-section-number">7.7</span> Common scenarios &amp; exact commands</h2>
+<section id="i-ran-git-add--a-by-accident-and-staged-too-much" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="i-ran-git-add--a-by-accident-and-staged-too-much"><span class="header-section-number">7.7.1</span> 1) I ran <code>git add -A</code> by accident and staged too much</h3>
+<div class="sourceCode" id="cb142"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> path/to/file      <span class="co"># new-style, explicit</span></span>
+<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or:</span></span>
+<span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset path/to/file                 <span class="co"># classic equivalent</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Your edits stay in the working directory; they’re just <strong>no longer staged</strong>.</p>
+</section>
+<section id="i-staged-a-deletion-but-i-want-the-file-back" class="level3" data-number="7.7.2">
+<h3 data-number="7.7.2" class="anchored" data-anchor-id="i-staged-a-deletion-but-i-want-the-file-back"><span class="header-section-number">7.7.2</span> 2) I staged a deletion, but I want the file back</h3>
+<p>Unstage the deletion <strong>and</strong> bring the file back to disk:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> path/to/file</span>
+<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore path/to/file               <span class="co"># restores the working tree copy from HEAD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="i-want-the-index-for-this-file-to-match-some-other-commit-not-head" class="level3" data-number="7.7.3">
+<h3 data-number="7.7.3" class="anchored" data-anchor-id="i-want-the-index-for-this-file-to-match-some-other-commit-not-head"><span class="header-section-number">7.7.3</span> 3) I want the index for this file to match some other commit (not HEAD)</h3>
+<div class="sourceCode" id="cb144"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--source</span><span class="op">=&lt;</span>commit<span class="op">&gt;</span> --staged path/to/file</span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or:</span></span>
+<span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="op">&lt;</span>commit<span class="op">&gt;</span> -- path/to/file</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Useful to “revert just this file” to an older version (you’d then <code>git commit</code> that change).</p>
+</section>
+<section id="i-want-to-discard-both-staged-and-working-tree-changes-revert-file-fully" class="level3" data-number="7.7.4">
+<h3 data-number="7.7.4" class="anchored" data-anchor-id="i-want-to-discard-both-staged-and-working-tree-changes-revert-file-fully"><span class="header-section-number">7.7.4</span> 4) I want to discard <em>both</em> staged and working-tree changes (revert file fully)</h3>
+<div class="sourceCode" id="cb145"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--source</span><span class="op">=</span>HEAD <span class="at">--staged</span> <span class="at">--worktree</span> path/to/file</span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="co"># classic (dangerous if you typo the path):</span></span>
+<span id="cb145-3"><a href="#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--</span> path/to/file   <span class="co"># older porcelain that touches worktree too</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="interactive-unstage-by-hunks" class="level3" data-number="7.7.5">
+<h3 data-number="7.7.5" class="anchored" data-anchor-id="interactive-unstage-by-hunks"><span class="header-section-number">7.7.5</span> 5) Interactive unstage by hunks</h3>
+<div class="sourceCode" id="cb146"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">-p</span> path/to/file             <span class="co"># unstage selected hunks</span></span>
+<span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (newer porcelain also supports)</span></span>
+<span id="cb146-3"><a href="#cb146-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">-p</span> <span class="at">--staged</span> path/to/file</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="when-to-prefer-which" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="when-to-prefer-which"><span class="header-section-number">7.8</span> When to prefer which</h2>
+<ul>
+<li>Use <strong><code>git restore --staged</code></strong> for clarity (it cannot move HEAD/branches; it only touches the index).</li>
+<li><strong><code>git reset &lt;path&gt;</code></strong> is ubiquitous and shorter, but <code>reset</code> also has <em>other</em> modes (<code>--soft/--hard</code>, moving HEAD), so it’s easier to misuse.</li>
+</ul>
+<hr>
+</section>
+<section id="quick-reference-table" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="quick-reference-table"><span class="header-section-number">7.9</span> Quick reference table</h2>
+<table class="table">
+<colgroup>
+<col style="width: 52%">
+<col style="width: 5%">
+<col style="width: 22%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>HEAD</th>
+<th>Index (staging)</th>
+<th>Working tree</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git restore --staged &lt;path&gt;</code></td>
+<td>same</td>
+<td><strong>to HEAD</strong></td>
+<td>same</td>
+</tr>
+<tr class="even">
+<td><code>git reset &lt;path&gt;</code></td>
+<td>same</td>
+<td><strong>to HEAD</strong></td>
+<td>same</td>
+</tr>
+<tr class="odd">
+<td><code>git restore &lt;path&gt;</code></td>
+<td>same</td>
+<td>same</td>
+<td><strong>to HEAD</strong></td>
+</tr>
+<tr class="even">
+<td><code>git restore --staged --worktree &lt;path&gt;</code></td>
+<td>same</td>
+<td><strong>to HEAD</strong></td>
+<td><strong>to HEAD</strong></td>
+</tr>
+<tr class="odd">
+<td><code>git reset &lt;commit&gt; -- &lt;path&gt;</code></td>
+<td>same</td>
+<td><strong>to <code>&lt;commit&gt;</code></strong></td>
+<td>same</td>
+</tr>
+<tr class="even">
+<td><code>git reset --hard</code> (no path)</td>
+<td>move</td>
+<td><strong>to new HEAD</strong></td>
+<td><strong>to new HEAD</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bottom line:</strong> Use either <code>git restore --staged &lt;path&gt;</code> or <code>git reset &lt;path&gt;</code> to <strong>unstage</strong> without losing your edits. Add <code>--source=&lt;commit&gt;</code> if you want the index to match some other commit.</p>
+</section>
+</section>
+<section id="hwo-to-go-back-to-a-previous-commit" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Hwo to go back to a previous commit?</h1>
+</section>
+<section id="just-look-around-at-an-old-commit-temporary" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> 1) Just look around at an old commit (temporary)</h1>
+<div class="sourceCode" id="cb147"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--oneline</span>                <span class="co"># find the commit hash (e.g., a1b2c3d)</span></span>
+<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">--detach</span> a1b2c3d      <span class="co"># or: git checkout a1b2c3d</span></span>
+<span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="co"># You are in DETACHED HEAD (not on a branch)</span></span>
+<span id="cb147-4"><a href="#cb147-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Go back to where you were:</span></span>
+<span id="cb147-5"><a href="#cb147-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-</span>                     <span class="co"># or: git switch &lt;your-branch&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="make-a-new-branch-starting-from-that-commit" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> 2) Make a new branch starting from that commit</h1>
+<div class="sourceCode" id="cb148"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> debug-old a1b2c3d  <span class="co"># or: git checkout -b debug-old a1b2c3d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="restore-a-single-file-as-it-was-in-that-commit" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> 3) Restore a single file as it was in that commit</h1>
+<div class="sourceCode" id="cb149"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--source</span><span class="op">=</span>a1b2c3d path/to/file</span>
+<span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (older git)</span></span>
+<span id="cb149-3"><a href="#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="co"># git checkout a1b2c3d -- path/to/file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="move-the-current-branch-pointer-back-rewrite-history" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> 4) Move the current branch pointer back (rewrite history)</h1>
+<p><strong>Dangerous if already pushed.</strong></p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--hard</span> a1b2c3d</span>
+<span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If remote already has newer commits, you’d need:</span></span>
+<span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--force-with-lease</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="undo-by-adding-inverse-commits-safe-for-shared-repos" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> 5) “Undo” by adding inverse commits (safe for shared repos)</h1>
+<div class="sourceCode" id="cb151"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert a1b2c3d               <span class="co"># revert one commit</span></span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert <span class="op">&lt;</span>old<span class="op">&gt;</span>..HEAD           <span class="co"># revert a range (excludes &lt;old&gt;, reverts after it)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 
 </main> <!-- /main -->

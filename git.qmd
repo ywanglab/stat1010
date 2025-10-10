@@ -1766,7 +1766,316 @@ git config --global pull.ff only
 ```bash
 git reset --hard @{u}
 ```
+## Workfow when devloping codes on a local computer:
 
+The codebase is in `main`, and revising code in branch `dev`. Then I make a commit on `dev`. Now we update `main` with the new commit of `dev`. 
+
+### most common case: fast-forward
+
+If `main` hasn’t moved since you branched:
+
+```bash
+git status                         # make sure you’re clean; stash/commit if not
+git switch main
+git log --oneline main..dev        # review what will come in
+git merge --ff-only dev            # fast-forward main to dev’s commit(s)
+### optional: delete the feature branch
+git branch -d dev
+```
+The workflow works when there is no diverge: `main` is ancestor of `dev`
+
+### If `main` and `dev` diverged
+
+You have two good choices:
+
+**A) Merge (keeps both histories)**
+
+```bash
+git switch main
+git merge dev                      # resolve conflicts if any
+# (edit files) -> git add -A -> git commit
+```
+
+**B) Rebase then fast-forward (linear history)**
+
+```bash
+git switch dev
+git rebase main                    # replay dev on top of main; resolve conflicts
+git switch main
+git merge --ff-only dev            # now a fast-forward
+```
+
+
+
+### Notes
+
+* If you truly want `main` to **exactly match** `dev` (and don’t care about preserving `main`’s extra commits), you can do:
+
+  ```bash
+  git switch main
+  git reset --hard dev             # moves main pointer to dev (history rewrite)
+  ```
+* Always make sure your working tree is clean first (`git status`). If not:
+
+  ```bash
+  git stash -u -m "save work"      # later: git stash pop
+  ```
+
+
+## `git add`
+```
+git add -A      # everything (adds/mods/deletes, whole repo)
+git add -u      # mods + deletes (tracked only, no new files. `-u`: update)
+git add .       # adds/mods here; ignore deletions outside and inside the current directory.
+git add -p      # interactive (hunks)
+```
+
+
+Other handy flags:
+
+* `--squash`: bring in all changes as **one** staged change (no merge commit, not a real merge).
+
+  ```bash
+  git merge --squash dev && git commit -m "Squash dev"
+  ```
+* `--no-commit`: stage the merge result but stop before creating the merge commit (lets you review/tweak).
+
+
+
+
+
+### rebase
+
+`rebase` rewrites the **current** branch’s commits to a new base. You rebase the branch that you want to “move”:
+
+```text
+Before:
+main: A ── B ── C
+dev:        \── D ── E
+
+git switch dev
+git rebase main   # replay D,E on top of C
+
+After:
+main: A ── B ── C
+dev:             └─ D' ── E'
+```
+
+Now `main` can fast-forward to `dev`:
+
+```bash
+git switch main
+git merge --ff-only dev
+```
+
+Rebasing `main` onto `dev` would rewrite `main` (risky, especially if shared). Safer pattern: **rebase the feature branch, not the trunk**.
+
+# 5) `git stash -u -m "message"` and `git stash pop`
+
+* `git stash` saves your **working tree** (and by default the **index**) to a stack, and reverts your tree to a clean state.`stash` is repo-wide, nto tied to a branch. 
+
+* Flags:
+
+  * **`-u` / `--include-untracked`**: also stash **untracked** files (but not ignored).
+  * **`-m "message"`**: label the stash (nice when you have many).
+  * Modern syntax uses `stash push` (equivalent to plain `stash`):
+
+    ```bash
+    git stash push -u -m "WIP parser refactor"
+    ```
+
+* **Apply vs Pop**
+
+  * `git stash apply [<stash>]`: apply changes **but keep** the stash in the stack.
+  * `git stash pop [<stash>]`: apply changes **and remove** that stash entry if the apply succeeds.
+
+    ```bash
+    git stash pop          # takes the latest stash, applies, then drops it
+    ```
+  * If there are **conflicts**, you’ll resolve them, then continue as usual. If a pop fails partway, the stash may **not** be dropped—check `git stash list`.
+  `git stash apply` applies the selected stash onto whatever branch you are on when you run it. 
+
+* Useful extras:
+
+  ```bash
+  git stash list                   # see stashes
+  git stash show -p stash@{2}      # see what’s inside
+  git stash drop stash@{2}         # delete a specific stash
+  git stash clear                  # remove all stashes (careful!)
+  git stash push --keep-index      # stash only unstaged; keep staged work
+  git stash push -p                # interactively choose hunks to stash
+  git stash branch fix-wip stash@{0}  # make a new branch from a stash
+  ```
+In Git, the **index** (aka the **staging area**) is the middle layer between your working directory and your last commit (`HEAD`). Think of it as your **shopping cart** for the next commit: whatever is in the index is exactly what `git commit` will record.
+
+## Mental model (the “three trees”)
+
+* **Working tree**: files on disk you edit.
+* **Index / Staging area**: a snapshot you’re preparing.
+* **HEAD**: the last committed snapshot.
+
+## How it’s used
+
+* `git add <path>` → copies the file’s current content from working tree **into the index**.
+* `git commit` → writes a new commit **from the index** (not directly from your working files).
+* `git restore --staged <path>` or `git reset <path>` → remove/rewind paths **from the index** (without touching the working file). 
+* `git rm` → removes a file from working tree **and** stages its deletion in the index.
+
+## Diff cheat-sheet
+
+* `git diff` → working tree **vs** index (what you changed but haven’t staged).
+* `git diff --staged` (or `--cached`) → index **vs** HEAD (what will be committed).
+
+## Merges & conflicts
+
+During a merge/rebase, conflicts show up as **unmerged entries** in the index (with stages):
+
+* stage 1 = base, 2 = “ours” (HEAD), 3 = “theirs”.
+* See them: `git ls-files -u`.
+* Resolve by editing files, then `git add` to update the index with your resolution.
+
+## Partial commits
+
+* `git add -p` lets you stage **only some hunks**, building a clean, focused commit from the index.
+
+## Where it lives / advanced bits
+
+* It’s a binary file at `.git/index` caching file paths, blob IDs, and file stat info (for fast change detection).
+* Power tools: `git update-index`, flags like `--assume-unchanged` / `--skip-worktree` (advanced, use sparingly).
+
+**Bottom line:** The index is “what your next commit will be.” Use `add`/`restore`/`reset` to curate it; use `diff`/`diff --staged` to inspect it.
+
+
+
+###  Explain `git restore --staged <path>` or `git reset <path>`
+
+Both commands are about the **index (staging area)** for the given `<path>`:
+
+* **`git restore --staged <path>`**
+  Unstages `<path>` by resetting the **index** copy of that file to match **HEAD** (the last commit).
+  ➜ **HEAD: unchanged**, **index: reset to HEAD**, **working tree: untouched**.
+
+* **`git reset <path>`** (shorthand for `git reset --mixed HEAD -- <path>`)
+  Does the **same thing** as above: reset the **index** entry for `<path>` to match **HEAD**; leave your working file alone.
+  ➜ Same effects as `restore --staged`.
+
+Think of both as: “I staged something by mistake; put the staged version back to what’s in the last commit, but don’t touch my edits on disk.”
+
+---
+
+## Common scenarios & exact commands
+
+### 1) I ran `git add -A` by accident and staged too much
+
+```bash
+git restore --staged path/to/file      # new-style, explicit
+# or:
+git reset path/to/file                 # classic equivalent
+```
+
+Your edits stay in the working directory; they’re just **no longer staged**.
+
+### 2) I staged a deletion, but I want the file back
+
+Unstage the deletion **and** bring the file back to disk:
+
+```bash
+git restore --staged path/to/file
+git restore path/to/file               # restores the working tree copy from HEAD
+```
+
+### 3) I want the index for this file to match some other commit (not HEAD)
+
+```bash
+git restore --source=<commit> --staged path/to/file
+# or:
+git reset <commit> -- path/to/file
+```
+
+Useful to “revert just this file” to an older version (you’d then `git commit` that change).
+
+### 4) I want to discard *both* staged and working-tree changes (revert file fully)
+
+```bash
+git restore --source=HEAD --staged --worktree path/to/file
+# classic (dangerous if you typo the path):
+git checkout -- path/to/file   # older porcelain that touches worktree too
+```
+
+### 5) Interactive unstage by hunks
+
+```bash
+git reset -p path/to/file             # unstage selected hunks
+# (newer porcelain also supports)
+git restore -p --staged path/to/file
+```
+
+---
+
+## When to prefer which
+
+* Use **`git restore --staged`** for clarity (it cannot move HEAD/branches; it only touches the index).
+* **`git reset <path>`** is ubiquitous and shorter, but `reset` also has *other* modes (`--soft/--hard`, moving HEAD), so it’s easier to misuse.
+
+---
+
+## Quick reference table
+
+| Command                                  | HEAD | Index (staging)   | Working tree    |
+| ---------------------------------------- | ---- | ----------------- | --------------- |
+| `git restore --staged <path>`            | same | **to HEAD**       | same            |
+| `git reset <path>`                       | same | **to HEAD**       | same            |
+| `git restore <path>`                     | same | same              | **to HEAD**     |
+| `git restore --staged --worktree <path>` | same | **to HEAD**       | **to HEAD**     |
+| `git reset <commit> -- <path>`           | same | **to `<commit>`** | same            |
+| `git reset --hard` (no path)             | move | **to new HEAD**   | **to new HEAD** |
+
+**Bottom line:**
+Use either `git restore --staged <path>` or `git reset <path>` to **unstage** without losing your edits. Add `--source=<commit>` if you want the index to match some other commit.
+
+# Hwo to go back to a previous commit?
+
+
+# 1) Just look around at an old commit (temporary)
+
+```bash
+git log --oneline                # find the commit hash (e.g., a1b2c3d)
+git switch --detach a1b2c3d      # or: git checkout a1b2c3d
+# You are in DETACHED HEAD (not on a branch)
+# Go back to where you were:
+git switch -                     # or: git switch <your-branch>
+```
+
+# 2) Make a new branch starting from that commit
+
+```bash
+git switch -c debug-old a1b2c3d  # or: git checkout -b debug-old a1b2c3d
+```
+
+# 3) Restore a single file as it was in that commit
+
+```bash
+git restore --source=a1b2c3d path/to/file
+# (older git)
+# git checkout a1b2c3d -- path/to/file
+```
+
+# 4) Move the current branch pointer back (rewrite history)
+
+**Dangerous if already pushed.**
+
+```bash
+git reset --hard a1b2c3d
+# If remote already has newer commits, you’d need:
+git push --force-with-lease
+```
+
+# 5) “Undo” by adding inverse commits (safe for shared repos)
+
+```bash
+git revert a1b2c3d               # revert one commit
+git revert <old>..HEAD           # revert a range (excludes <old>, reverts after it)
+```
 
 
 

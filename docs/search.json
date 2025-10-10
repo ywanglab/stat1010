@@ -64,7 +64,7 @@
     "href": "git.html",
     "title": "4  Use Git and GitHub",
     "section": "",
-    "text": "5 Concrete example: what does “merge C with D to produce M” look like?\nAssume the repo has one file, README.md.\nWhen you rebase local commits that were already pushed, your local branch history no longer matches the remote’s. A normal git push will be rejected. You need to overwrite the remote branch tip—i.e., a force push.",
+    "text": "5 Concrete example: what does “merge C with D to produce M” look like?\nAssume the repo has one file, README.md.\nWhen you rebase local commits that were already pushed, your local branch history no longer matches the remote’s. A normal git push will be rejected. You need to overwrite the remote branch tip—i.e., a force push.\nDangerous if already pushed.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
@@ -445,6 +445,116 @@
     "title": "4  Use Git and GitHub",
     "section": "6.25 “I just want to discard my local commits and match remote”",
     "text": "6.25 “I just want to discard my local commits and match remote”\nWarning: This throws away your local commits on this branch.\ngit reset --hard @{u}",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#workfow-when-devloping-codes-on-a-local-computer",
+    "href": "git.html#workfow-when-devloping-codes-on-a-local-computer",
+    "title": "4  Use Git and GitHub",
+    "section": "6.26 Workfow when devloping codes on a local computer:",
+    "text": "6.26 Workfow when devloping codes on a local computer:\nThe codebase is in main, and revising code in branch dev. Then I make a commit on dev. Now we update main with the new commit of dev.\n\n6.26.1 most common case: fast-forward\nIf main hasn’t moved since you branched:\ngit status                         # make sure you’re clean; stash/commit if not\ngit switch main\ngit log --oneline main..dev        # review what will come in\ngit merge --ff-only dev            # fast-forward main to dev’s commit(s)\n### optional: delete the feature branch\ngit branch -d dev\nThe workflow works when there is no diverge: main is ancestor of dev\n\n\n6.26.2 If main and dev diverged\nYou have two good choices:\nA) Merge (keeps both histories)\ngit switch main\ngit merge dev                      # resolve conflicts if any\n# (edit files) -&gt; git add -A -&gt; git commit\nB) Rebase then fast-forward (linear history)\ngit switch dev\ngit rebase main                    # replay dev on top of main; resolve conflicts\ngit switch main\ngit merge --ff-only dev            # now a fast-forward\n\n\n6.26.3 Notes\n\nIf you truly want main to exactly match dev (and don’t care about preserving main’s extra commits), you can do:\ngit switch main\ngit reset --hard dev             # moves main pointer to dev (history rewrite)\nAlways make sure your working tree is clean first (git status). If not:\ngit stash -u -m \"save work\"      # later: git stash pop",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#git-add",
+    "href": "git.html#git-add",
+    "title": "4  Use Git and GitHub",
+    "section": "6.27 git add",
+    "text": "6.27 git add\ngit add -A      # everything (adds/mods/deletes, whole repo)\ngit add -u      # mods + deletes (tracked only, no new files. `-u`: update)\ngit add .       # adds/mods here; ignore deletions outside and inside the current directory.\ngit add -p      # interactive (hunks)\nOther handy flags:\n\n--squash: bring in all changes as one staged change (no merge commit, not a real merge).\ngit merge --squash dev && git commit -m \"Squash dev\"\n--no-commit: stage the merge result but stop before creating the merge commit (lets you review/tweak).\n\n\n6.27.1 rebase\nrebase rewrites the current branch’s commits to a new base. You rebase the branch that you want to “move”:\nBefore:\nmain: A ── B ── C\ndev:        \\── D ── E\n\ngit switch dev\ngit rebase main   # replay D,E on top of C\n\nAfter:\nmain: A ── B ── C\ndev:             └─ D' ── E'\nNow main can fast-forward to dev:\ngit switch main\ngit merge --ff-only dev\nRebasing main onto dev would rewrite main (risky, especially if shared). Safer pattern: rebase the feature branch, not the trunk.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#mental-model-the-three-trees",
+    "href": "git.html#mental-model-the-three-trees",
+    "title": "4  Use Git and GitHub",
+    "section": "7.1 Mental model (the “three trees”)",
+    "text": "7.1 Mental model (the “three trees”)\n\nWorking tree: files on disk you edit.\nIndex / Staging area: a snapshot you’re preparing.\nHEAD: the last committed snapshot.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#how-its-used",
+    "href": "git.html#how-its-used",
+    "title": "4  Use Git and GitHub",
+    "section": "7.2 How it’s used",
+    "text": "7.2 How it’s used\n\ngit add &lt;path&gt; → copies the file’s current content from working tree into the index.\ngit commit → writes a new commit from the index (not directly from your working files).\ngit restore --staged &lt;path&gt; or git reset &lt;path&gt; → remove/rewind paths from the index (without touching the working file).\ngit rm → removes a file from working tree and stages its deletion in the index.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#diff-cheat-sheet",
+    "href": "git.html#diff-cheat-sheet",
+    "title": "4  Use Git and GitHub",
+    "section": "7.3 Diff cheat-sheet",
+    "text": "7.3 Diff cheat-sheet\n\ngit diff → working tree vs index (what you changed but haven’t staged).\ngit diff --staged (or --cached) → index vs HEAD (what will be committed).",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#merges-conflicts",
+    "href": "git.html#merges-conflicts",
+    "title": "4  Use Git and GitHub",
+    "section": "7.4 Merges & conflicts",
+    "text": "7.4 Merges & conflicts\nDuring a merge/rebase, conflicts show up as unmerged entries in the index (with stages):\n\nstage 1 = base, 2 = “ours” (HEAD), 3 = “theirs”.\nSee them: git ls-files -u.\nResolve by editing files, then git add to update the index with your resolution.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#partial-commits",
+    "href": "git.html#partial-commits",
+    "title": "4  Use Git and GitHub",
+    "section": "7.5 Partial commits",
+    "text": "7.5 Partial commits\n\ngit add -p lets you stage only some hunks, building a clean, focused commit from the index.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#where-it-lives-advanced-bits",
+    "href": "git.html#where-it-lives-advanced-bits",
+    "title": "4  Use Git and GitHub",
+    "section": "7.6 Where it lives / advanced bits",
+    "text": "7.6 Where it lives / advanced bits\n\nIt’s a binary file at .git/index caching file paths, blob IDs, and file stat info (for fast change detection).\nPower tools: git update-index, flags like --assume-unchanged / --skip-worktree (advanced, use sparingly).\n\nBottom line: The index is “what your next commit will be.” Use add/restore/reset to curate it; use diff/diff --staged to inspect it.\n\n7.6.1 Explain git restore --staged &lt;path&gt; or git reset &lt;path&gt;\nBoth commands are about the index (staging area) for the given &lt;path&gt;:\n\ngit restore --staged &lt;path&gt; Unstages &lt;path&gt; by resetting the index copy of that file to match HEAD (the last commit). ➜ HEAD: unchanged, index: reset to HEAD, working tree: untouched.\ngit reset &lt;path&gt; (shorthand for git reset --mixed HEAD -- &lt;path&gt;) Does the same thing as above: reset the index entry for &lt;path&gt; to match HEAD; leave your working file alone. ➜ Same effects as restore --staged.\n\nThink of both as: “I staged something by mistake; put the staged version back to what’s in the last commit, but don’t touch my edits on disk.”",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#common-scenarios-exact-commands",
+    "href": "git.html#common-scenarios-exact-commands",
+    "title": "4  Use Git and GitHub",
+    "section": "7.7 Common scenarios & exact commands",
+    "text": "7.7 Common scenarios & exact commands\n\n7.7.1 1) I ran git add -A by accident and staged too much\ngit restore --staged path/to/file      # new-style, explicit\n# or:\ngit reset path/to/file                 # classic equivalent\nYour edits stay in the working directory; they’re just no longer staged.\n\n\n7.7.2 2) I staged a deletion, but I want the file back\nUnstage the deletion and bring the file back to disk:\ngit restore --staged path/to/file\ngit restore path/to/file               # restores the working tree copy from HEAD\n\n\n7.7.3 3) I want the index for this file to match some other commit (not HEAD)\ngit restore --source=&lt;commit&gt; --staged path/to/file\n# or:\ngit reset &lt;commit&gt; -- path/to/file\nUseful to “revert just this file” to an older version (you’d then git commit that change).\n\n\n7.7.4 4) I want to discard both staged and working-tree changes (revert file fully)\ngit restore --source=HEAD --staged --worktree path/to/file\n# classic (dangerous if you typo the path):\ngit checkout -- path/to/file   # older porcelain that touches worktree too\n\n\n7.7.5 5) Interactive unstage by hunks\ngit reset -p path/to/file             # unstage selected hunks\n# (newer porcelain also supports)\ngit restore -p --staged path/to/file",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#when-to-prefer-which",
+    "href": "git.html#when-to-prefer-which",
+    "title": "4  Use Git and GitHub",
+    "section": "7.8 When to prefer which",
+    "text": "7.8 When to prefer which\n\nUse git restore --staged for clarity (it cannot move HEAD/branches; it only touches the index).\ngit reset &lt;path&gt; is ubiquitous and shorter, but reset also has other modes (--soft/--hard, moving HEAD), so it’s easier to misuse.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
+    ]
+  },
+  {
+    "objectID": "git.html#quick-reference-table",
+    "href": "git.html#quick-reference-table",
+    "title": "4  Use Git and GitHub",
+    "section": "7.9 Quick reference table",
+    "text": "7.9 Quick reference table\n\n\n\n\n\n\n\n\n\nCommand\nHEAD\nIndex (staging)\nWorking tree\n\n\n\n\ngit restore --staged &lt;path&gt;\nsame\nto HEAD\nsame\n\n\ngit reset &lt;path&gt;\nsame\nto HEAD\nsame\n\n\ngit restore &lt;path&gt;\nsame\nsame\nto HEAD\n\n\ngit restore --staged --worktree &lt;path&gt;\nsame\nto HEAD\nto HEAD\n\n\ngit reset &lt;commit&gt; -- &lt;path&gt;\nsame\nto &lt;commit&gt;\nsame\n\n\ngit reset --hard (no path)\nmove\nto new HEAD\nto new HEAD\n\n\n\nBottom line: Use either git restore --staged &lt;path&gt; or git reset &lt;path&gt; to unstage without losing your edits. Add --source=&lt;commit&gt; if you want the index to match some other commit.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Use Git and GitHub</span>"
     ]
